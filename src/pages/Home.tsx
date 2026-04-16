@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { ArrowRight, Award, ShieldCheck, Sparkles, Truck } from "lucide-react";
+import { ArrowRight, Award, ShieldCheck, Sparkles, Truck, ShoppingBag, Plus, Minus } from "lucide-react";
 import hero from "@/assets/banners/hero.jpg";
 import celineBanner from "@/assets/banners/celine.jpg";
 import davidBanner from "@/assets/banners/david.jpg";
@@ -93,31 +93,79 @@ const Home = () => {
       </section>
 
       {/* Featured Products */}
-      <section className="container-luxe pb-16">
+      <section className="container-luxe pb-16 px-12 max-w-[1400px]">
         <div className="text-center mb-10">
           <p className="text-xs uppercase tracking-[0.2em] text-accent mb-2">Coleção em Destaque</p>
           <h2 className="text-4xl md:text-5xl font-serif">Encontre o modelo ideal</h2>
         </div>
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-          {products.slice(0, 4).map((p) => (
-            <Link key={p.id} to={`/catalogo`} className="group block">
-              <article>
-                <div className="aspect-square bg-soft overflow-hidden p-6 flex items-center justify-center">
-                  <img src={p.img} alt={p.name} className="max-h-full max-w-full object-contain transition-transform duration-500 group-hover:scale-105" />
-                </div>
-                <div className="mt-4 text-center md:text-left">
-                  <p className="text-xs uppercase tracking-widest text-muted-foreground">{p.brand}</p>
-                  <h3 className="text-lg font-medium mt-1">{p.name}</h3>
-                  <p className="text-accent font-medium mt-1">
-                    R$ {p.price.toLocaleString("pt-BR")}
-                  </p>
-                </div>
-              </article>
-            </Link>
-          ))}
-        </div>
-        <div className="text-center mt-10">
-          <Button asChild variant="outline" size="lg">
+        
+        <Carousel
+          opts={{
+            align: "start",
+            loop: true,
+          }}
+          className="w-full relative"
+        >
+          <CarouselContent className="-ml-4">
+            {products.map((p) => {
+              const oldPrice = p.price * 1.15;
+              const vistaPrice = p.price * 0.9;
+              const installment = p.price / 10;
+              
+              return (
+                <CarouselItem key={p.id} className="pl-4 md:basis-1/3 lg:basis-1/5">
+                  <div className="group flex flex-col h-full bg-white transition-all hover:shadow-sm border border-transparent hover:border-border/50">
+                    <Link to={`/catalogo`} className="block">
+                      <div className="aspect-[4/3] w-full overflow-hidden p-6 flex items-center justify-center bg-transparent">
+                        <img src={p.img} alt={p.name} className="max-h-full max-w-full object-contain transition-transform duration-500 group-hover:scale-105" />
+                      </div>
+                    </Link>
+                    <div className="px-4 pb-6 mt-4 text-center flex flex-col flex-grow">
+                      <Link to={`/catalogo`} className="block mb-3">
+                        <h3 className="text-[13px] font-bold uppercase tracking-wider text-[#333] leading-tight h-8 flex items-center justify-center">
+                          {p.brand} {p.name}
+                        </h3>
+                      </Link>
+                      
+                      <div className="mt-auto">
+                        <p className="text-xs text-muted-foreground line-through decoration-muted-foreground/50">
+                          R$ {oldPrice.toLocaleString("pt-BR", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+                        </p>
+                        <p className="text-[22px] font-bold font-sans text-black my-1">
+                          R$ {p.price.toLocaleString("pt-BR", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+                        </p>
+                        
+                        <p className="text-[11px] text-[#666] leading-tight mt-2 mb-6 h-10 flex flex-col items-center justify-center">
+                          <span>R$ {vistaPrice.toLocaleString("pt-BR", { minimumFractionDigits: 2, maximumFractionDigits: 2 })} à vista com desconto</span>
+                          <span>ou <strong>10x</strong> de <strong>R$ {installment.toLocaleString("pt-BR", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</strong> sem juros</span>
+                        </p>
+
+                        <div className="flex items-center gap-2 mt-4 px-2">
+                          <div className="flex flex-row items-center bg-[#f8f9fa] border border-[#e5e7eb] h-[42px] w-[75px] overflow-hidden rounded-sm shrink-0">
+                            <span className="text-sm font-medium flex-1 text-center text-[#333]">1</span>
+                            <div className="flex flex-col items-center justify-center border-l border-[#e5e7eb] bg-white w-6 h-full">
+                              <button className="flex-1 flex items-center justify-center w-full hover:bg-gray-50 border-b border-[#e5e7eb]"><Plus className="w-2.5 h-2.5 text-[#666]" /></button>
+                              <button className="flex-1 flex items-center justify-center w-full hover:bg-gray-50"><Minus className="w-2.5 h-2.5 text-[#666]" /></button>
+                            </div>
+                          </div>
+                          <Button className="flex-1 rounded-sm bg-black hover:bg-black/90 text-white h-[42px] flex items-center justify-center gap-2 text-xs font-bold uppercase tracking-wider">
+                            <ShoppingBag className="w-4 h-4 mb-0.5" />
+                            Comprar
+                          </Button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </CarouselItem>
+              );
+            })}
+          </CarouselContent>
+          <CarouselPrevious className="absolute -left-6 md:-left-12 top-1/3 -translate-y-1/2 z-10 bg-white border border-border shadow-sm hover:bg-white text-muted-foreground w-10 h-10" />
+          <CarouselNext className="absolute -right-6 md:-right-12 top-1/3 -translate-y-1/2 z-10 bg-white border border-border shadow-sm hover:bg-white text-muted-foreground w-10 h-10" />
+        </Carousel>
+
+        <div className="text-center mt-12">
+          <Button asChild variant="outline" size="lg" className="rounded-none tracking-widest uppercase text-xs">
             <Link to="/catalogo">Ver toda a coleção <ArrowRight className="ml-2 h-4 w-4" /></Link>
           </Button>
         </div>
