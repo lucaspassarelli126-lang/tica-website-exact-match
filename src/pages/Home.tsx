@@ -7,7 +7,7 @@ import pucciBanner from "@/assets/banners/pucci.jpg";
 import saleBanner from "@/assets/banners/sale.jpg";
 import miumiuBanner from "@/assets/banners/miumiu.png";
 import gucciBanner from "@/assets/banners/gucci-vitrine.png";
-import { brands, categories } from "@/data/site";
+import { brands, categories, products } from "@/data/site";
 import { Button } from "@/components/ui/button";
 import Autoplay from "embla-carousel-autoplay";
 import {
@@ -89,6 +89,37 @@ const Home = () => {
               <p className="mt-3 text-center text-sm uppercase tracking-wider">{c.name}</p>
             </Link>
           ))}
+        </div>
+      </section>
+
+      {/* Featured Products */}
+      <section className="container-luxe pb-16">
+        <div className="text-center mb-10">
+          <p className="text-xs uppercase tracking-[0.2em] text-accent mb-2">Coleção em Destaque</p>
+          <h2 className="text-4xl md:text-5xl font-serif">Encontre o modelo ideal</h2>
+        </div>
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+          {products.slice(0, 4).map((p) => (
+            <Link key={p.id} to={`/catalogo`} className="group block">
+              <article>
+                <div className="aspect-square bg-soft overflow-hidden p-6 flex items-center justify-center">
+                  <img src={p.img} alt={p.name} className="max-h-full max-w-full object-contain transition-transform duration-500 group-hover:scale-105" />
+                </div>
+                <div className="mt-4 text-center md:text-left">
+                  <p className="text-xs uppercase tracking-widest text-muted-foreground">{p.brand}</p>
+                  <h3 className="text-lg font-medium mt-1">{p.name}</h3>
+                  <p className="text-accent font-medium mt-1">
+                    R$ {p.price.toLocaleString("pt-BR")}
+                  </p>
+                </div>
+              </article>
+            </Link>
+          ))}
+        </div>
+        <div className="text-center mt-10">
+          <Button asChild variant="outline" size="lg">
+            <Link to="/catalogo">Ver toda a coleção <ArrowRight className="ml-2 h-4 w-4" /></Link>
+          </Button>
         </div>
       </section>
 
