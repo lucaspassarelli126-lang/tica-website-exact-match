@@ -9,15 +9,47 @@ import miumiuBanner from "@/assets/banners/miumiu.png";
 import gucciBanner from "@/assets/banners/gucci-vitrine.png";
 import { brands, categories } from "@/data/site";
 import { Button } from "@/components/ui/button";
+import Autoplay from "embla-carousel-autoplay";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
 
 const Home = () => {
   return (
     <>
       {/* Hero */}
-      <section className="relative">
-        <Link to="/catalogo" className="block group">
-          <img src={hero} alt="Coleção 2026" className="w-full h-[55vh] md:h-[75vh] object-cover" />
-        </Link>
+      <section className="relative w-full">
+        <Carousel
+          opts={{
+            loop: true,
+          }}
+          plugins={[
+            Autoplay({
+              delay: 5000,
+            }),
+          ]}
+          className="w-full relative"
+        >
+          <CarouselContent>
+            {[hero, celineBanner, davidBanner, pucciBanner, saleBanner].map((src, index) => (
+              <CarouselItem key={index}>
+                <Link to="/catalogo" className="block group">
+                  <img
+                    src={src}
+                    alt={`Banner ${index + 1}`}
+                    className="w-full h-[55vh] md:h-[75vh] object-cover"
+                  />
+                </Link>
+              </CarouselItem>
+            ))}
+          </CarouselContent>
+          <CarouselPrevious className="absolute left-4 top-1/2 -translate-y-1/2 z-10 hidden md:flex bg-background/50 border-none hover:bg-background/80" />
+          <CarouselNext className="absolute right-4 top-1/2 -translate-y-1/2 z-10 hidden md:flex bg-background/50 border-none hover:bg-background/80" />
+        </Carousel>
       </section>
 
       {/* Trust strip */}
