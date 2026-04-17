@@ -103,15 +103,21 @@ const Home = () => {
           ))}
         </div>
       </section>
-      {/* Featured Products - Oakley Style Carousel */}
-      <section className="py-24 bg-black text-white overflow-hidden">
-        <div className="container-luxe mb-12 text-center">
-          <p className="text-xs uppercase tracking-[0.3em] text-accent mb-3 font-semibold">Destaques da Temporada</p>
-          <h2 className="text-4xl md:text-6xl font-serif text-white leading-tight">Encontre o seu estilo</h2>
+      {/* Featured Products - Oakley Custom Style */}
+      <section className="py-24 bg-[#EEEBF2] text-black overflow-hidden relative">
+        {/* Top Badge */}
+        <div className="absolute top-8 left-1/2 -translate-x-1/2 z-20">
+          <button className="bg-black text-white text-[11px] font-black px-8 py-2.5 rounded-full uppercase tracking-widest hover:scale-105 transition-transform">
+            FAÇA O SEU
+          </button>
+        </div>
+
+        <div className="container-luxe mb-4 text-center">
+          <p className="text-[10px] uppercase tracking-[0.3em] text-accent font-bold mb-1 opacity-0">Destaques</p>
         </div>
 
         {/* Top Swiper (Images) */}
-        <div className="relative py-10 px-4">
+        <div className="relative pt-12 pb-4 px-4">
           <Swiper
             modules={[EffectCoverflow, Navigation, Controller]}
             onSwiper={setFirstSwiper}
@@ -124,56 +130,62 @@ const Home = () => {
               1024: { slidesPerView: 3 }
             }}
             loop
-            navigation
+            navigation={{
+              nextEl: '.swiper-button-next-custom',
+              prevEl: '.swiper-button-prev-custom',
+            }}
             coverflowEffect={{
               rotate: 0,
-              stretch: 0,
-              depth: 250,
-              modifier: 2,
-              scale: 0.85
+              stretch: -50,
+              depth: 150,
+              modifier: 1.5,
+              scale: 0.8
             }}
-            className="w-full max-w-[1400px]"
+            className="w-full max-w-[1400px] !overflow-visible"
           >
             {products.map((p) => (
               <SwiperSlide key={p.id}>
-                <div className="relative aspect-[4/5] md:aspect-[4/3] w-full overflow-hidden rounded-3xl bg-neutral-900 flex items-center justify-center p-8 group">
+                <div className="relative aspect-[4/3] w-full flex items-center justify-center p-4">
+                  {/* Subtle Floor Shadow */}
+                  <div className="absolute bottom-[20%] left-1/2 -translate-x-1/2 w-[60%] h-6 bg-black/10 blur-2xl rounded-[100%] opacity-60" />
                   <img 
                     src={p.img} 
-                    className="max-h-full max-w-full object-contain transition-transform duration-700 group-hover:scale-110 drop-shadow-[0_20px_50px_rgba(255,255,255,0.1)]" 
+                    className="max-h-[75%] max-w-[90%] object-contain transition-all duration-700 hover:scale-110" 
                     alt={p.name}
                   />
-                  <div className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-black/60 to-transparent pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                 </div>
               </SwiperSlide>
             ))}
           </Swiper>
+          
+          {/* Custom Navigation Arrows */}
+          <button className="swiper-button-prev-custom absolute left-4 md:left-20 top-[45%] -translate-y-1/2 z-20 w-12 h-12 rounded-full bg-zinc-400/30 flex items-center justify-center hover:bg-zinc-400/50 transition-colors">
+            <Plus className="w-6 h-6 -rotate-45 text-zinc-600" />
+          </button>
+          <button className="swiper-button-next-custom absolute right-4 md:right-20 top-[45%] -translate-y-1/2 z-20 w-12 h-12 rounded-full bg-blue-500/10 border-2 border-blue-500/30 flex items-center justify-center hover:bg-blue-500/20 transition-colors">
+            <ArrowRight className="w-6 h-6 text-blue-600" />
+          </button>
         </div>
 
         {/* Bottom Swiper (Details) */}
-        <div className="mt-12 container-luxe max-w-2xl px-4">
+        <div className="container-luxe max-w-2xl px-4">
           <Swiper
             modules={[EffectFade, Controller, Pagination]}
             onSwiper={setSecondSwiper}
             controller={{ control: firstSwiper }}
             effect="fade"
             fadeEffect={{ crossFade: true }}
-            pagination={{ 
-              clickable: true,
-              dynamicBullets: true,
-            }}
             className="w-full"
           >
             {products.map((p) => (
               <SwiperSlide key={p.id}>
-                <div className="text-center pb-12">
-                  <p className="text-accent uppercase tracking-widest text-sm mb-2 font-medium">{p.brand}</p>
-                  <h2 className="text-4xl md:text-5xl font-serif mb-4">{p.name}</h2>
-                  <p className="mt-4 text-zinc-400 text-lg leading-relaxed max-w-lg mx-auto">
-                    Design contemporâneo unindo sofisticação e o estilo {p.style} exclusivo para sua curadoria.
+                <div className="text-center">
+                  <p className="text-[11px] text-zinc-500 uppercase tracking-widest font-medium mb-4">
+                    Compre {p.brand} {p.name}
                   </p>
 
-                  <Button asChild size="lg" className="mt-8 bg-white text-black hover:bg-zinc-200 rounded-none px-10 h-14 uppercase tracking-widest text-xs font-bold transition-all hover:scale-105 active:scale-95">
-                    <Link to="/catalogo">Ver Detalhes</Link>
+                  <Button asChild size="lg" className="bg-black text-white hover:bg-zinc-800 rounded-full px-12 h-12 uppercase tracking-widest text-[10px] font-black transition-all hover:scale-105 active:scale-95 shadow-lg">
+                    <Link to="/catalogo">COMPRE AGORA</Link>
                   </Button>
                 </div>
               </SwiperSlide>
