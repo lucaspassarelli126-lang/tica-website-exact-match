@@ -58,7 +58,7 @@ const Catalogo = () => {
           {filtered.map((p) => (
             <article key={p.id} className="group">
               <div className="aspect-square bg-soft overflow-hidden p-6 flex items-center justify-center">
-                <img src={p.img} alt={p.name} className="max-h-full max-w-full object-contain transition-transform duration-500 group-hover:scale-105 mix-blend-multiply brightness-110 contrast-105" style={{ filter: 'brightness(1.6) contrast(1.05)' }} />
+                <img src={p.img} alt={p.name} className="max-h-full max-w-full object-contain transition-transform duration-500 group-hover:scale-110" />
               </div>
               <div className="mt-4">
                 <p className="text-xs uppercase tracking-widest text-muted-foreground">{p.brand}</p>

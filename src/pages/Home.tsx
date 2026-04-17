@@ -117,7 +117,7 @@ const Home = () => {
                   <div className="group flex flex-col h-full bg-white transition-all hover:shadow-sm border border-transparent hover:border-border/50">
                     <Link to={`/catalogo`} className="block">
                       <div className="aspect-[4/3] w-full overflow-hidden p-6 flex items-center justify-center bg-transparent">
-                        <img src={p.img} alt={p.name} className="max-h-full max-w-full object-contain transition-transform duration-500 group-hover:scale-105 mix-blend-multiply brightness-110 contrast-105" style={{ filter: 'brightness(1.6) contrast(1.05)' }} />
+                        <img src={p.img} alt={p.name} className="max-h-full max-w-full object-contain transition-transform duration-500 group-hover:scale-110" />
                       </div>
                     </Link>
                     <div className="px-4 pb-6 mt-4 text-center flex flex-col flex-grow">
