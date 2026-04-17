@@ -5,10 +5,15 @@ import { EffectCoverflow, Pagination, Navigation, Controller, EffectFade } from 
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
+// @ts-ignore
 import "swiper/css";
+// @ts-ignore
 import "swiper/css/navigation";
+// @ts-ignore
 import "swiper/css/pagination";
+// @ts-ignore
 import "swiper/css/effect-coverflow";
+// @ts-ignore
 import "swiper/css/effect-fade";
 
 interface Product {
