@@ -7,9 +7,18 @@ import pucciBanner from "@/assets/banners/pucci.jpg";
 import saleBanner from "@/assets/banners/sale.jpg";
 import miumiuBanner from "@/assets/banners/miumiu.png";
 import gucciBanner from "@/assets/banners/gucci-vitrine.png";
-import { brands, categories, products } from "@/data/site";
+import { products, brands, categories } from "@/data/site";
 import { Button } from "@/components/ui/button";
+import { useState } from "react";
 import Autoplay from "embla-carousel-autoplay";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { EffectCoverflow, Pagination, Navigation, Controller, EffectFade } from "swiper/modules";
+
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
+import "swiper/css/effect-coverflow";
+import "swiper/css/effect-fade";
 import {
   Carousel,
   CarouselContent,
@@ -19,6 +28,9 @@ import {
 } from "@/components/ui/carousel";
 
 const Home = () => {
+  const [firstSwiper, setFirstSwiper] = useState<any>(null);
+  const [secondSwiper, setSecondSwiper] = useState<any>(null);
+
   return (
     <>
       {/* Hero */}
@@ -91,83 +103,82 @@ const Home = () => {
           ))}
         </div>
       </section>
-
-      {/* Featured Products */}
-      <section className="container-luxe pb-16 px-4 md:px-12 max-w-[1400px]">
-        <div className="text-center mb-10">
-          <p className="text-xs uppercase tracking-[0.2em] text-accent mb-2">Coleção em Destaque</p>
-          <h2 className="text-4xl md:text-5xl font-serif">Encontre o modelo ideal</h2>
+      {/* Featured Products - Oakley Style Carousel */}
+      <section className="py-24 bg-black text-white overflow-hidden">
+        <div className="container-luxe mb-12 text-center">
+          <p className="text-xs uppercase tracking-[0.3em] text-accent mb-3 font-semibold">Destaques da Temporada</p>
+          <h2 className="text-4xl md:text-6xl font-serif text-white leading-tight">Encontre o seu estilo</h2>
         </div>
-        
-        <Carousel
-          opts={{
-            align: "start",
-            loop: true,
-          }}
-          className="w-full relative"
-        >
-          <CarouselContent className="-ml-4">
-            {products.map((p) => {
-              const oldPrice = p.price * 1.15;
-              const vistaPrice = p.price * 0.9;
-              const installment = p.price / 10;
-              
-              return (
-                <CarouselItem key={p.id} className="pl-4 basis-[85%] sm:basis-[60%] md:basis-1/3 lg:basis-1/5">
-                  <div className="group flex flex-col h-full bg-white transition-all hover:shadow-sm border border-transparent hover:border-border/50">
-                    <Link to={`/catalogo`} className="block">
-                      <div className="aspect-[4/3] w-full overflow-hidden p-6 flex items-center justify-center bg-transparent">
-                        <img src={p.img} alt={p.name} className="max-h-full max-w-full object-contain transition-transform duration-500 group-hover:scale-110" />
-                      </div>
-                    </Link>
-                    <div className="px-4 pb-6 mt-4 text-center flex flex-col flex-grow">
-                      <Link to={`/catalogo`} className="block mb-3">
-                        <h3 className="text-[13px] font-bold uppercase tracking-wider text-[#333] leading-tight h-8 flex items-center justify-center">
-                          {p.brand} {p.name}
-                        </h3>
-                      </Link>
-                      
-                      <div className="mt-auto">
-                        <p className="text-xs text-muted-foreground line-through decoration-muted-foreground/50">
-                          R$ {oldPrice.toLocaleString("pt-BR", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
-                        </p>
-                        <p className="text-[22px] font-bold font-sans text-black my-1">
-                          R$ {p.price.toLocaleString("pt-BR", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
-                        </p>
-                        
-                        <p className="text-[11px] text-[#666] leading-tight mt-2 mb-6 h-10 flex flex-col items-center justify-center">
-                          <span>R$ {vistaPrice.toLocaleString("pt-BR", { minimumFractionDigits: 2, maximumFractionDigits: 2 })} à vista com desconto</span>
-                          <span>ou <strong>10x</strong> de <strong>R$ {installment.toLocaleString("pt-BR", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</strong> sem juros</span>
-                        </p>
 
-                        <div className="flex items-center gap-2 mt-4 px-2">
-                          <div className="flex flex-row items-center bg-[#f8f9fa] border border-[#e5e7eb] h-[42px] w-[75px] overflow-hidden rounded-sm shrink-0">
-                            <span className="text-sm font-medium flex-1 text-center text-[#333]">1</span>
-                            <div className="flex flex-col items-center justify-center border-l border-[#e5e7eb] bg-white w-6 h-full">
-                              <button className="flex-1 flex items-center justify-center w-full hover:bg-gray-50 border-b border-[#e5e7eb]"><Plus className="w-2.5 h-2.5 text-[#666]" /></button>
-                              <button className="flex-1 flex items-center justify-center w-full hover:bg-gray-50"><Minus className="w-2.5 h-2.5 text-[#666]" /></button>
-                            </div>
-                          </div>
-                          <Button className="flex-1 rounded-sm bg-black hover:bg-black/90 text-white h-[42px] flex items-center justify-center gap-2 text-xs font-bold uppercase tracking-wider">
-                            <ShoppingBag className="w-4 h-4 mb-0.5" />
-                            Comprar
-                          </Button>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </CarouselItem>
-              );
-            })}
-          </CarouselContent>
-          <CarouselPrevious className="absolute -left-6 md:-left-12 top-1/3 -translate-y-1/2 z-10 hidden md:flex bg-white border border-border shadow-sm hover:bg-white text-muted-foreground w-10 h-10" />
-          <CarouselNext className="absolute -right-6 md:-right-12 top-1/3 -translate-y-1/2 z-10 hidden md:flex bg-white border border-border shadow-sm hover:bg-white text-muted-foreground w-10 h-10" />
-        </Carousel>
+        {/* Top Swiper (Images) */}
+        <div className="relative py-10 px-4">
+          <Swiper
+            modules={[EffectCoverflow, Navigation, Controller]}
+            onSwiper={setFirstSwiper}
+            controller={{ control: secondSwiper }}
+            effect="coverflow"
+            centeredSlides
+            slidesPerView={1.2}
+            breakpoints={{
+              640: { slidesPerView: 2 },
+              1024: { slidesPerView: 3 }
+            }}
+            loop
+            navigation
+            coverflowEffect={{
+              rotate: 0,
+              stretch: 0,
+              depth: 250,
+              modifier: 2,
+              scale: 0.85
+            }}
+            className="w-full max-w-[1400px]"
+          >
+            {products.map((p) => (
+              <SwiperSlide key={p.id}>
+                <div className="relative aspect-[4/5] md:aspect-[4/3] w-full overflow-hidden rounded-3xl bg-neutral-900 flex items-center justify-center p-8 group">
+                  <img 
+                    src={p.img} 
+                    className="max-h-full max-w-full object-contain transition-transform duration-700 group-hover:scale-110 drop-shadow-[0_20px_50px_rgba(255,255,255,0.1)]" 
+                    alt={p.name}
+                  />
+                  <div className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-black/60 to-transparent pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                </div>
+              </SwiperSlide>
+            ))}
+          </Swiper>
+        </div>
 
-        <div className="text-center mt-12">
-          <Button asChild variant="outline" size="lg" className="rounded-none tracking-widest uppercase text-xs">
-            <Link to="/catalogo">Ver toda a coleção <ArrowRight className="ml-2 h-4 w-4" /></Link>
-          </Button>
+        {/* Bottom Swiper (Details) */}
+        <div className="mt-12 container-luxe max-w-2xl px-4">
+          <Swiper
+            modules={[EffectFade, Controller, Pagination]}
+            onSwiper={setSecondSwiper}
+            controller={{ control: firstSwiper }}
+            effect="fade"
+            fadeEffect={{ crossFade: true }}
+            pagination={{ 
+              clickable: true,
+              dynamicBullets: true,
+            }}
+            className="w-full"
+          >
+            {products.map((p) => (
+              <SwiperSlide key={p.id}>
+                <div className="text-center pb-12">
+                  <p className="text-accent uppercase tracking-widest text-sm mb-2 font-medium">{p.brand}</p>
+                  <h2 className="text-4xl md:text-5xl font-serif mb-4">{p.name}</h2>
+                  <p className="mt-4 text-zinc-400 text-lg leading-relaxed max-w-lg mx-auto">
+                    Design contemporâneo unindo sofisticação e o estilo {p.style} exclusivo para sua curadoria.
+                  </p>
+
+                  <Button asChild size="lg" className="mt-8 bg-white text-black hover:bg-zinc-200 rounded-none px-10 h-14 uppercase tracking-widest text-xs font-bold transition-all hover:scale-105 active:scale-95">
+                    <Link to="/catalogo">Ver Detalhes</Link>
+                  </Button>
+                </div>
+              </SwiperSlide>
+            ))}
+          </Swiper>
         </div>
       </section>
 
