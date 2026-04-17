@@ -12,6 +12,8 @@ import vintage from "@/assets/categories/vintage.jpg";
 import minimalista from "@/assets/categories/minimalista.jpg";
 import criancas from "@/assets/categories/criancas.jpg";
 
+import gucciGg0061s from "@/assets/products/oculos-tartaruga.jpg";
+
 export const brands = [
   { name: "Gucci", img: gucci, slug: "gucci", desc: "Sofisticação italiana com personalidade marcante." },
   { name: "Prada", img: prada, slug: "prada", desc: "Design contemporâneo e elegância atemporal." },
@@ -41,7 +43,7 @@ export type Product = {
 };
 
 export const products: Product[] = [
-  { id: "1", name: "GG0061S", brand: "Gucci", category: "solar", style: "classico", price: 2890, img: gucci },
+  { id: "1", name: "GG0061S", brand: "Gucci", category: "solar", style: "classico", price: 2890, img: gucciGg0061s },
   { id: "2", name: "PR 17WS", brand: "Prada", category: "solar", style: "minimalista", price: 2390, img: prada },
   { id: "3", name: "CL40026I", brand: "Céline", category: "grau", style: "minimalista", price: 3290, img: celine },
   { id: "4", name: "OV5036", brand: "Oliver Peoples", category: "grau", style: "vintage", price: 2790, img: oliver },
