@@ -12,7 +12,7 @@ import vintage from "@/assets/categories/vintage.jpg";
 import minimalista from "@/assets/categories/minimalista.jpg";
 import criancas from "@/assets/categories/criancas.jpg";
 
-import gucciGg0061s from "@/assets/products/oculos-tartaruga.jpg";
+import gucciGg0061s from "@/assets/products/gucci.png";
 import prada17ws from "@/assets/products/prada.png";
 import celine40026i from "@/assets/products/celine.png";
 import oliver5036 from "@/assets/products/oliver.png";
