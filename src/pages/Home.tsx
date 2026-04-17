@@ -151,7 +151,7 @@ const Home = () => {
                     <div className={`absolute bottom-[20%] left-1/2 -translate-x-1/2 w-[60%] h-6 bg-black/10 blur-2xl rounded-[100%] transition-opacity duration-500 ${isActive ? 'opacity-60' : 'opacity-0'}`} />
                     <img 
                       src={p.img} 
-                      className={`max-h-[75%] max-w-[90%] object-contain transition-all duration-700 ${isActive ? 'scale-100 opacity-100' : 'scale-75 opacity-70'}`} 
+                      className={`max-h-[75%] max-w-[90%] object-contain transition-all duration-700 ${isActive ? 'scale-100' : 'scale-75'}`} 
                       alt={p.name}
                     />
                   </div>
