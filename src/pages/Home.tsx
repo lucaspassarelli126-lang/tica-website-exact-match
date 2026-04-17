@@ -145,22 +145,24 @@ const Home = () => {
           >
             {products.map((p) => (
               <SwiperSlide key={p.id}>
-                <div className="relative aspect-[4/3] w-full flex items-center justify-center p-4">
-                  {/* Subtle Floor Shadow */}
-                  <div className="absolute bottom-[20%] left-1/2 -translate-x-1/2 w-[60%] h-6 bg-black/10 blur-2xl rounded-[100%] opacity-60" />
-                  <img 
-                    src={p.img} 
-                    className="max-h-[75%] max-w-[90%] object-contain transition-all duration-700 hover:scale-110" 
-                    alt={p.name}
-                  />
-                </div>
+                {({ isActive }) => (
+                  <div className="relative aspect-[4/3] w-full flex items-center justify-center p-4">
+                    {/* Subtle Floor Shadow - Only visible when active */}
+                    <div className={`absolute bottom-[20%] left-1/2 -translate-x-1/2 w-[60%] h-6 bg-black/10 blur-2xl rounded-[100%] transition-opacity duration-500 ${isActive ? 'opacity-60' : 'opacity-0'}`} />
+                    <img 
+                      src={p.img} 
+                      className={`max-h-[75%] max-w-[90%] object-contain transition-all duration-700 ${isActive ? 'scale-100 opacity-100' : 'scale-75 opacity-40'}`} 
+                      alt={p.name}
+                    />
+                  </div>
+                )}
               </SwiperSlide>
             ))}
           </Swiper>
           
           {/* Custom Navigation Arrows */}
           <button className="swiper-button-prev-custom absolute left-4 md:left-20 top-[45%] -translate-y-1/2 z-20 w-12 h-12 rounded-full bg-zinc-400/30 flex items-center justify-center hover:bg-zinc-400/50 transition-colors">
-            <Plus className="w-6 h-6 -rotate-45 text-zinc-600" />
+            <Plus className="w-5 h-5 text-zinc-600 rotate-45" /> {/* Using Plus rotated as X */}
           </button>
           <button className="swiper-button-next-custom absolute right-4 md:right-20 top-[45%] -translate-y-1/2 z-20 w-12 h-12 rounded-full bg-blue-500/10 border-2 border-blue-500/30 flex items-center justify-center hover:bg-blue-500/20 transition-colors">
             <ArrowRight className="w-6 h-6 text-blue-600" />
