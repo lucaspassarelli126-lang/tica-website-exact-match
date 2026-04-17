@@ -13,6 +13,14 @@ import minimalista from "@/assets/categories/minimalista.jpg";
 import criancas from "@/assets/categories/criancas.jpg";
 
 import gucciGg0061s from "@/assets/products/oculos-tartaruga.jpg";
+import prada17ws from "@/assets/products/prada-17ws.jpg";
+import celine40026i from "@/assets/products/celine.jpg";
+import oliver5036 from "@/assets/products/oliver-peoples.jpg";
+import oliver5036_2 from "@/assets/products/oliver-peoples-2.jpg";
+import valentino4081 from "@/assets/products/valentino.jpg";
+import zegna5239 from "@/assets/products/zegna.jpg";
+import productA from "@/assets/products/a.jpg";
+import productB from "@/assets/products/b.jpg";
 
 export const brands = [
   { name: "Gucci", img: gucci, slug: "gucci", desc: "Sofisticação italiana com personalidade marcante." },
@@ -44,14 +52,14 @@ export type Product = {
 
 export const products: Product[] = [
   { id: "1", name: "GG0061S", brand: "Gucci", category: "solar", style: "classico", price: 2890, img: gucciGg0061s },
-  { id: "2", name: "PR 17WS", brand: "Prada", category: "solar", style: "minimalista", price: 2390, img: prada },
-  { id: "3", name: "CL40026I", brand: "Céline", category: "grau", style: "minimalista", price: 3290, img: celine },
-  { id: "4", name: "OV5036", brand: "Oliver Peoples", category: "grau", style: "vintage", price: 2790, img: oliver },
-  { id: "5", name: "VA4081", brand: "Valentino", category: "solar", style: "classico", price: 2590, img: valentino },
-  { id: "6", name: "EZ5239", brand: "Zegna", category: "grau", style: "classico", price: 2190, img: zegna },
-  { id: "7", name: "GG1234S", brand: "Gucci", category: "solar", style: "vintage", price: 2990, img: gucci },
-  { id: "8", name: "PR 22ZV", brand: "Prada", category: "grau", style: "minimalista", price: 2490, img: prada },
-  { id: "9", name: "CL50001", brand: "Céline", category: "solar", style: "vintage", price: 3490, img: celine },
+  { id: "2", name: "PR 17WS", brand: "Prada", category: "solar", style: "minimalista", price: 2390, img: prada17ws },
+  { id: "3", name: "CL40026I", brand: "Céline", category: "grau", style: "minimalista", price: 3290, img: celine40026i },
+  { id: "4", name: "OV5036", brand: "Oliver Peoples", category: "grau", style: "vintage", price: 2790, img: oliver5036 },
+  { id: "5", name: "VA4081", brand: "Valentino", category: "solar", style: "classico", price: 2590, img: valentino4081 },
+  { id: "6", name: "EZ5239", brand: "Zegna", category: "grau", style: "classico", price: 2190, img: zegna5239 },
+  { id: "7", name: "Modelo Alpha", brand: "Exclusivo", category: "solar", style: "vintage", price: 3190, img: productA },
+  { id: "8", name: "Modelo Beta", brand: "Exclusivo", category: "grau", style: "minimalista", price: 2690, img: productB },
+  { id: "9", name: "OV5036 Especial", brand: "Oliver Peoples", category: "grau", style: "vintage", price: 2890, img: oliver5036_2 },
 ];
 
 export const services = [
