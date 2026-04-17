@@ -117,7 +117,7 @@ const Home = () => {
         </div>
 
         {/* Top Swiper (Images) */}
-        <div className="relative pt-12 pb-4 px-4">
+        <div className="relative pt-12 pb-4 px-4 max-w-[1400px] mx-auto">
           <Swiper
             modules={[EffectCoverflow, Navigation, Controller]}
             onSwiper={setFirstSwiper}
@@ -141,7 +141,7 @@ const Home = () => {
               modifier: 1.5,
               scale: 0.8
             }}
-            className="w-full max-w-[1400px] !overflow-visible"
+            className="w-full !overflow-visible"
           >
             {products.map((p) => (
               <SwiperSlide key={p.id}>
@@ -151,7 +151,7 @@ const Home = () => {
                     <div className={`absolute bottom-[20%] left-1/2 -translate-x-1/2 w-[60%] h-6 bg-black/10 blur-2xl rounded-[100%] transition-opacity duration-500 ${isActive ? 'opacity-60' : 'opacity-0'}`} />
                     <img 
                       src={p.img} 
-                      className={`max-h-[75%] max-w-[90%] object-contain transition-all duration-700 ${isActive ? 'scale-100 opacity-100' : 'scale-75 opacity-40'}`} 
+                      className={`max-h-[75%] max-w-[90%] object-contain transition-all duration-700 ${isActive ? 'scale-100 opacity-100' : 'scale-75 opacity-70'}`} 
                       alt={p.name}
                     />
                   </div>
@@ -161,10 +161,10 @@ const Home = () => {
           </Swiper>
           
           {/* Custom Navigation Arrows */}
-          <button className="swiper-button-prev-custom absolute left-4 md:left-20 top-[45%] -translate-y-1/2 z-20 w-12 h-12 rounded-full bg-zinc-400/30 flex items-center justify-center hover:bg-zinc-400/50 transition-colors">
-            <Plus className="w-5 h-5 text-zinc-600 rotate-45" /> {/* Using Plus rotated as X */}
+          <button className="swiper-button-prev-custom absolute left-4 md:left-20 top-[45%] -translate-y-1/2 z-20 w-12 h-12 rounded-full bg-zinc-400/40 backdrop-blur-sm flex items-center justify-center hover:bg-zinc-400/60 transition-colors border border-white/20 shadow-sm">
+            <Plus className="w-5 h-5 text-zinc-700 rotate-45" /> 
           </button>
-          <button className="swiper-button-next-custom absolute right-4 md:right-20 top-[45%] -translate-y-1/2 z-20 w-12 h-12 rounded-full bg-blue-500/10 border-2 border-blue-500/30 flex items-center justify-center hover:bg-blue-500/20 transition-colors">
+          <button className="swiper-button-next-custom absolute right-4 md:right-20 top-[45%] -translate-y-1/2 z-20 w-12 h-12 rounded-full bg-white/40 backdrop-blur-sm border-2 border-primary/20 flex items-center justify-center hover:bg-white/60 transition-colors shadow-sm">
             <ArrowRight className="w-6 h-6 text-blue-600" />
           </button>
         </div>
