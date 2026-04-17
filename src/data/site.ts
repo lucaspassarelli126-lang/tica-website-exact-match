@@ -13,14 +13,14 @@ import minimalista from "@/assets/categories/minimalista.jpg";
 import criancas from "@/assets/categories/criancas.jpg";
 
 import gucciGg0061s from "@/assets/products/oculos-tartaruga.jpg";
-import prada17ws from "@/assets/products/prada-17ws.jpg";
-import celine40026i from "@/assets/products/celine.jpg";
-import oliver5036 from "@/assets/products/oliver-peoples.jpg";
-import oliver5036_2 from "@/assets/products/oliver-peoples-2.jpg";
-import valentino4081 from "@/assets/products/valentino.jpg";
-import zegna5239 from "@/assets/products/zegna.jpg";
-import productA from "@/assets/products/a.jpg";
-import productB from "@/assets/products/b.jpg";
+import prada17ws from "@/assets/products/prada.png";
+import celine40026i from "@/assets/products/celine.png";
+import oliver5036 from "@/assets/products/oliver.png";
+import oliver5036_2 from "@/assets/products/oliver-2.png";
+import valentino4081 from "@/assets/products/valentino.png";
+import zegna5239 from "@/assets/products/zegna.png";
+import productA from "@/assets/products/a.png";
+import productB from "@/assets/products/b.png";
 
 export const brands = [
   { name: "Gucci", img: gucci, slug: "gucci", desc: "Sofisticação italiana com personalidade marcante." },
