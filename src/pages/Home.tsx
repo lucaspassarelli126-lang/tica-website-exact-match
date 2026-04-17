@@ -93,7 +93,7 @@ const Home = () => {
       </section>
 
       {/* Featured Products */}
-      <section className="container-luxe pb-16 px-12 max-w-[1400px]">
+      <section className="container-luxe pb-16 px-4 md:px-12 max-w-[1400px]">
         <div className="text-center mb-10">
           <p className="text-xs uppercase tracking-[0.2em] text-accent mb-2">Coleção em Destaque</p>
           <h2 className="text-4xl md:text-5xl font-serif">Encontre o modelo ideal</h2>
@@ -113,7 +113,7 @@ const Home = () => {
               const installment = p.price / 10;
               
               return (
-                <CarouselItem key={p.id} className="pl-4 md:basis-1/3 lg:basis-1/5">
+                <CarouselItem key={p.id} className="pl-4 basis-[85%] sm:basis-[60%] md:basis-1/3 lg:basis-1/5">
                   <div className="group flex flex-col h-full bg-white transition-all hover:shadow-sm border border-transparent hover:border-border/50">
                     <Link to={`/catalogo`} className="block">
                       <div className="aspect-[4/3] w-full overflow-hidden p-6 flex items-center justify-center bg-transparent">
@@ -160,8 +160,8 @@ const Home = () => {
               );
             })}
           </CarouselContent>
-          <CarouselPrevious className="absolute -left-6 md:-left-12 top-1/3 -translate-y-1/2 z-10 bg-white border border-border shadow-sm hover:bg-white text-muted-foreground w-10 h-10" />
-          <CarouselNext className="absolute -right-6 md:-right-12 top-1/3 -translate-y-1/2 z-10 bg-white border border-border shadow-sm hover:bg-white text-muted-foreground w-10 h-10" />
+          <CarouselPrevious className="absolute -left-6 md:-left-12 top-1/3 -translate-y-1/2 z-10 hidden md:flex bg-white border border-border shadow-sm hover:bg-white text-muted-foreground w-10 h-10" />
+          <CarouselNext className="absolute -right-6 md:-right-12 top-1/3 -translate-y-1/2 z-10 hidden md:flex bg-white border border-border shadow-sm hover:bg-white text-muted-foreground w-10 h-10" />
         </Carousel>
 
         <div className="text-center mt-12">
