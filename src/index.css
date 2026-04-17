@@ -69,7 +69,8 @@
     @apply border-border;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply text-foreground;
+    background-color: #EEEBF2;
     font-family: 'Roboto', system-ui, sans-serif;
   }
   h1, h2, h3, h4, .font-serif {
