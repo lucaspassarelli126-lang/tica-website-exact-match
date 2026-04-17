@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { ArrowRight, Award, ShieldCheck, Sparkles, Truck, ShoppingBag, Plus, Minus } from "lucide-react";
+import { ArrowRight, Award, ShieldCheck, Sparkles, Truck } from "lucide-react";
 import hero from "@/assets/banners/hero.jpg";
 import celineBanner from "@/assets/banners/celine.jpg";
 import davidBanner from "@/assets/banners/david.jpg";
@@ -11,14 +11,7 @@ import { products, brands, categories } from "@/data/site";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
 import Autoplay from "embla-carousel-autoplay";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { EffectCoverflow, Pagination, Navigation, Controller, EffectFade } from "swiper/modules";
-
-import "swiper/css";
-import "swiper/css/navigation";
-import "swiper/css/pagination";
-import "swiper/css/effect-coverflow";
-import "swiper/css/effect-fade";
+import { ProductCarousel } from "@/components/ProductCarousel";
 import {
   Carousel,
   CarouselContent,
@@ -103,98 +96,12 @@ const Home = () => {
           ))}
         </div>
       </section>
-      {/* Featured Products - Oakley Custom Style */}
-      <section className="py-24 bg-[#EEEBF2] text-black overflow-hidden relative">
-        {/* Top Badge */}
-        <div className="absolute top-8 left-1/2 -translate-x-1/2 z-20">
-          <button className="bg-black text-white text-[11px] font-black px-8 py-2.5 rounded-full uppercase tracking-widest hover:scale-105 transition-transform">
-            FAÇA O SEU
-          </button>
-        </div>
-
-        <div className="container-luxe mb-4 text-center">
-          <p className="text-[10px] uppercase tracking-[0.3em] text-accent font-bold mb-1 opacity-0">Destaques</p>
-        </div>
-
-        {/* Top Swiper (Images) */}
-        <div className="relative pt-12 pb-4 px-4 max-w-[1400px] mx-auto">
-          <Swiper
-            modules={[EffectCoverflow, Navigation, Controller]}
-            onSwiper={setFirstSwiper}
-            controller={{ control: secondSwiper }}
-            effect="coverflow"
-            centeredSlides
-            slidesPerView={1.2}
-            breakpoints={{
-              640: { slidesPerView: 2 },
-              1024: { slidesPerView: 3 }
-            }}
-            loop
-            navigation={{
-              nextEl: '.swiper-button-next-custom',
-              prevEl: '.swiper-button-prev-custom',
-            }}
-            coverflowEffect={{
-              rotate: 0,
-              stretch: -50,
-              depth: 150,
-              modifier: 1.5,
-              scale: 0.8
-            }}
-            className="w-full !overflow-visible"
-          >
-            {products.map((p) => (
-              <SwiperSlide key={p.id}>
-                {({ isActive }) => (
-                  <div className="relative aspect-[4/3] w-full flex items-center justify-center p-4">
-                    {/* Subtle Floor Shadow - Only visible when active */}
-                    <div className={`absolute bottom-[20%] left-1/2 -translate-x-1/2 w-[60%] h-6 bg-black/10 blur-2xl rounded-[100%] transition-opacity duration-500 ${isActive ? 'opacity-60' : 'opacity-0'}`} />
-                    <img 
-                      src={p.img} 
-                      className={`max-h-[75%] max-w-[90%] object-contain transition-all duration-700 ${isActive ? 'scale-100' : 'scale-75'}`} 
-                      alt={p.name}
-                    />
-                  </div>
-                )}
-              </SwiperSlide>
-            ))}
-          </Swiper>
-          
-          {/* Custom Navigation Arrows */}
-          <button className="swiper-button-prev-custom absolute left-4 md:left-20 top-[45%] -translate-y-1/2 z-20 w-12 h-12 rounded-full bg-zinc-400/40 backdrop-blur-sm flex items-center justify-center hover:bg-zinc-400/60 transition-colors border border-white/20 shadow-sm">
-            <Plus className="w-5 h-5 text-zinc-700 rotate-45" /> 
-          </button>
-          <button className="swiper-button-next-custom absolute right-4 md:right-20 top-[45%] -translate-y-1/2 z-20 w-12 h-12 rounded-full bg-white/40 backdrop-blur-sm border-2 border-primary/20 flex items-center justify-center hover:bg-white/60 transition-colors shadow-sm">
-            <ArrowRight className="w-6 h-6 text-blue-600" />
-          </button>
-        </div>
-
-        {/* Bottom Swiper (Details) */}
-        <div className="container-luxe max-w-2xl px-4">
-          <Swiper
-            modules={[EffectFade, Controller, Pagination]}
-            onSwiper={setSecondSwiper}
-            controller={{ control: firstSwiper }}
-            effect="fade"
-            fadeEffect={{ crossFade: true }}
-            className="w-full"
-          >
-            {products.map((p) => (
-              <SwiperSlide key={p.id}>
-                <div className="text-center">
-                  <p className="text-[11px] text-zinc-500 uppercase tracking-widest font-medium mb-4">
-                    Compre {p.brand} {p.name}
-                  </p>
-
-                  <Button asChild size="lg" className="bg-black text-white hover:bg-zinc-800 rounded-full px-12 h-12 uppercase tracking-widest text-[10px] font-black transition-all hover:scale-105 active:scale-95 shadow-lg">
-                    <Link to="/catalogo">COMPRE AGORA</Link>
-                  </Button>
-                </div>
-              </SwiperSlide>
-            ))}
-          </Swiper>
-        </div>
-      </section>
+      <ProductCarousel 
+        products={products} 
+        subtitle="Destaques da Temporada"
+        title="Encontre o seu estilo"
+        badgeText="DESTAQUE"
+      />
 
       {/* Featured brand banners */}
       <section className="container-luxe pb-16 grid md:grid-cols-2 gap-4">
@@ -204,6 +111,13 @@ const Home = () => {
           </Link>
         ))}
       </section>
+
+      <ProductCarousel 
+        products={products} 
+        subtitle="Novas Tendências"
+        title="Lançamentos de Luxo"
+        badgeText="NOVIDADE"
+      />
 
       {/* Brands grid */}
       <section className="bg-soft py-16">
