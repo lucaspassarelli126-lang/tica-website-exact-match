@@ -5,7 +5,7 @@ import { gsap } from "gsap"
 import type React from "react"
 
 interface LayeredTextProps {
-  lines?: Array<{ top: string; bottom: string }>
+  lines?: Array<{ top: string; bottom: string; topClass?: string; bottomClass?: string }>
   fontSize?: string
   fontSizeMd?: string
   lineHeight?: number
@@ -60,10 +60,10 @@ export function LayeredText({
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
-          // Adiciona um pequeno delay para a transição de slide terminar
+          // Play automatically 200ms after it comes into view (slide transition finish)
           setTimeout(() => timelineRef.current?.play(), 200)
         } else {
-          // Reverte a animação quando slide sair da tela, pronto pro próximo ciclo
+          // Reverse automatically when it leaves view so it's ready for next loop
           timelineRef.current?.reverse()
         }
       },
@@ -72,9 +72,14 @@ export function LayeredText({
 
     observer.observe(container)
 
-    // Também mantemos a interação de mouse interativa caso o usuário passe
-    const handleMouseEnter = () => timelineRef.current?.play()
-    const handleMouseLeave = () => timelineRef.current?.reverse()
+    const handleMouseEnter = () => {
+      timelineRef.current?.play()
+    }
+
+    const handleMouseLeave = () => {
+      timelineRef.current?.reverse()
+    }
+
     container.addEventListener("mouseenter", handleMouseEnter)
     container.addEventListener("mouseleave", handleMouseLeave)
 
@@ -116,7 +121,7 @@ export function LayeredText({
               }
             >
               <p
-                className="leading-[55px] md:leading-[30px] px-[15px] align-top whitespace-nowrap m-0"
+                className={`leading-[55px] md:leading-[30px] px-[15px] align-top whitespace-nowrap m-0 transition-colors duration-300 ${line.topClass || ''}`}
                 style={
                   {
                     height: `${lineHeight}px`,
@@ -127,7 +132,7 @@ export function LayeredText({
                 {line.top}
               </p>
               <p
-                className="leading-[55px] md:leading-[30px] px-[15px] align-top whitespace-nowrap m-0"
+                className={`leading-[55px] md:leading-[30px] px-[15px] align-top whitespace-nowrap m-0 transition-colors duration-300 ${line.bottomClass || ''}`}
                 style={
                   {
                     height: `${lineHeight}px`,

@@ -2,20 +2,24 @@ import { Link } from "react-router-dom";
 import { ArrowRight, Award, ShieldCheck, Sparkles, Truck } from "lucide-react";
 import hero from "@/assets/banners/hero-banner1-v3.jpg";
 import heroBanner2 from "@/assets/banners/hero-banner2.jpg";
+import heroBanner3 from "@/assets/banners/hero-banner3.jpg";
 import celineBanner from "@/assets/banners/celine.jpg";
 import davidBanner from "@/assets/banners/david.jpg";
 import pucciBanner from "@/assets/banners/pucci.jpg";
 import saleBanner from "@/assets/banners/sale.jpg";
+import lensBanner from "@/assets/banners/lens_banner.png";
 import miumiuBanner from "@/assets/banners/miumiu.png";
 import gucciBanner from "@/assets/banners/gucci-vitrine.png";
 import { products, brands, categories } from "@/data/site";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Autoplay from "embla-carousel-autoplay";
 import { ProductCarousel } from "@/components/ProductCarousel";
 import { LayeredText } from "@/components/ui/layered-text";
 import AnimatedTextCycle from "@/components/ui/animated-text-cycle";
 import { HandWrittenTitle } from "@/components/ui/hand-writing-text";
+import { BlurFade } from "@/components/ui/blur-fade";
 import {
   Carousel,
   CarouselContent,
@@ -23,34 +27,61 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
+import { motion } from "framer-motion";
 
 const Home = () => {
   const [firstSwiper, setFirstSwiper] = useState<any>(null);
   const [secondSwiper, setSecondSwiper] = useState<any>(null);
+  const navigate = useNavigate();
 
   const heroSlides = [
     { 
       src: hero, 
       alt: "Exame de vista Óticas Théo",
-      premiumTextLayout: true
+      textOverlay: true,
+      layeredText: true,
+      fontSize: "64px",
+      fontSizeMd: "38px",
+      customClass: "-mt-20 md:-mt-40",
+      cta: { label: "Agendar Exame", href: "/contato#agendamento" },
+      layeredLines: [
+        { top: "\u00A0", bottom: "EXAME DE VISTA" },
+        { top: "EXAME DE VISTA", bottom: "+ ÓCULOS COMPLETO" },
+        { top: "+ ÓCULOS COMPLETO", bottom: "A PARTIR DE" },
+        { top: "A PARTIR DE", bottom: "R$ 199,90", bottomClass: "text-amber-400" },
+        { top: "R$ 199,90", bottom: "\u00A0", topClass: "text-amber-400" },
+      ]
     },
     { 
       src: heroBanner2, 
       alt: "Conforto Visual Óticas Théo",
       textOverlay: true,
       layeredText: true,
+      cta: { label: "Ver Coleção", href: "/catalogo" },
       layeredLines: [
         { top: "\u00A0", bottom: "CONFORTO" },
         { top: "CONFORTO", bottom: "ESTILO" },
         { top: "ESTILO", bottom: "PRECISÃO" },
         { top: "PRECISÃO", bottom: "QUALIDADE" },
-        { top: "QUALIDADE", bottom: "LUXO" },
-        { top: "LUXO", bottom: "\u00A0" },
+        { top: "QUALIDADE", bottom: "LUXO", bottomClass: "text-amber-400" },
+        { top: "LUXO", bottom: "\u00A0", topClass: "text-amber-400" },
       ]
     },
-    { src: davidBanner, alt: "Coleção David" },
-    { src: pucciBanner, alt: "Coleção Pucci" },
-    { src: saleBanner, alt: "Promoções" },
+    { 
+      src: heroBanner3, 
+      alt: "Atendimento Clínico Ótico",
+      textOverlay: true,
+      layeredText: true,
+      cta: { label: "Falar com Consultor", href: "https://wa.me/5511999999999" },
+      layeredLines: [
+        { top: "\u00A0", bottom: "ALTA DEFINIÇÃO", bottomClass: "text-amber-400" },
+        { top: "ALTA DEFINIÇÃO", bottom: "TECNOLOGIA", topClass: "text-amber-400" },
+        { top: "TECNOLOGIA", bottom: "FILTRO AZUL" },
+        { top: "FILTRO AZUL", bottom: "MULTIFOCAIS" },
+        { top: "MULTIFOCAIS", bottom: "ANTIRREFLEXO" },
+        { top: "ANTIRREFLEXO", bottom: "\u00A0" },
+      ]
+    }
   ];
 
   return (
@@ -63,7 +94,7 @@ const Home = () => {
           }}
           plugins={[
             Autoplay({
-              delay: 5000,
+              delay: 9000,
             }),
           ]}
           className="w-full relative"
@@ -71,9 +102,9 @@ const Home = () => {
           <CarouselContent className="m-0">
             {heroSlides.map((slide, index) => (
               <CarouselItem key={index} className="pl-0">
-                <Link 
-                  to="/catalogo" 
-                  className="block group"
+                <div 
+                  onClick={() => navigate("/catalogo")}
+                  className="block group cursor-pointer"
                 >
                   <div className="w-full max-w-[1920px] mx-auto aspect-video relative flex items-center justify-center text-center">
                     <img
@@ -90,75 +121,75 @@ const Home = () => {
                     {/* Animated Text Overlay for specific layered banners */}
                     {slide.textOverlay && !slide.premiumTextLayout && (
                       <>
-                        <div className="absolute inset-0 bg-black/30 group-hover:bg-black/40 transition-colors duration-500" />
-                        <div className="relative z-10 flex flex-col items-center max-w-3xl px-6
-                                      animate-in fade-in slide-in-from-bottom-10 duration-1000 fill-mode-both delay-300">
-                          {slide.layeredText ? (
-                            <LayeredText 
-                              lines={slide.layeredLines} 
-                              className="text-white drop-shadow-xl transform scale-50 sm:scale-75 md:scale-100 pt-0 pb-0" 
-                            />
-                          ) : (
-                            <>
-                              <h2 className="text-3xl sm:text-4xl md:text-5xl font-serif text-white mb-3 md:mb-5 drop-shadow-md leading-tight">
-                                {slide.title}
-                              </h2>
-                              <p className="text-sm md:text-xl text-white/90 font-light mb-6 md:mb-8 max-w-xl mx-auto drop-shadow-sm">
-                                {slide.subtitle}
-                              </p>
-                              {slide.ctaText && (
+                        {/* Right-aligned vignette gradient for superior text legibility */}
+                        <div className="absolute inset-y-0 right-0 w-full md:w-[70%] bg-gradient-to-l from-black/80 via-black/40 to-transparent z-10 pointer-events-none" />
+                        
+                        {slide.layeredText ? (
+                          <div className="absolute inset-y-0 right-0 flex items-center pr-4 md:pr-16 lg:pr-32 w-full justify-end z-20 pointer-events-none overflow-hidden sm:overflow-visible">
+                            <div className="flex flex-col items-end animate-in fade-in slide-in-from-right-10 duration-1000 fill-mode-both delay-300 pointer-events-auto">
+                              <LayeredText 
+                                lines={slide.layeredLines} 
+                                fontSize={slide.fontSize}
+                                fontSizeMd={slide.fontSizeMd}
+                                className={`text-white drop-shadow-xl transform scale-[0.6] sm:scale-75 md:scale-100 origin-right ${slide.customClass || '-mt-10 md:-mt-20'}`} 
+                              />
+                              
+                              {/* Minimalist CTA Button */}
+                              {slide.cta && (
+                                <motion.div 
+                                  initial={{ opacity: 0, y: 20 }}
+                                  whileInView={{ opacity: 1, y: 0 }}
+                                  viewport={{ once: false }}
+                                  transition={{ duration: 0.7, delay: 1 }}
+                                  className="mt-8 md:mt-12"
+                                >
+                                  <Link 
+                                    to={slide.cta.href}
+                                    onClick={(e) => e.stopPropagation()}
+                                    className="inline-flex items-center px-10 py-4 bg-transparent border border-white text-white text-[10px] md:text-xs tracking-[0.4em] uppercase font-bold hover:bg-white hover:text-black transition-all duration-300 drop-shadow-lg group pointer-events-auto"
+                                  >
+                                    {slide.cta.label}
+                                    <ArrowRight className="ml-3 h-4 w-4 transform group-hover:translate-x-2 transition-transform" />
+                                  </Link>
+                                </motion.div>
+                              )}
+                            </div>
+                          </div>
+                        ) : (
+                          <div className="relative z-10 flex flex-col items-center max-w-3xl px-6 animate-in fade-in slide-in-from-bottom-10 duration-1000 fill-mode-both delay-300">
+                            <BlurFade delay={0.25} inView>
+                                <h2 className="text-3xl sm:text-4xl md:text-5xl font-sans font-semibold tracking-tight text-white mb-3 md:mb-5 drop-shadow-md leading-tight text-center">
+                                  {slide.title}
+                                </h2>
+                            </BlurFade>
+                            <BlurFade delay={0.25 * 2} inView>
+                                <p className="text-sm md:text-xl text-white/90 font-sans tracking-wide font-light mb-6 md:mb-8 max-w-xl mx-auto drop-shadow-sm text-center">
+                                  {slide.subtitle}
+                                </p>
+                            </BlurFade>
+                            {slide.ctaText && (
                                 <span className="inline-flex items-center justify-center px-6 md:px-8 py-3 md:py-4 bg-white text-luxury text-xs md:text-sm tracking-[0.2em] uppercase font-medium border border-white hover:bg-white hover:text-black transition-colors duration-300 pointer-events-auto">
                                   {slide.ctaText}
                                 </span>
-                              )}
-                            </>
-                          )}
-                        </div>
+                            )}
+                          </div>
+                        )}
                       </>
                     )}
-
-                    {/* Premium Text Layout Overlay (First slide) */}
-                    {slide.premiumTextLayout && (
-                      <>
-                        <div className="absolute inset-0 bg-gradient-to-t md:bg-gradient-to-r from-black/20 via-transparent to-transparent pointer-events-none" />
-                        
-                        <div className="relative z-10 w-full h-full max-w-[1920px] mx-auto px-6 sm:px-12 md:px-20 flex flex-col justify-between py-12 md:py-20 lg:py-24">
-                          
-                          {/* TOP BRANDING (Style: PUCCI in image) */}
-                          <div className="animate-in fade-in slide-in-from-top-4 duration-1000">
-                            <h2 className="text-5xl sm:text-7xl md:text-8xl lg:text-[120px] font-serif uppercase tracking-tight text-white/10 select-none pointer-events-none leading-none">
-                              Óticas Théo
-                            </h2>
-                          </div>
-
-                          {/* RIGHT SIDE LIST (Style: List with vertical line) */}
-                          <div className="flex justify-end w-full mb-12 md:mb-32 lg:mb-40 animate-in fade-in slide-in-from-right-8 duration-1000 delay-300">
-                            <div className="flex items-stretch gap-4 md:gap-6 text-right">
-                              <div className="space-y-1 md:space-y-2 py-1">
-                                <p className="text-xl sm:text-2xl md:text-4xl font-light tracking-tight text-white/90">Exame de Vista</p>
-                                <p className="text-xl sm:text-2xl md:text-4xl font-light tracking-tight text-white/90">Óculos Prontos</p>
-                                <p className="text-xl sm:text-2xl md:text-4xl font-light tracking-tight text-white/90">Com Qualidade</p>
-                                <p className="text-xl sm:text-2xl md:text-4xl font-light tracking-tight text-white/90">e Rapidez</p>
-                                
-                                <div className="pt-6 md:pt-10 flex flex-col items-end">
-                                  <span className="text-[10px] md:text-xs uppercase tracking-[0.4em] text-white/60 mb-2">A partir de</span>
-                                  <div className="flex items-center gap-1 mt-1">
-                                    <span className="text-base md:text-xl text-white font-medium -mt-2">R$</span>
-                                    <HandWrittenTitle delay={1.5} className="mr-1">
-                                      <span className="font-bold text-5xl sm:text-6xl md:text-7xl text-white">199,90</span>
-                                    </HandWrittenTitle>
-                                  </div>
-                                </div>
-                              </div>
-                              <div className="w-[1px] md:w-[2px] bg-white/20 h-full" />
-                            </div>
-                          </div>
-
-                        </div>
-                      </>
+                    {/* Progress Bar (Thin line at the bottom indicating slide duration) */}
+                    {slide.textOverlay && (
+                      <div className="absolute bottom-0 left-0 w-full h-[3px] bg-white/10 z-30">
+                        <motion.div 
+                          key={index}
+                          initial={{ width: "0%" }}
+                          animate={{ width: "100%" }}
+                          transition={{ duration: 9, ease: "linear" }}
+                          className="h-full bg-amber-400 shadow-[0_0_10px_rgba(251,191,36,0.5)]"
+                        />
+                      </div>
                     )}
                   </div>
-                </Link>
+                </div>
               </CarouselItem>
             ))}
           </CarouselContent>
