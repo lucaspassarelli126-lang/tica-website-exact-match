@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { ArrowRight, Award, ShieldCheck, Sparkles, Truck } from "lucide-react";
-import hero from "@/assets/banners/exame-theo-v2.jpg";
+import hero from "@/assets/banners/hero-banner1.jpg";
 import heroBanner2 from "@/assets/banners/hero-banner2.jpg";
 import celineBanner from "@/assets/banners/celine.jpg";
 import davidBanner from "@/assets/banners/david.jpg";
