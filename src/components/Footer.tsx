@@ -7,7 +7,13 @@ const Footer = () => {
     <footer className="bg-luxury text-primary-foreground mt-20">
       <div className="container-luxe py-14 grid gap-10 md:grid-cols-4">
         <div>
-          <img src={logo} alt="Ótica Anna Santana" className="h-14 w-auto object-contain bg-white/95 rounded p-2 mb-4" />
+          <div className="flex flex-col mb-4">
+            <div className="flex items-center gap-1.5 leading-none">
+              <span className="text-2xl font-black tracking-tighter text-primary-foreground uppercase">Óticas</span>
+              <span className="text-2xl font-black tracking-tighter text-accent uppercase">Théo</span>
+            </div>
+            <span className="text-[0.62rem] uppercase tracking-[0.3em] text-primary-foreground/50 font-medium mt-0.5 ml-0.5">Curadoria de luxo</span>
+          </div>
           <p className="text-sm text-primary-foreground/70 leading-relaxed">
             Variedade, excelência e curadoria de luxo em óculos das marcas mais desejadas do mundo.
           </p>
@@ -50,14 +56,14 @@ const Footer = () => {
           <ul className="space-y-3 text-sm text-primary-foreground/70">
             <li className="flex items-start gap-2"><MapPin className="h-4 w-4 mt-0.5 shrink-0" /> Rua das Óticas, 123 — Centro</li>
             <li className="flex items-center gap-2"><Phone className="h-4 w-4 shrink-0" /> (11) 99999-9999</li>
-            <li className="flex items-center gap-2"><Mail className="h-4 w-4 shrink-0" /> contato@oticaannasantana.com.br</li>
+            <li className="flex items-center gap-2"><Mail className="h-4 w-4 shrink-0" /> contato@oticastheo.com.br</li>
           </ul>
         </div>
       </div>
 
       <div className="border-t border-primary-foreground/10">
         <div className="container-luxe py-5 text-center text-xs text-primary-foreground/60">
-          © {new Date().getFullYear()} Ótica Anna Santana. Todos os direitos reservados.
+          © {new Date().getFullYear()} Óticas Théo. Todos os direitos reservados.
         </div>
       </div>
     </footer>

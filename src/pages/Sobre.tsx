@@ -4,7 +4,7 @@ const Sobre = () => {
       <section className="bg-soft py-20">
         <div className="container-luxe text-center max-w-3xl">
           <p className="text-xs uppercase tracking-[0.2em] text-accent mb-3">Nossa história</p>
-          <h1 className="text-5xl md:text-6xl font-serif mb-6">Sobre a Ótica Anna Santana</h1>
+          <h1 className="text-5xl md:text-6xl font-serif mb-6">Sobre a Óticas Théo</h1>
           <p className="text-lg text-muted-foreground leading-relaxed">
             Há mais de duas décadas levando excelência, curadoria de luxo e atendimento personalizado para amantes da boa óptica.
           </p>
@@ -15,7 +15,7 @@ const Sobre = () => {
         <div>
           <h2 className="text-3xl font-serif mb-4">Excelência e curadoria</h2>
           <p className="text-muted-foreground leading-relaxed mb-4">
-            A Ótica Anna Santana nasceu da paixão pelo design e pela busca incansável por peças únicas. Trabalhamos com as marcas mais
+            A Óticas Théo nasceu da paixão pelo design e pela busca incansável por peças únicas. Trabalhamos com as marcas mais
             desejadas do mundo — Gucci, Prada, Céline, Oliver Peoples, Valentino, Zegna, Miu Miu, Pucci e muitas outras — sempre garantindo
             a procedência e a originalidade de cada modelo.
           </p>

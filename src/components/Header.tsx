@@ -27,8 +27,12 @@ const Header = () => {
         </div>
       </div>
       <div className="container-luxe flex h-20 items-center justify-between gap-4">
-        <Link to="/" className="flex items-center" aria-label="Ótica Anna Santana">
-          <img src={logo} alt="Ótica Anna Santana" className="h-12 w-auto object-contain" />
+        <Link to="/" className="flex flex-col" aria-label="Óticas Théo">
+          <div className="flex items-center gap-1.5 leading-none">
+            <span className="text-2xl font-black tracking-tighter text-foreground uppercase">Óticas</span>
+            <span className="text-2xl font-black tracking-tighter text-accent uppercase">Théo</span>
+          </div>
+          <span className="text-[0.62rem] uppercase tracking-[0.3em] text-muted-foreground font-medium mt-0.5 ml-0.5">Curadoria de luxo</span>
         </Link>
 
         <nav className="hidden lg:flex items-center gap-7">
