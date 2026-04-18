@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { ArrowRight, Award, ShieldCheck, Sparkles, Truck } from "lucide-react";
-import hero from "@/assets/banners/hero.jpg";
+import hero from "@/assets/banners/exame-theo-v2.jpg";
 import celineBanner from "@/assets/banners/celine.jpg";
 import davidBanner from "@/assets/banners/david.jpg";
 import pucciBanner from "@/assets/banners/pucci.jpg";
@@ -42,12 +42,16 @@ const Home = () => {
           <CarouselContent>
             {[hero, celineBanner, davidBanner, pucciBanner, saleBanner].map((src, index) => (
               <CarouselItem key={index}>
-                <Link to="/catalogo" className="block group">
+                <Link to="/catalogo" className="relative block group overflow-hidden max-w-[1920px] mx-auto">
                   <img
                     src={src}
-                    alt={`Banner ${index + 1}`}
-                    className="w-full h-[55vh] md:h-[75vh] object-cover"
+                    alt={index === 0 ? "Exame de vista + Óculos Completo a partir de R$ 199,90" : `Banner ${index + 1}`}
+                    className="w-full h-auto block aspect-video md:aspect-auto object-cover md:object-contain"
                   />
+                  {/* Subtle brand overlay for secondary banners */}
+                  {index > 0 && (
+                    <div className="absolute inset-0 bg-luxury/10 group-hover:bg-luxury/0 transition-colors pointer-events-none" />
+                  )}
                 </Link>
               </CarouselItem>
             ))}
