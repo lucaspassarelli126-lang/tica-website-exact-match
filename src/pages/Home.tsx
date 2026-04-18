@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { ArrowRight, Award, ShieldCheck, Sparkles, Truck } from "lucide-react";
-import hero from "@/assets/banners/hero-banner1.jpg";
+import hero from "@/assets/banners/hero-banner1-v3.jpg";
 import heroBanner2 from "@/assets/banners/hero-banner2.jpg";
 import celineBanner from "@/assets/banners/celine.jpg";
 import davidBanner from "@/assets/banners/david.jpg";
@@ -14,6 +14,8 @@ import { useState } from "react";
 import Autoplay from "embla-carousel-autoplay";
 import { ProductCarousel } from "@/components/ProductCarousel";
 import { LayeredText } from "@/components/ui/layered-text";
+import AnimatedTextCycle from "@/components/ui/animated-text-cycle";
+import { HandWrittenTitle } from "@/components/ui/hand-writing-text";
 import {
   Carousel,
   CarouselContent,
@@ -27,7 +29,11 @@ const Home = () => {
   const [secondSwiper, setSecondSwiper] = useState<any>(null);
 
   const heroSlides = [
-    { src: hero, alt: "Exame de vista + Óculos Completo a partir de R$ 199,90" },
+    { 
+      src: hero, 
+      alt: "Exame de vista Óticas Théo",
+      premiumTextLayout: true
+    },
     { 
       src: heroBanner2, 
       alt: "Conforto Visual Óticas Théo",
@@ -81,8 +87,8 @@ const Home = () => {
                       <div className="absolute inset-0 bg-black/10 transition-colors group-hover:bg-transparent pointer-events-none" />
                     )}
 
-                    {/* Animated Text Overlay for specific banners */}
-                    {slide.textOverlay && (
+                    {/* Animated Text Overlay for specific layered banners */}
+                    {slide.textOverlay && !slide.premiumTextLayout && (
                       <>
                         <div className="absolute inset-0 bg-black/30 group-hover:bg-black/40 transition-colors duration-500" />
                         <div className="relative z-10 flex flex-col items-center max-w-3xl px-6
@@ -101,12 +107,53 @@ const Home = () => {
                                 {slide.subtitle}
                               </p>
                               {slide.ctaText && (
-                                <span className="inline-flex items-center justify-center px-6 md:px-8 py-3 md:py-4 bg-white text-luxury text-xs md:text-sm tracking-[0.2em] uppercase font-medium hover:bg-accent hover:text-accent-foreground transition-colors duration-300">
+                                <span className="inline-flex items-center justify-center px-6 md:px-8 py-3 md:py-4 bg-white text-luxury text-xs md:text-sm tracking-[0.2em] uppercase font-medium border border-white hover:bg-white hover:text-black transition-colors duration-300 pointer-events-auto">
                                   {slide.ctaText}
                                 </span>
                               )}
                             </>
                           )}
+                        </div>
+                      </>
+                    )}
+
+                    {/* Premium Text Layout Overlay (First slide) */}
+                    {slide.premiumTextLayout && (
+                      <>
+                        <div className="absolute inset-0 bg-gradient-to-t md:bg-gradient-to-r from-black/20 via-transparent to-transparent pointer-events-none" />
+                        
+                        <div className="relative z-10 w-full h-full max-w-[1920px] mx-auto px-6 sm:px-12 md:px-20 flex flex-col justify-between py-12 md:py-20 lg:py-24">
+                          
+                          {/* TOP BRANDING (Style: PUCCI in image) */}
+                          <div className="animate-in fade-in slide-in-from-top-4 duration-1000">
+                            <h2 className="text-5xl sm:text-7xl md:text-8xl lg:text-[120px] font-serif uppercase tracking-tight text-white/10 select-none pointer-events-none leading-none">
+                              Óticas Théo
+                            </h2>
+                          </div>
+
+                          {/* RIGHT SIDE LIST (Style: List with vertical line) */}
+                          <div className="flex justify-end w-full mb-12 md:mb-32 lg:mb-40 animate-in fade-in slide-in-from-right-8 duration-1000 delay-300">
+                            <div className="flex items-stretch gap-4 md:gap-6 text-right">
+                              <div className="space-y-1 md:space-y-2 py-1">
+                                <p className="text-xl sm:text-2xl md:text-4xl font-light tracking-tight text-white/90">Exame de Vista</p>
+                                <p className="text-xl sm:text-2xl md:text-4xl font-light tracking-tight text-white/90">Óculos Prontos</p>
+                                <p className="text-xl sm:text-2xl md:text-4xl font-light tracking-tight text-white/90">Com Qualidade</p>
+                                <p className="text-xl sm:text-2xl md:text-4xl font-light tracking-tight text-white/90">e Rapidez</p>
+                                
+                                <div className="pt-6 md:pt-10 flex flex-col items-end">
+                                  <span className="text-[10px] md:text-xs uppercase tracking-[0.4em] text-white/60 mb-2">A partir de</span>
+                                  <div className="flex items-center gap-1 mt-1">
+                                    <span className="text-base md:text-xl text-white font-medium -mt-2">R$</span>
+                                    <HandWrittenTitle delay={1.5} className="mr-1">
+                                      <span className="font-bold text-5xl sm:text-6xl md:text-7xl text-white">199,90</span>
+                                    </HandWrittenTitle>
+                                  </div>
+                                </div>
+                              </div>
+                              <div className="w-[1px] md:w-[2px] bg-white/20 h-full" />
+                            </div>
+                          </div>
+
                         </div>
                       </>
                     )}
