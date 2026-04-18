@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { ArrowRight, Award, ShieldCheck, Sparkles, Truck } from "lucide-react";
 import hero from "@/assets/banners/exame-theo-v2.jpg";
 import heroBanner2 from "@/assets/banners/hero-banner2.jpg";
+import celineBanner from "@/assets/banners/celine.jpg";
 import davidBanner from "@/assets/banners/david.jpg";
 import pucciBanner from "@/assets/banners/pucci.jpg";
 import saleBanner from "@/assets/banners/sale.jpg";
@@ -12,6 +13,7 @@ import { Button } from "@/components/ui/button";
 import { useState } from "react";
 import Autoplay from "embla-carousel-autoplay";
 import { ProductCarousel } from "@/components/ProductCarousel";
+import { LayeredText } from "@/components/ui/layered-text";
 import {
   Carousel,
   CarouselContent,
@@ -23,6 +25,27 @@ import {
 const Home = () => {
   const [firstSwiper, setFirstSwiper] = useState<any>(null);
   const [secondSwiper, setSecondSwiper] = useState<any>(null);
+
+  const heroSlides = [
+    { src: hero, alt: "Exame de vista + Óculos Completo a partir de R$ 199,90" },
+    { 
+      src: heroBanner2, 
+      alt: "Conforto Visual Óticas Théo",
+      textOverlay: true,
+      layeredText: true,
+      layeredLines: [
+        { top: "\u00A0", bottom: "CONFORTO" },
+        { top: "CONFORTO", bottom: "ESTILO" },
+        { top: "ESTILO", bottom: "PRECISÃO" },
+        { top: "PRECISÃO", bottom: "QUALIDADE" },
+        { top: "QUALIDADE", bottom: "LUXO" },
+        { top: "LUXO", bottom: "\u00A0" },
+      ]
+    },
+    { src: davidBanner, alt: "Coleção David" },
+    { src: pucciBanner, alt: "Coleção Pucci" },
+    { src: saleBanner, alt: "Promoções" },
+  ];
 
   return (
     <>
@@ -40,20 +63,52 @@ const Home = () => {
           className="w-full relative"
         >
           <CarouselContent className="m-0">
-            {[hero, heroBanner2, davidBanner, pucciBanner, saleBanner].map((src, index) => (
+            {heroSlides.map((slide, index) => (
               <CarouselItem key={index} className="pl-0">
                 <Link 
                   to="/catalogo" 
                   className="block group"
                 >
-                  <div className="w-full max-w-[1920px] mx-auto aspect-video relative">
+                  <div className="w-full max-w-[1920px] mx-auto aspect-video relative flex items-center justify-center text-center">
                     <img
-                      src={src}
-                      alt={index === 0 ? "Exame de vista + Óculos Completo a partir de R$ 199,90" : `Banner ${index + 1}`}
-                      className="absolute inset-0 w-full h-full object-cover"
+                      src={slide.src}
+                      alt={slide.alt}
+                      className={`absolute inset-0 w-full h-full object-cover transition-transform duration-[2000ms] ${slide.textOverlay ? 'group-hover:scale-105' : ''}`}
                     />
-                    {index > 0 && (
+                    
+                    {/* Default light overlay for no-text secondary banners */}
+                    {index > 0 && !slide.textOverlay && (
                       <div className="absolute inset-0 bg-black/10 transition-colors group-hover:bg-transparent pointer-events-none" />
+                    )}
+
+                    {/* Animated Text Overlay for specific banners */}
+                    {slide.textOverlay && (
+                      <>
+                        <div className="absolute inset-0 bg-black/30 group-hover:bg-black/40 transition-colors duration-500" />
+                        <div className="relative z-10 flex flex-col items-center max-w-3xl px-6
+                                      animate-in fade-in slide-in-from-bottom-10 duration-1000 fill-mode-both delay-300">
+                          {slide.layeredText ? (
+                            <LayeredText 
+                              lines={slide.layeredLines} 
+                              className="text-white drop-shadow-xl transform scale-50 sm:scale-75 md:scale-100 pt-0 pb-0" 
+                            />
+                          ) : (
+                            <>
+                              <h2 className="text-3xl sm:text-4xl md:text-5xl font-serif text-white mb-3 md:mb-5 drop-shadow-md leading-tight">
+                                {slide.title}
+                              </h2>
+                              <p className="text-sm md:text-xl text-white/90 font-light mb-6 md:mb-8 max-w-xl mx-auto drop-shadow-sm">
+                                {slide.subtitle}
+                              </p>
+                              {slide.ctaText && (
+                                <span className="inline-flex items-center justify-center px-6 md:px-8 py-3 md:py-4 bg-white text-luxury text-xs md:text-sm tracking-[0.2em] uppercase font-medium hover:bg-accent hover:text-accent-foreground transition-colors duration-300">
+                                  {slide.ctaText}
+                                </span>
+                              )}
+                            </>
+                          )}
+                        </div>
+                      </>
                     )}
                   </div>
                 </Link>
