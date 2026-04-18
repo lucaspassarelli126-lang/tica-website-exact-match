@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { ArrowRight, Award, ShieldCheck, Sparkles, Truck } from "lucide-react";
 import hero from "@/assets/banners/exame-theo-v2.jpg";
-import celineBanner from "@/assets/banners/celine.jpg";
+import heroBanner2 from "@/assets/banners/hero-banner2.jpg";
 import davidBanner from "@/assets/banners/david.jpg";
 import pucciBanner from "@/assets/banners/pucci.jpg";
 import saleBanner from "@/assets/banners/sale.jpg";
@@ -40,7 +40,7 @@ const Home = () => {
           className="w-full relative"
         >
           <CarouselContent className="m-0">
-            {[hero, celineBanner, davidBanner, pucciBanner, saleBanner].map((src, index) => (
+            {[hero, heroBanner2, davidBanner, pucciBanner, saleBanner].map((src, index) => (
               <CarouselItem key={index} className="pl-0">
                 <Link 
                   to="/catalogo" 
