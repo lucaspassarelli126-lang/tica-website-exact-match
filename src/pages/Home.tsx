@@ -39,19 +39,28 @@ const Home = () => {
           ]}
           className="w-full relative"
         >
-          <CarouselContent className="h-[45vh] md:h-[65vh]">
+          <CarouselContent className="m-0">
             {[hero, celineBanner, davidBanner, pucciBanner, saleBanner].map((src, index) => (
-              <CarouselItem key={index} className="h-full">
-                <Link to="/catalogo" className="relative block group overflow-hidden h-full max-w-[1920px] mx-auto bg-white">
-                  <img
-                    src={src}
-                    alt={index === 0 ? "Exame de vista + Óculos Completo a partir de R$ 199,90" : `Banner ${index + 1}`}
-                    className="w-full h-full object-contain"
-                  />
-                  {/* Subtle brand overlay for secondary banners */}
-                  {index > 0 && (
-                    <div className="absolute inset-0 bg-luxury/5 group-hover:bg-luxury/0 transition-colors pointer-events-none" />
-                  )}
+              <CarouselItem key={index} className="pl-0">
+                <Link 
+                  to="/catalogo" 
+                  className="relative group flex w-full max-w-[1920px] mx-auto overflow-hidden bg-stone-100"
+                >
+                  <div className="relative w-full aspect-[4/5] sm:aspect-video lg:aspect-[21/9] xl:aspect-[2.5/1]">
+                    <img
+                      src={src}
+                      alt={index === 0 ? "Promoção Óticas Théo Exame + Óculos" : `Coleção Exclusiva ${index + 1}`}
+                      fetchPriority={index === 0 ? "high" : "auto"}
+                      loading={index === 0 ? "eager" : "lazy"}
+                      className={`absolute inset-0 w-full h-full object-cover transition-transform duration-1000 ease-out group-hover:scale-[1.02] ${
+                        index === 0 ? "object-[70%_center] sm:object-center" : "object-center"
+                      }`}
+                    />
+                    {/* Premium overlay for depth and integration */}
+                    {index > 0 && (
+                      <div className="absolute inset-0 bg-black/10 group-hover:bg-black/0 transition-colors duration-700 pointer-events-none" />
+                    )}
+                  </div>
                 </Link>
               </CarouselItem>
             ))}
