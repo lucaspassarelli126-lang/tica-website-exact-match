@@ -44,21 +44,16 @@ const Home = () => {
               <CarouselItem key={index} className="pl-0">
                 <Link 
                   to="/catalogo" 
-                  className="relative group flex w-full max-w-[1920px] mx-auto overflow-hidden bg-stone-100"
+                  className="block group"
                 >
-                  <div className="relative w-full aspect-[4/5] sm:aspect-video lg:aspect-[21/9] xl:aspect-[2.5/1]">
+                  <div className="w-full max-w-[1920px] mx-auto aspect-video relative">
                     <img
                       src={src}
-                      alt={index === 0 ? "Promoção Óticas Théo Exame + Óculos" : `Coleção Exclusiva ${index + 1}`}
-                      fetchPriority={index === 0 ? "high" : "auto"}
-                      loading={index === 0 ? "eager" : "lazy"}
-                      className={`absolute inset-0 w-full h-full object-cover transition-transform duration-1000 ease-out group-hover:scale-[1.02] ${
-                        index === 0 ? "object-[70%_center] sm:object-center" : "object-center"
-                      }`}
+                      alt={index === 0 ? "Exame de vista + Óculos Completo a partir de R$ 199,90" : `Banner ${index + 1}`}
+                      className="absolute inset-0 w-full h-full object-cover"
                     />
-                    {/* Premium overlay for depth and integration */}
                     {index > 0 && (
-                      <div className="absolute inset-0 bg-black/10 group-hover:bg-black/0 transition-colors duration-700 pointer-events-none" />
+                      <div className="absolute inset-0 bg-black/10 transition-colors group-hover:bg-transparent pointer-events-none" />
                     )}
                   </div>
                 </Link>
