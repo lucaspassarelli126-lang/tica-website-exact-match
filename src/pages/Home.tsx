@@ -39,18 +39,18 @@ const Home = () => {
           ]}
           className="w-full relative"
         >
-          <CarouselContent>
+          <CarouselContent className="h-[45vh] md:h-[65vh]">
             {[hero, celineBanner, davidBanner, pucciBanner, saleBanner].map((src, index) => (
-              <CarouselItem key={index}>
-                <Link to="/catalogo" className="relative block group overflow-hidden max-w-[1920px] mx-auto">
+              <CarouselItem key={index} className="h-full">
+                <Link to="/catalogo" className="relative block group overflow-hidden h-full max-w-[1920px] mx-auto bg-white">
                   <img
                     src={src}
                     alt={index === 0 ? "Exame de vista + Óculos Completo a partir de R$ 199,90" : `Banner ${index + 1}`}
-                    className="w-full h-auto block aspect-video md:aspect-auto object-cover md:object-contain"
+                    className="w-full h-full object-contain"
                   />
                   {/* Subtle brand overlay for secondary banners */}
                   {index > 0 && (
-                    <div className="absolute inset-0 bg-luxury/10 group-hover:bg-luxury/0 transition-colors pointer-events-none" />
+                    <div className="absolute inset-0 bg-luxury/5 group-hover:bg-luxury/0 transition-colors pointer-events-none" />
                   )}
                 </Link>
               </CarouselItem>
