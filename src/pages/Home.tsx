@@ -273,20 +273,7 @@ const Home = () => {
 
       <VideoScrollHero className="my-16" />
 
-      <motion.section 
-        className="relative bg-background -mt-16 rounded-t-[3rem] z-20 pb-16"
-        initial={{ opacity: 0, y: 50 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: "-100px" }}
-        transition={{ duration: 0.8, ease: "easeOut" }}
-      >
-        <ProductCarousel 
-          products={products} 
-          subtitle="Novas Tendências"
-          title="Lançamentos de Luxo"
-          badgeText="NOVIDADE"
-        />
-      </motion.section>
+
 
 
       {/* Brands grid */}
