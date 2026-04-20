@@ -5,12 +5,11 @@ import zegna from "@/assets/brands/zegna.png";
 import celine from "@/assets/brands/celine.jpg";
 import valentino from "@/assets/brands/valentino.jpg";
 
-import classico from "@/assets/categories/classico.jpg";
-import esportivo from "@/assets/categories/esportivo.jpg";
-import infantil from "@/assets/categories/infantil.jpg";
-import vintage from "@/assets/categories/vintage.jpg";
-import minimalista from "@/assets/categories/minimalista.jpg";
-import criancas from "@/assets/categories/criancas.jpg";
+import classico from "@/assets/categories/classico.png";
+import infantil from "@/assets/categories/infantil.png";
+import vintage from "@/assets/categories/vintage.png";
+import minimalista from "@/assets/categories/minimalista.png";
+import criancas from "@/assets/categories/criancas.png";
 
 import gucciGg0061s from "@/assets/products/gucci.png";
 import prada17ws from "@/assets/products/prada.png";
@@ -35,7 +34,6 @@ export const categories = [
   { name: "Clássico", img: classico, slug: "classico" },
   { name: "Minimalista", img: minimalista, slug: "minimalista" },
   { name: "Vintage", img: vintage, slug: "vintage" },
-  { name: "Esportivo", img: esportivo, slug: "esportivo" },
   { name: "Infantil", img: infantil, slug: "infantil" },
   { name: "Crianças", img: criancas, slug: "criancas" },
 ];

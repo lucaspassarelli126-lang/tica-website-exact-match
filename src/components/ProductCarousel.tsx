@@ -4,6 +4,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { EffectCoverflow, Pagination, Navigation, Controller, EffectFade } from "swiper/modules";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { TiltWrapper } from "@/components/ui/tilt-wrapper";
 
 // @ts-ignore
 import "swiper/css";
@@ -84,11 +85,13 @@ export const ProductCarousel = ({ products, title, subtitle, badgeText = "EXCLUS
               {({ isActive }) => (
                 <div className="relative aspect-[4/3] w-full flex items-center justify-center">
                   <div className={`flex items-center justify-center ${isActive ? 'carousel-glasses' : ''}`}>
-                    <img 
-                      src={p.img} 
-                      className={`max-h-full max-w-full object-contain relative z-10 transition-all duration-700 drop-shadow-xl ${isActive ? 'scale-110 blur-0' : 'scale-75 blur-[2px]'}`} 
-                      alt={p.name}
-                    />
+                    <TiltWrapper glare={isActive} maxTilt={isActive ? 15 : 0} className={isActive ? "cursor-grab active:cursor-grabbing" : "pointer-events-none"}>
+                      <img 
+                        src={p.img} 
+                        className={`max-h-full max-w-full object-contain relative z-10 transition-all duration-700 drop-shadow-xl ${isActive ? 'scale-110 blur-0' : 'scale-75 blur-[2px]'}`} 
+                        alt={p.name}
+                      />
+                    </TiltWrapper>
                   </div>
                 </div>
               )}
@@ -133,4 +136,3 @@ export const ProductCarousel = ({ products, title, subtitle, badgeText = "EXCLUS
     </section>
   );
 };
-

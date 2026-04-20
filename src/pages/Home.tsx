@@ -1,5 +1,8 @@
 import { Link } from "react-router-dom";
-import { ArrowRight, Award, ShieldCheck, Sparkles, Truck } from "lucide-react";
+import { ArrowRight, Award, ShieldCheck, Sparkles, Truck, CreditCard, History } from "lucide-react";
+import { motion } from "framer-motion";
+import { VideoScrollHero } from "@/components/ui/video-scroll-hero";
+import { TiltWrapper } from "@/components/ui/tilt-wrapper";
 import hero from "@/assets/banners/hero-banner1-v3.jpg";
 import heroBanner2 from "@/assets/banners/hero-banner2.jpg";
 import heroBanner3 from "@/assets/banners/hero-banner3.jpg";
@@ -27,7 +30,6 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
-import { motion } from "framer-motion";
 
 const Home = () => {
   const [firstSwiper, setFirstSwiper] = useState<any>(null);
@@ -187,133 +189,105 @@ const Home = () => {
         </Carousel>
       </section>
 
-      {/* Trust strip */}
-      <section className="border-b border-border bg-white dark:bg-black/50">
-        <div className="container-luxe flex justify-center py-10 md:py-16">
-          <div className="grid grid-cols-2 gap-12 md:gap-32 max-w-4xl w-full">
-            {[
-              { 
-                icon: (props: any) => (
-                  <svg viewBox="0 0 479 479" {...props}>
-                    <path fill="currentColor" d="M371.9,139.7c-5.2-1.9-8.5-5.6-11.7-10c-3.1-4.4-6.4-9.1-10.7-12.7c-5-4.2-11.1-6.1-17.6-6.1c-1.9,0-3.9,0.1-5.7,0.4 c2-2.1,4.3-4.1,6.5-6.2c4.4-3.9,8.5-8,12-12.4c3.9-4.9,4.4-11,1.5-16.1c-2.8-4.9-7.7-7-12.8-5.3c-4.4,1.4-8.4,4.2-12.1,7.2 c-3,2.4-5.9,4.9-8.9,7.4c-4.2,3.5-8.4,7-12.5,10.6c-4.4,3.9-8.6,8.1-12.9,12.1c-3.9,3.7-7.9,7.3-12,10.9c-4,3.5-8.1,6.9-12.3,10.1 c-4,3.1-8.1,6-12.3,8.7c-4,2.6-8.2,5.1-12.5,7.2c-4.4,2-9,3.8-13.8,5.1c-1.3,0.3-2.6,0.7-4,1c-1.3,1.3-2.6,2.6-3.8,3.9 c-2,2.1-4.1,4.3-6.2,6.5c-4.1,4.4-8.1,8.9-11.9,13.6c-4,4.9-7.9,9.9-11.6,15c-4,5.4-7.7,10.9-11.2,16.6c-3.5,5.6-6.9,11.3-10.1,17.2 c-3.2,5.8-6.1,11.7-8.8,17.7c-2.8,6.2-5.3,12.4-7.5,18.8c-2.3,6.5-4.2,13.1-5.8,19.8c-1.6,6.7-2.9,13.4-3.8,20.2 c-0.1,0.5-0.1,1-0.2,1.5c-0.1,2.8,0.5,5.4,1.8,7.8c0.1,0.2,0.2,0.4,0.3,0.6c0,0.1,0.1,0.2,0.1,0.3l3,4.4c0.1,0.1,0.2,0.2,0.3,0.3 c3.1,4.4,6.4,9.1,10.7,12.7c5,4.2,11.1,6.1,17.6,6.1c5.2,0,10.5-1.2,15.2-3.8c4.4-2.4,8.1-5.8,11.1-9.9c2.8-3.9,4.9-8.3,6.3-12.9 c1.4-4.6,2.2-9.3,2.6-14.1c0.4-4.8,0.5-9.6,0.3-14.4c0-0.4-0.1-0.7-0.1-1.1c-0.2-2.8-0.8-5.5-1.7-8.1c1.4-0.1,2.8-0.3,4.1-0.5 c6.4-1.1,12.7-2.7,18.7-5.1c6.1-2.4,11.9-5.4,17.3-9c5.2-3.5,10.1-7.4,14.6-11.8c4.2-4.1,8.2-8.4,11.9-13c3.7-4.6,7.1-9.4,10.2-14.4 c3-4.8,5.8-9.8,8.2-14.9c2.5-5.1,4.7-10.4,6.6-15.8c1.9-5.4,3.5-10.9,4.8-16.5c1.3-5.6,2.3-11.2,3-16.9c0.8-5.7,1.2-11.5,1.4-17.2 C372,143.9,372,141.8,371.9,139.7z" />
-                  </svg>
-                ),
-                label: "FRETE GRÁTIS", 
-                desc: "Para todo Brasil" 
-              },
-              { 
-                icon: (props: any) => (
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...props}>
-                    <path d="M12 15l-2 5-2-5-5-2 5-2 2-5 2 5 5 2-5 2z" />
-                    <circle cx="12" cy="12" r="7" />
-                    <path d="M8.21 13.89L7 23l5-3 5 3-1.21-9.11" />
-                  </svg>
-                ),
-                label: "60 ANOS", 
-                desc: "No mercado" 
-              },
-            ].map(({ icon: Icon, label, desc }, idx) => (
-              <div key={idx} className="flex flex-col items-center gap-3 group">
-                <div className="bg-orange-50 dark:bg-orange-950/30 p-5 rounded-full transition-transform duration-500 group-hover:scale-110">
-                  <Icon className="h-10 w-10 text-orange-600 dark:text-orange-500" />
-                </div>
-                <div className="space-y-1">
-                  <p className="text-sm md:text-base font-black tracking-[0.2em] text-orange-600 dark:text-orange-500">{label}</p>
-                  <p className="text-[10px] md:text-xs text-muted-foreground uppercase tracking-widest">{desc}</p>
-                </div>
-              </div>
-            ))}
+      {/* Slim Floating Trust Bar - Solid White */}
+      <section className="relative z-30 -mt-8 md:-mt-10 container-luxe px-4 max-w-5xl">
+        <TiltWrapper glare={true} maxTilt={3}>
+          <div className="bg-white dark:bg-zinc-950 rounded-xl md:rounded-full border border-border/50 shadow-lg py-4 md:py-5 px-8 md:px-12">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-0 w-full items-center">
+              {[
+                { 
+                  icon: Truck,
+                  label: "FRETE GRÁTIS", 
+                  desc: "Para todo Brasil" 
+                },
+                { 
+                  icon: History,
+                  label: "60 ANOS", 
+                  desc: "Tradição Ótica" 
+                },
+                { 
+                  icon: CreditCard,
+                  label: "10X SEM JUROS", 
+                  desc: "No cartão" 
+                },
+                { 
+                  icon: ShieldCheck,
+                  label: "ORIGINALIDADE", 
+                  desc: "Garantia Total" 
+                },
+              ].map(({ icon: Icon, label, desc }, idx) => (
+                <motion.div 
+                  key={idx} 
+                  initial={{ opacity: 0 }}
+                  whileInView={{ opacity: 1 }}
+                  transition={{ duration: 0.5, delay: idx * 0.1 }}
+                  className={`flex items-center justify-center gap-3 text-left group ${idx !== 3 ? 'md:border-r border-border/50' : ''}`}
+                >
+                  <div className="shrink-0">
+                    <Icon className="h-4 w-4 text-orange-600 dark:text-orange-500" />
+                  </div>
+                  <div className="flex flex-col">
+                    <p className="text-[9px] md:text-[10px] font-black tracking-[0.1em] text-foreground uppercase leading-none">{label}</p>
+                    <p className="text-[7px] md:text-[8px] text-muted-foreground uppercase tracking-widest font-medium opacity-70 mt-0.5">{desc}</p>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
           </div>
-        </div>
+        </TiltWrapper>
       </section>
 
-      {/* Categories */}
-      <section className="container-luxe py-16">
-        <div className="text-center mb-10">
-          <p className="text-xs uppercase tracking-[0.2em] text-accent mb-2">Curadoria</p>
-          <h2 className="text-4xl md:text-5xl font-serif">Estilos para cada personalidade</h2>
-        </div>
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+      {/* Categories Bubble Navigation */}
+      <section className="container-luxe py-12">
+        <div className="flex flex-wrap justify-center gap-6 md:gap-10 lg:gap-16">
           {categories.map((c) => (
-            <Link key={c.slug} to={`/catalogo?style=${c.slug}`} className="group block">
-              <div className="aspect-square overflow-hidden bg-soft">
-                <img
-                  src={c.img}
-                  alt={c.name}
-                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                />
+            <Link key={c.slug} to={`/catalogo?style=${c.slug}`} className="group flex flex-col items-center">
+              <div className="relative mb-4">
+                <div className="w-24 h-24 md:w-32 md:h-32 lg:w-40 lg:w-40 rounded-full overflow-hidden border-2 border-zinc-100 dark:border-zinc-800 group-hover:border-accent transition-all duration-500 shadow-sm p-1 bg-white dark:bg-zinc-900">
+                  <div className="w-full h-full rounded-full overflow-hidden">
+                    <img
+                      src={c.img}
+                      alt={c.name}
+                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                    />
+                  </div>
+                </div>
               </div>
-              <p className="mt-3 text-center text-sm uppercase tracking-wider">{c.name}</p>
+              <p className="text-[11px] md:text-sm font-bold uppercase tracking-widest text-zinc-800 dark:text-zinc-200 group-hover:text-accent transition-colors">
+                {c.name}
+              </p>
             </Link>
           ))}
         </div>
       </section>
-      <ProductCarousel 
+
+
+
+
+      <ProductCarousel 
         products={products} 
         subtitle="Destaques da Temporada"
         title="Encontre o seu estilo"
         badgeText="DESTAQUE"
       />
 
-      {/* Featured brand video showcase */}
-      <section className="container-luxe pb-16">
-        <div className="relative w-full aspect-[21/9] md:aspect-[2.35/1] overflow-hidden rounded-2xl shadow-2xl bg-black group">
-          <video
-            autoPlay
-            loop
-            muted
-            playsInline
-            className="absolute inset-0 w-full h-full object-cover opacity-90 transition-transform duration-1000 group-hover:scale-105"
-          >
-            <source src="/Luxury_Eyewear_Commercial_Video_Generation.mp4" type="video/mp4" />
-            Seu navegador não suporta vídeos.
-          </video>
-          
-          {/* Subtle vignette and gradient overlay for luxury feel */}
-          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/20 pointer-events-none" />
-          
-          {/* Optional textual accent if needed later */}
-          <div className="absolute inset-0 flex flex-col items-center justify-center p-8 text-center bg-black/30 backdrop-blur-[2px]">
-            <div className="relative space-y-8">
-              <motion.div
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 1.2, ease: "easeOut" }}
-                className="flex flex-col items-center"
-              >
-                <h3 className="text-white text-4xl md:text-6xl lg:text-8xl font-sans font-black tracking-[0.15em] uppercase mb-4 drop-shadow-2xl">
-                  ÓTICAS THÉO
-                </h3>
-                
-                <motion.div 
-                  initial={{ width: 0, opacity: 0 }}
-                  whileInView={{ width: "120px", opacity: 1 }}
-                  transition={{ duration: 1, delay: 0.8 }}
-                  className="h-[2px] bg-orange-500 shadow-[0_0_15px_rgba(249,115,22,0.6)]"
-                />
-              </motion.div>
+      <VideoScrollHero className="my-16" />
 
-              <motion.p
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
-                transition={{ duration: 1.5, delay: 1.2 }}
-                className="text-white/95 text-xs md:text-sm lg:text-base tracking-[1em] uppercase font-sans font-light pl-[1em]"
-              >
-                A arte da visão
-              </motion.p>
-            </div>
-          </div>
+      <motion.section 
+        className="relative bg-background -mt-16 rounded-t-[3rem] z-20 pb-16"
+        initial={{ opacity: 0, y: 50 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-100px" }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
+      >
+        <ProductCarousel 
+          products={products} 
+          subtitle="Novas Tendências"
+          title="Lançamentos de Luxo"
+          badgeText="NOVIDADE"
+        />
+      </motion.section>
 
-        </div>
-      </section>
-
-
-      <ProductCarousel 
-        products={products} 
-        subtitle="Novas Tendências"
-        title="Lançamentos de Luxo"
-        badgeText="NOVIDADE"
-      />
 
       {/* Brands grid */}
       <section className="bg-soft py-16">
