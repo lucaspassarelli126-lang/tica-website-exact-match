@@ -265,7 +265,7 @@ const Home = () => {
             playsInline
             className="absolute inset-0 w-full h-full object-cover opacity-90 transition-transform duration-1000 group-hover:scale-105"
           >
-            <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4" />
+            <source src="/Luxury_Eyewear_Commercial_Video_Generation.mp4" type="video/mp4" />
             Seu navegador não suporta vídeos.
           </video>
           
@@ -273,18 +273,37 @@ const Home = () => {
           <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/20 pointer-events-none" />
           
           {/* Optional textual accent if needed later */}
-          <div className="absolute inset-0 flex flex-col items-center justify-center p-8 text-center bg-black/10">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 1.5, delay: 0.5 }}
-              className="space-y-4"
-            >
-              <h3 className="text-white text-xs md:text-sm tracking-[0.8em] uppercase font-sans font-light">Coleção Internacional</h3>
-              <div className="h-px w-24 bg-orange-500 mx-auto" />
-              <p className="text-white/80 text-[10px] md:text-xs tracking-[0.4em] uppercase font-sans">Curadoria de Luxo 2024</p>
-            </motion.div>
+          <div className="absolute inset-0 flex flex-col items-center justify-center p-8 text-center bg-black/30 backdrop-blur-[2px]">
+            <div className="relative space-y-8">
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 1.2, ease: "easeOut" }}
+                className="flex flex-col items-center"
+              >
+                <h3 className="text-white text-4xl md:text-6xl lg:text-8xl font-sans font-black tracking-[0.15em] uppercase mb-4 drop-shadow-2xl">
+                  ÓTICAS THÉO
+                </h3>
+                
+                <motion.div 
+                  initial={{ width: 0, opacity: 0 }}
+                  whileInView={{ width: "120px", opacity: 1 }}
+                  transition={{ duration: 1, delay: 0.8 }}
+                  className="h-[2px] bg-orange-500 shadow-[0_0_15px_rgba(249,115,22,0.6)]"
+                />
+              </motion.div>
+
+              <motion.p
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                transition={{ duration: 1.5, delay: 1.2 }}
+                className="text-white/95 text-xs md:text-sm lg:text-base tracking-[1em] uppercase font-sans font-light pl-[1em]"
+              >
+                A arte da visão
+              </motion.p>
+            </div>
           </div>
+
         </div>
       </section>
 
