@@ -12,8 +12,11 @@ export default {
     },
     extend: {
       fontFamily: {
-        serif: ['Roboto', "sans-serif"],
-        sans: ['Roboto', "system-ui", "sans-serif"],
+        serif: ['"Cormorant Garamond"', "serif"],
+        sans: ['"Inter"', "system-ui", "sans-serif"],
+        editorial: ['"Cormorant Garamond"', "serif"],
+        script: ['"Meow Script"', "cursive"],
+        numeric: ['"Montserrat"', "sans-serif"],
       },
       colors: {
         border: "hsl(var(--border))",

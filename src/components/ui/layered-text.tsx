@@ -23,10 +23,10 @@ export function LayeredText({
     { top: "DREAMS", bottom: "ACHIEVEMENT" },
     { top: "ACHIEVEMENT", bottom: "\u00A0" },
   ],
-  fontSize = "72px",
-  fontSizeMd = "36px",
-  lineHeight = 60,
-  lineHeightMd = 35,
+  fontSize = "36px",
+  fontSizeMd = "20px",
+  lineHeight = 30,
+  lineHeightMd = 18,
   className = "",
 }: LayeredTextProps) {
   const containerRef = useRef<HTMLDivElement>(null)
@@ -51,7 +51,7 @@ export function LayeredText({
     timelineRef.current = gsap.timeline({ paused: true })
 
     timelineRef.current.to(paragraphs, {
-      y: window.innerWidth >= 768 ? -60 : -35,
+      y: window.innerWidth >= 768 ? -30 : -18,
       duration: 0.8,
       ease: "power2.out",
       stagger: 0.08,

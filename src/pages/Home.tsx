@@ -39,48 +39,31 @@ const Home = () => {
       src: hero, 
       alt: "Exame de vista Óticas Théo",
       textOverlay: true,
-      layeredText: true,
-      fontSize: "64px",
-      fontSizeMd: "38px",
-      customClass: "-mt-20 md:-mt-40",
-      cta: { label: "Agendar Exame", href: "/contato#agendamento" },
-      layeredLines: [
-        { top: "\u00A0", bottom: "EXAME DE VISTA" },
-        { top: "EXAME DE VISTA", bottom: "+ ÓCULOS COMPLETO" },
-        { top: "+ ÓCULOS COMPLETO", bottom: "A PARTIR DE" },
-        { top: "A PARTIR DE", bottom: "R$ 199,90", bottomClass: "text-amber-400" },
-        { top: "R$ 199,90", bottom: "\u00A0", topClass: "text-amber-400" },
-      ]
+      tagline: "Inovação & Estilo",
+      mainTitle: "EXAME +\nÓCULOS COMPLETO",
+      editorialAccent: "A PARTIR DE",
+      editorialHighlight: "R$ 199,90",
+      cta: { label: "Agendar Exame", href: "/contato#agendamento" }
     },
     { 
       src: heroBanner2, 
       alt: "Conforto Visual Óticas Théo",
       textOverlay: true,
-      layeredText: true,
-      cta: { label: "Ver Coleção", href: "/catalogo" },
-      layeredLines: [
-        { top: "\u00A0", bottom: "CONFORTO" },
-        { top: "CONFORTO", bottom: "ESTILO" },
-        { top: "ESTILO", bottom: "PRECISÃO" },
-        { top: "PRECISÃO", bottom: "QUALIDADE" },
-        { top: "QUALIDADE", bottom: "LUXO", bottomClass: "text-amber-400" },
-        { top: "LUXO", bottom: "\u00A0", topClass: "text-amber-400" },
-      ]
+      tagline: "Curadoria Premium",
+      mainTitle: "CONFORTO",
+      editorialAccent: "COLEÇÃO DE",
+      editorialHighlight: "LUXO",
+      cta: { label: "Ver Coleção", href: "/catalogo" }
     },
     { 
       src: heroBanner3, 
       alt: "Atendimento Clínico Ótico",
       textOverlay: true,
-      layeredText: true,
-      cta: { label: "Falar com Consultor", href: "https://wa.me/5511999999999" },
-      layeredLines: [
-        { top: "\u00A0", bottom: "ALTA DEFINIÇÃO", bottomClass: "text-amber-400" },
-        { top: "ALTA DEFINIÇÃO", bottom: "TECNOLOGIA", topClass: "text-amber-400" },
-        { top: "TECNOLOGIA", bottom: "FILTRO AZUL" },
-        { top: "FILTRO AZUL", bottom: "MULTIFOCAIS" },
-        { top: "MULTIFOCAIS", bottom: "ANTIRREFLEXO" },
-        { top: "ANTIRREFLEXO", bottom: "\u00A0" },
-      ]
+      tagline: "Visão sem Limites",
+      mainTitle: "TECNOLOGIA",
+      editorialAccent: "LENTES DE",
+      editorialHighlight: "ALTA DEFINIÇÃO",
+      cta: { label: "Falar com Consultor", href: "https://wa.me/5511999999999" }
     }
   ];
 
@@ -106,75 +89,81 @@ const Home = () => {
                   onClick={() => navigate("/catalogo")}
                   className="block group cursor-pointer"
                 >
-                  <div className="w-full max-w-[1920px] mx-auto aspect-video relative flex items-center justify-center text-center">
+                  <div className="w-full max-w-[1920px] mx-auto aspect-[4/3] md:aspect-[21/9] relative flex items-center justify-center text-center overflow-hidden">
                     <img
                       src={slide.src}
                       alt={slide.alt}
                       className={`absolute inset-0 w-full h-full object-cover transition-transform duration-[2000ms] ${slide.textOverlay ? 'group-hover:scale-105' : ''}`}
                     />
                     
-                    {/* Default light overlay for no-text secondary banners */}
-                    {index > 0 && !slide.textOverlay && (
-                      <div className="absolute inset-0 bg-black/10 transition-colors group-hover:bg-transparent pointer-events-none" />
-                    )}
-
-                    {/* Animated Text Overlay for specific layered banners */}
-                    {slide.textOverlay && !slide.premiumTextLayout && (
-                      <>
-                        {/* Right-aligned vignette gradient for superior text legibility */}
-                        <div className="absolute inset-y-0 right-0 w-full md:w-[70%] bg-gradient-to-l from-black/80 via-black/40 to-transparent z-10 pointer-events-none" />
+                    {/* Celine Style Layout (Center-Aligned) */}
+                    {slide.textOverlay && (
+                      <div className="absolute inset-0 flex items-center justify-center z-20">
+                        {/* Dark center overlay for contrast */}
+                        <div className="absolute inset-0 bg-black/40 z-10 pointer-events-none" />
                         
-                        {slide.layeredText ? (
-                          <div className="absolute inset-y-0 right-0 flex items-center pr-4 md:pr-16 lg:pr-32 w-full justify-end z-20 pointer-events-none overflow-hidden sm:overflow-visible">
-                            <div className="flex flex-col items-end animate-in fade-in slide-in-from-right-10 duration-1000 fill-mode-both delay-300 pointer-events-auto">
-                              <LayeredText 
-                                lines={slide.layeredLines} 
-                                fontSize={slide.fontSize}
-                                fontSizeMd={slide.fontSizeMd}
-                                className={`text-white drop-shadow-xl transform scale-[0.6] sm:scale-75 md:scale-100 origin-right ${slide.customClass || '-mt-10 md:-mt-20'}`} 
-                              />
-                              
-                              {/* Minimalist CTA Button */}
-                              {slide.cta && (
-                                <motion.div 
-                                  initial={{ opacity: 0, y: 20 }}
-                                  whileInView={{ opacity: 1, y: 0 }}
-                                  viewport={{ once: false }}
-                                  transition={{ duration: 0.7, delay: 1 }}
-                                  className="mt-8 md:mt-12"
-                                >
-                                  <Link 
-                                    to={slide.cta.href}
-                                    onClick={(e) => e.stopPropagation()}
-                                    className="inline-flex items-center px-10 py-4 bg-transparent border border-white text-white text-[10px] md:text-xs tracking-[0.4em] uppercase font-bold hover:bg-white hover:text-black transition-all duration-300 drop-shadow-lg group pointer-events-auto"
-                                  >
-                                    {slide.cta.label}
-                                    <ArrowRight className="ml-3 h-4 w-4 transform group-hover:translate-x-2 transition-transform" />
-                                  </Link>
-                                </motion.div>
-                              )}
-                            </div>
+                        <div className="relative z-20 flex flex-col items-center text-center max-w-6xl px-6">
+                          {/* Main Title (CELINE style) */}
+                          <motion.h1 
+                            initial={{ opacity: 0, y: -20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 1.2, ease: "easeOut" }}
+                            className="text-4xl md:text-6xl lg:text-[5rem] font-sans font-black text-white leading-[0.85] mb-6 whitespace-pre-line tracking-tight"
+                          >
+                            {slide.mainTitle}
+                          </motion.h1>
+                          
+                          {/* Tagline (O ÍCONE ATEMPORAL style) */}
+                          <motion.p 
+                            initial={{ opacity: 0, y: 10 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 1, delay: 0.4 }}
+                            className="text-[10px] md:text-sm tracking-[0.8em] uppercase text-white/80 mb-16 font-sans font-light"
+                          >
+                            {slide.tagline}
+                          </motion.p>
+                          
+                          {/* Promo Block */}
+                          <div className="flex flex-col items-center gap-0 mb-12">
+                            <motion.h2 
+                              initial={{ opacity: 0 }}
+                              whileInView={{ opacity: 1 }}
+                              transition={{ duration: 1, delay: 0.6 }}
+                              className="text-lg md:text-2xl font-sans font-bold text-white tracking-[0.3em] uppercase"
+                            >
+                              {slide.editorialAccent}
+                            </motion.h2>
+                            
+                            {/* Numeric Accent (Montserrat Bold style) */}
+                            <motion.span 
+                              initial={{ opacity: 0, y: 10 }}
+                              whileInView={{ opacity: 1, y: 0 }}
+                              transition={{ duration: 0.8, delay: 0.8 }}
+                              className="text-5xl md:text-7xl lg:text-8xl font-numeric font-black text-orange-500 tracking-tight drop-shadow-lg"
+                            >
+                              {slide.editorialHighlight}
+                            </motion.span>
                           </div>
-                        ) : (
-                          <div className="relative z-10 flex flex-col items-center max-w-3xl px-6 animate-in fade-in slide-in-from-bottom-10 duration-1000 fill-mode-both delay-300">
-                            <BlurFade delay={0.25} inView>
-                                <h2 className="text-3xl sm:text-4xl md:text-5xl font-sans font-semibold tracking-tight text-white mb-3 md:mb-5 drop-shadow-md leading-tight text-center">
-                                  {slide.title}
-                                </h2>
-                            </BlurFade>
-                            <BlurFade delay={0.25 * 2} inView>
-                                <p className="text-sm md:text-xl text-white/90 font-sans tracking-wide font-light mb-6 md:mb-8 max-w-xl mx-auto drop-shadow-sm text-center">
-                                  {slide.subtitle}
-                                </p>
-                            </BlurFade>
-                            {slide.ctaText && (
-                                <span className="inline-flex items-center justify-center px-6 md:px-8 py-3 md:py-4 bg-white text-luxury text-xs md:text-sm tracking-[0.2em] uppercase font-medium border border-white hover:bg-white hover:text-black transition-colors duration-300 pointer-events-auto">
-                                  {slide.ctaText}
-                                </span>
-                            )}
-                          </div>
-                        )}
-                      </>
+                          
+                          {/* Rounded CTA Button */}
+                          {slide.cta && (
+                            <motion.div 
+                              initial={{ opacity: 0, y: 20 }}
+                              whileInView={{ opacity: 1, y: 0 }}
+                              transition={{ duration: 0.8, delay: 1 }}
+                            >
+                              <Link 
+                                to={slide.cta.href}
+                                onClick={(e) => e.stopPropagation()}
+                                className="group relative inline-flex items-center gap-6 bg-black text-white px-16 py-4 rounded-full text-[10px] md:text-xs uppercase tracking-[0.5em] font-sans font-black hover:bg-orange-600 transition-all duration-500 shadow-xl border border-white/5"
+                              >
+                                {slide.cta.label}
+                                <ArrowRight className="w-5 h-5 transform group-hover:translate-x-2 transition-transform" />
+                              </Link>
+                            </motion.div>
+                          )}
+                        </div>
+                      </div>
                     )}
                     {/* Progress Bar (Thin line at the bottom indicating slide duration) */}
                     {slide.textOverlay && (
@@ -199,20 +188,42 @@ const Home = () => {
       </section>
 
       {/* Trust strip */}
-      <section className="border-b border-border">
-        <div className="container-luxe grid grid-cols-2 md:grid-cols-4 gap-6 py-8 text-center">
-          {[
-            { icon: Truck, label: "Frete grátis", desc: "Para todo o Brasil" },
-            { icon: ShieldCheck, label: "Compra segura", desc: "Loja certificada" },
-            { icon: Award, label: "100% original", desc: "Marcas autenticadas" },
-            { icon: Sparkles, label: "Curadoria de luxo", desc: "Selecionado a dedo" },
-          ].map(({ icon: Icon, label, desc }) => (
-            <div key={label} className="flex flex-col items-center gap-1">
-              <Icon className="h-6 w-6 text-accent" />
-              <p className="text-sm font-medium">{label}</p>
-              <p className="text-xs text-muted-foreground">{desc}</p>
-            </div>
-          ))}
+      <section className="border-b border-border bg-white dark:bg-black/50">
+        <div className="container-luxe flex justify-center py-10 md:py-16">
+          <div className="grid grid-cols-2 gap-12 md:gap-32 max-w-4xl w-full">
+            {[
+              { 
+                icon: (props: any) => (
+                  <svg viewBox="0 0 479 479" {...props}>
+                    <path fill="currentColor" d="M371.9,139.7c-5.2-1.9-8.5-5.6-11.7-10c-3.1-4.4-6.4-9.1-10.7-12.7c-5-4.2-11.1-6.1-17.6-6.1c-1.9,0-3.9,0.1-5.7,0.4 c2-2.1,4.3-4.1,6.5-6.2c4.4-3.9,8.5-8,12-12.4c3.9-4.9,4.4-11,1.5-16.1c-2.8-4.9-7.7-7-12.8-5.3c-4.4,1.4-8.4,4.2-12.1,7.2 c-3,2.4-5.9,4.9-8.9,7.4c-4.2,3.5-8.4,7-12.5,10.6c-4.4,3.9-8.6,8.1-12.9,12.1c-3.9,3.7-7.9,7.3-12,10.9c-4,3.5-8.1,6.9-12.3,10.1 c-4,3.1-8.1,6-12.3,8.7c-4,2.6-8.2,5.1-12.5,7.2c-4.4,2-9,3.8-13.8,5.1c-1.3,0.3-2.6,0.7-4,1c-1.3,1.3-2.6,2.6-3.8,3.9 c-2,2.1-4.1,4.3-6.2,6.5c-4.1,4.4-8.1,8.9-11.9,13.6c-4,4.9-7.9,9.9-11.6,15c-4,5.4-7.7,10.9-11.2,16.6c-3.5,5.6-6.9,11.3-10.1,17.2 c-3.2,5.8-6.1,11.7-8.8,17.7c-2.8,6.2-5.3,12.4-7.5,18.8c-2.3,6.5-4.2,13.1-5.8,19.8c-1.6,6.7-2.9,13.4-3.8,20.2 c-0.1,0.5-0.1,1-0.2,1.5c-0.1,2.8,0.5,5.4,1.8,7.8c0.1,0.2,0.2,0.4,0.3,0.6c0,0.1,0.1,0.2,0.1,0.3l3,4.4c0.1,0.1,0.2,0.2,0.3,0.3 c3.1,4.4,6.4,9.1,10.7,12.7c5,4.2,11.1,6.1,17.6,6.1c5.2,0,10.5-1.2,15.2-3.8c4.4-2.4,8.1-5.8,11.1-9.9c2.8-3.9,4.9-8.3,6.3-12.9 c1.4-4.6,2.2-9.3,2.6-14.1c0.4-4.8,0.5-9.6,0.3-14.4c0-0.4-0.1-0.7-0.1-1.1c-0.2-2.8-0.8-5.5-1.7-8.1c1.4-0.1,2.8-0.3,4.1-0.5 c6.4-1.1,12.7-2.7,18.7-5.1c6.1-2.4,11.9-5.4,17.3-9c5.2-3.5,10.1-7.4,14.6-11.8c4.2-4.1,8.2-8.4,11.9-13c3.7-4.6,7.1-9.4,10.2-14.4 c3-4.8,5.8-9.8,8.2-14.9c2.5-5.1,4.7-10.4,6.6-15.8c1.9-5.4,3.5-10.9,4.8-16.5c1.3-5.6,2.3-11.2,3-16.9c0.8-5.7,1.2-11.5,1.4-17.2 C372,143.9,372,141.8,371.9,139.7z" />
+                  </svg>
+                ),
+                label: "FRETE GRÁTIS", 
+                desc: "Para todo Brasil" 
+              },
+              { 
+                icon: (props: any) => (
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...props}>
+                    <path d="M12 15l-2 5-2-5-5-2 5-2 2-5 2 5 5 2-5 2z" />
+                    <circle cx="12" cy="12" r="7" />
+                    <path d="M8.21 13.89L7 23l5-3 5 3-1.21-9.11" />
+                  </svg>
+                ),
+                label: "60 ANOS", 
+                desc: "No mercado" 
+              },
+            ].map(({ icon: Icon, label, desc }, idx) => (
+              <div key={idx} className="flex flex-col items-center gap-3 group">
+                <div className="bg-orange-50 dark:bg-orange-950/30 p-5 rounded-full transition-transform duration-500 group-hover:scale-110">
+                  <Icon className="h-10 w-10 text-orange-600 dark:text-orange-500" />
+                </div>
+                <div className="space-y-1">
+                  <p className="text-sm md:text-base font-black tracking-[0.2em] text-orange-600 dark:text-orange-500">{label}</p>
+                  <p className="text-[10px] md:text-xs text-muted-foreground uppercase tracking-widest">{desc}</p>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -244,14 +255,39 @@ const Home = () => {
         badgeText="DESTAQUE"
       />
 
-      {/* Featured brand banners */}
-      <section className="container-luxe pb-16 grid md:grid-cols-2 gap-4">
-        {[gucciBanner, miumiuBanner, celineBanner, davidBanner].map((src, i) => (
-          <Link key={i} to="/catalogo" className="block overflow-hidden group">
-            <img src={src} alt="Coleção" className="w-full h-auto object-cover transition-transform duration-500 group-hover:scale-[1.02]" />
-          </Link>
-        ))}
+      {/* Featured brand video showcase */}
+      <section className="container-luxe pb-16">
+        <div className="relative w-full aspect-[21/9] md:aspect-[2.35/1] overflow-hidden rounded-2xl shadow-2xl bg-black group">
+          <video
+            autoPlay
+            loop
+            muted
+            playsInline
+            className="absolute inset-0 w-full h-full object-cover opacity-90 transition-transform duration-1000 group-hover:scale-105"
+          >
+            <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4" />
+            Seu navegador não suporta vídeos.
+          </video>
+          
+          {/* Subtle vignette and gradient overlay for luxury feel */}
+          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/20 pointer-events-none" />
+          
+          {/* Optional textual accent if needed later */}
+          <div className="absolute inset-0 flex flex-col items-center justify-center p-8 text-center bg-black/10">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 1.5, delay: 0.5 }}
+              className="space-y-4"
+            >
+              <h3 className="text-white text-xs md:text-sm tracking-[0.8em] uppercase font-sans font-light">Coleção Internacional</h3>
+              <div className="h-px w-24 bg-orange-500 mx-auto" />
+              <p className="text-white/80 text-[10px] md:text-xs tracking-[0.4em] uppercase font-sans">Curadoria de Luxo 2024</p>
+            </motion.div>
+          </div>
+        </div>
       </section>
+
 
       <ProductCarousel 
         products={products} 
