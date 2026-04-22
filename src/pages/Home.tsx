@@ -274,27 +274,29 @@ const Home = () => {
         badgeText="DESTAQUE"
       />
 
-
-      <VideoScrollHero />
-      <ScheduleExamSection />
-
-
-
-
-
-
-
-
-
-
-
-
       {/* Promo Product Banner */}
-      <section className="w-full py-8">
+      <section className="w-full py-0">
         <Link to="/catalogo" className="block overflow-hidden group">
           <img src={promoProductBanner} alt="Coleção de Óculos" className="w-full h-auto object-cover transition-transform duration-500 group-hover:scale-[1.01]" />
         </Link>
       </section>
+
+
+      <ScheduleExamSection />
+      <VideoScrollHero />
+
+
+
+
+
+
+
+
+
+
+
+
+
     </>
   );
 };

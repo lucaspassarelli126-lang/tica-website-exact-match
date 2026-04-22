@@ -40,7 +40,7 @@ export const ProductCarousel = ({ products, title, subtitle, badgeText = "EXCLUS
   const nextRef = useRef<HTMLButtonElement>(null);
 
   return (
-    <section className={`py-24 bg-[#F4F4F5] text-black overflow-hidden relative ${className}`}>
+    <section className={`pt-24 pb-0 bg-[#F4F4F5] text-black overflow-hidden relative ${className}`}>
       {/* Top Badge */}
       <div className="absolute top-8 left-1/2 -translate-x-1/2 z-20">
         <button className="bg-black text-white text-[11px] font-black px-8 py-2.5 rounded-full uppercase tracking-widest hover:scale-105 transition-transform">
@@ -56,7 +56,7 @@ export const ProductCarousel = ({ products, title, subtitle, badgeText = "EXCLUS
       )}
 
       {/* Top Swiper (Images) */}
-      <div className="relative pt-12 pb-4 px-4 max-w-[1400px] mx-auto">
+      <div className="relative pt-12 pb-0 px-4 max-w-[1400px] mx-auto -mb-8">
         <Swiper
           modules={[Navigation, Controller]}
           onSwiper={setFirstSwiper}
@@ -83,7 +83,7 @@ export const ProductCarousel = ({ products, title, subtitle, badgeText = "EXCLUS
           {products.map((p) => (
             <SwiperSlide key={p.id}>
               {({ isActive }) => (
-                <div className="relative aspect-[4/3] w-full flex items-center justify-center">
+                <div className="relative aspect-[21/9] w-full flex items-center justify-center">
                   <div className={`flex items-center justify-center ${isActive ? 'carousel-glasses' : ''}`}>
                     <TiltWrapper glare={isActive} maxTilt={isActive ? 15 : 0} className={isActive ? "cursor-grab active:cursor-grabbing" : "pointer-events-none"}>
                       <img 
@@ -109,9 +109,9 @@ export const ProductCarousel = ({ products, title, subtitle, badgeText = "EXCLUS
       </div>
 
       {/* Bottom Swiper (Details) */}
-      <div className="container-luxe max-w-2xl px-4">
+      <div className="container-luxe max-w-2xl px-4 -mt-4">
         <Swiper
-          modules={[EffectFade, Controller, Pagination]}
+          modules={[EffectFade, Controller]}
           onSwiper={setSecondSwiper}
           controller={{ control: firstSwiper }}
           effect="fade"
@@ -120,11 +120,7 @@ export const ProductCarousel = ({ products, title, subtitle, badgeText = "EXCLUS
         >
           {products.map((p) => (
             <SwiperSlide key={p.id}>
-              <div className="text-center">
-                <p className="text-[11px] text-zinc-500 uppercase tracking-widest font-medium mb-4">
-                  Compre {p.brand} {p.name}
-                </p>
-
+              <div className="text-center py-0">
                 <Button asChild size="lg" className="bg-black text-white hover:bg-zinc-800 rounded-full px-12 h-12 uppercase tracking-widest text-[10px] font-black transition-all hover:scale-105 active:scale-95 shadow-lg">
                   <Link to="/catalogo">COMPRE AGORA</Link>
                 </Button>

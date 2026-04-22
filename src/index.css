@@ -108,27 +108,7 @@
   display: block;
 }
 
-/* sombra branding */
-.carousel-glasses::after {
-  content: "ÓTICAS THÉO";
-  position: absolute;
-  left: 50%;
-  bottom: -22px;
-  transform: translateX(-50%) perspective(120px) rotateX(78deg) scale(1.8, 0.55);
-  
-  font-size: 22px;
-  font-weight: 800;
-  letter-spacing: 4px;
-  white-space: nowrap;
 
-  color: rgba(0,0,0,0.22);
-  filter: blur(6px);
-  opacity: 0.55;
-
-  z-index: 1;
-  pointer-events: none;
-  user-select: none;
-}
 
 .swiper-slide {
   transition: transform 0.7s ease, opacity 0.7s ease;
