@@ -22,6 +22,7 @@ import { ScheduleExamSection } from "@/components/ScheduleExamSection";
 import { VideoScrollHero } from "@/components/ui/video-scroll-hero";
 import { NewsletterSection } from "@/components/NewsletterSection";
 import { RecentlyViewedSection } from "@/components/RecentlyViewedSection";
+import { CategoryScrollInteractive } from "@/components/CategoryScrollInteractive";
 import {
   Carousel,
   CarouselContent,
@@ -39,19 +40,19 @@ const Home = () => {
   const heroSlides = [
     { 
       src: hero, 
-      alt: "Exame de vista Óticas Théo",
+      alt: "Exame de vista gratuito Óticas Théo",
       textOverlay: true,
-      tagline: "Inovação & Estilo",
-      mainTitle: "EXAME +\nÓCULOS COMPLETO",
-      editorialAccent: "A PARTIR DE",
-      editorialHighlight: "R$ 199,90",
-      cta: { label: "Agendar Exame", href: "/contato#agendamento" }
+      tagline: "EXAME DE VISTA GRATUITO • LENTES PREMIUM",
+      mainTitle: "VISÃO PERFEITA\nCOMEÇA AQUI",
+      editorialAccent: "ARMAÇÕES A PARTIR DE",
+      editorialHighlight: "R$ 99,90",
+      cta: { label: "Aproveitar Oferta", href: "/contato#agendamento" }
     },
     { 
       src: heroBanner2, 
       alt: "Conforto Visual Óticas Théo",
       textOverlay: true,
-      tagline: "Curadoria Premium",
+      tagline: "DESIGN EXCLUSIVO",
       mainTitle: "CONFORTO",
       editorialAccent: "COLEÇÃO DE",
       editorialHighlight: "LUXO",
@@ -80,6 +81,8 @@ const Home = () => {
           plugins={[
             Autoplay({
               delay: 9000,
+              stopOnInteraction: true,
+              stopOnMouseEnter: true,
             }),
           ]}
           className="w-full relative"
@@ -100,7 +103,7 @@ const Home = () => {
                     
                     {/* Celine Style Layout (Center-Aligned) */}
                     {slide.textOverlay && (
-                      <div className="absolute inset-0 flex items-center justify-center z-20">
+                      <div className="absolute inset-0 flex items-center justify-center z-20 pb-12 md:pb-16">
                         {/* Dark center overlay for contrast */}
                         <div className="absolute inset-0 bg-black/40 z-10 pointer-events-none" />
                         
@@ -110,7 +113,7 @@ const Home = () => {
                             initial={{ opacity: 0, y: -20 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             transition={{ duration: 1.2, ease: "easeOut" }}
-                            className="text-4xl md:text-6xl lg:text-[5rem] font-sans font-black text-white leading-[0.85] mb-6 whitespace-pre-line tracking-tight"
+                            className="text-4xl md:text-6xl lg:text-[5rem] font-sans font-black text-white leading-tight mb-6 whitespace-pre-line tracking-tight drop-shadow-md"
                           >
                             {slide.mainTitle}
                           </motion.h1>
@@ -120,7 +123,7 @@ const Home = () => {
                             initial={{ opacity: 0, y: 10 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             transition={{ duration: 1, delay: 0.4 }}
-                            className="text-[10px] md:text-sm tracking-[0.8em] uppercase text-white/80 mb-16 font-sans font-light"
+                            className="text-xs md:text-sm tracking-[0.5em] uppercase text-white mb-12 font-sans font-bold bg-black/40 px-6 py-2 rounded-full"
                           >
                             {slide.tagline}
                           </motion.p>
@@ -209,8 +212,8 @@ const Home = () => {
                 },
                 { 
                   icon: CreditCard,
-                  label: "10X SEM JUROS", 
-                  desc: "No cartão" 
+                  label: "PAGAMENTO FACILITADO", 
+                  desc: "Consulte Condições" 
                 },
                 { 
                   icon: ShieldCheck,
@@ -239,46 +242,20 @@ const Home = () => {
         </TiltWrapper>
       </section>
 
-      {/* Categories Navigation - Text inside Bubbles */}
-      <section className="container-luxe py-8 mt-12 md:mt-20">
-        <div className="flex flex-col items-center mb-12">
-          <h2 className="text-xs md:text-sm font-black uppercase tracking-[0.3em] text-zinc-900 mb-4">
-            Explore as Estéticas
-          </h2>
-          <div className="w-1.5 h-1.5 rounded-full bg-accent" />
-        </div>
-        
-        <div className="relative w-full">
-          {/* Connecting Line */}
-          <div className="absolute top-1/2 left-0 w-full h-[2px] bg-accent/30 -translate-y-1/2 z-0" />
-          
-          <div className="relative z-10 flex flex-wrap justify-between items-center w-full gap-4">
-            {categories.map((c: any) => (
-              <Link 
-                key={c.slug} 
-                to={`/catalogo?style=${c.slug}`} 
-                className="group flex flex-col items-center"
-              >
-                <div className="w-16 h-16 md:w-20 md:h-20 rounded-full flex items-center justify-center border border-zinc-200 dark:border-zinc-800 group-hover:border-accent group-hover:bg-accent group-hover:text-white transition-all duration-500 bg-white dark:bg-zinc-950 shadow-sm relative overflow-hidden px-2 text-center">
-                  <span className="text-[8px] md:text-[9px] font-black uppercase tracking-tighter transition-colors leading-tight">
-                    {c.name}
-                  </span>
-                </div>
-              </Link>
-            ))}
-          </div>
-        </div>
-      </section>
+      {/* Interactive Categories Navigation */}
+      <CategoryScrollInteractive />
 
 
 
 
-      <ProductCarousel 
-        products={products} 
-        subtitle="Destaques da Temporada"
-        title="Encontre o seu estilo"
-        badgeText="DESTAQUE"
-      />
+      <div className="relative z-30 bg-background -mt-[45vh] md:-mt-[55vh] pt-12 md:pt-20">
+        <ProductCarousel 
+          products={products} 
+          subtitle="Destaques da Temporada"
+          title="Encontre o seu estilo"
+          badgeText="DESTAQUE"
+        />
+      </div>
 
       <section className="w-full py-4 md:py-6 flex flex-col items-center gap-2 -mt-12">
         <Link to="/catalogo" className="w-full block overflow-hidden group">

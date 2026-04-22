@@ -68,12 +68,6 @@ export function RecentlyViewedSection() {
                   </div>
                 </div>
 
-                {/* Info */}
-                <p className="text-[9px] uppercase tracking-widest text-accent font-bold mb-0.5">
-                  {product.brand}
-                </p>
-                <p className="text-xs font-semibold text-zinc-800 mb-1">{product.name}</p>
-
                 {/* Stars */}
                 <div className="flex items-center gap-0.5">
                   {[1, 2, 3, 4, 5].map((star) => (

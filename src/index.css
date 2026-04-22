@@ -113,17 +113,20 @@
 /* Swiper Pagination Dots */
 .swiper-pagination-bullet {
   background: #AB5621 !important;
-  opacity: 0.3 !important;
-  width: 10px !important;
-  height: 10px !important;
-  margin: 0 6px !important;
+  opacity: 1 !important;
+  width: 8px !important;
+  height: 8px !important;
+  margin: 0 5px !important;
   transition: all 0.3s ease !important;
+  border-radius: 50% !important;
 }
 
 .swiper-pagination-bullet-active {
-  background: #804018 !important;
+  background: #6b3514 !important;
   opacity: 1 !important;
-  transform: scale(1.2);
+  width: 12px !important;
+  height: 12px !important;
+  transform: scale(1.1);
 }
 
 .swiper-slide {

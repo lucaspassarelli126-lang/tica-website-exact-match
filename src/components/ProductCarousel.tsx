@@ -4,7 +4,6 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { EffectCoverflow, Pagination, Navigation, Controller, EffectFade } from "swiper/modules";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { TiltWrapper } from "@/components/ui/tilt-wrapper";
 
 // @ts-ignore
 import "swiper/css";
@@ -40,34 +39,37 @@ export const ProductCarousel = ({ products, title, subtitle, badgeText = "EXCLUS
   const nextRef = useRef<HTMLButtonElement>(null);
 
   return (
-    <section className={`pt-24 pb-8 bg-white text-black overflow-hidden relative ${className}`}>
-      {/* Top Badge */}
-      <div className="absolute top-8 left-1/2 -translate-x-1/2 z-20">
-        <button className="bg-black text-white text-[11px] font-black px-8 py-2.5 rounded-full uppercase tracking-widest hover:scale-105 transition-transform">
-          {badgeText}
-        </button>
-      </div>
+    <section className={`pt-4 pb-8 bg-white text-black overflow-hidden relative ${className}`}>
 
-      {(title || subtitle) && (
-        <div className="container-luxe mb-4 text-center">
-          {subtitle && <p className="text-[10px] uppercase tracking-[0.3em] text-accent font-bold mb-1">{subtitle}</p>}
-          {title && <h2 className="text-4xl md:text-5xl font-serif mb-6">{title}</h2>}
+      {(title || subtitle || badgeText) && (
+        <div className="container-luxe mb-1 text-center">
+          {badgeText && (
+            <span className="inline-block bg-black text-white text-[10px] font-black px-6 py-1.5 rounded-full uppercase tracking-widest mb-3">
+              {badgeText}
+            </span>
+          )}
+          {subtitle && <p className="text-[9px] uppercase tracking-[0.3em] text-accent font-bold mb-1">{subtitle}</p>}
+          {title && <h2 className="text-2xl md:text-3xl font-serif mb-2">{title}</h2>}
         </div>
       )}
 
       {/* Top Swiper (Images) */}
-      <div className="relative pt-12 pb-0 px-4 max-w-[1400px] mx-auto -mb-8">
+      <div className="relative pt-2 pb-4 px-4 max-w-[1300px] mx-auto">
         <Swiper
-          modules={[Navigation, Controller]}
+          modules={[Navigation, Controller, Pagination]}
           onSwiper={setFirstSwiper}
           controller={{ control: secondSwiper }}
           centeredSlides
-          slidesPerView={1.2}
+          slidesPerView={1.5}
           breakpoints={{
-            640: { slidesPerView: 2 },
-            1024: { slidesPerView: 3 }
+            640: { slidesPerView: 2.5 },
+            1024: { slidesPerView: 3.5 }
           }}
           loop
+          speed={800}
+          grabCursor={true}
+          spaceBetween={40}
+          pagination={{ clickable: true }}
           navigation={{
             prevEl: prevRef.current,
             nextEl: nextRef.current,
@@ -78,20 +80,18 @@ export const ProductCarousel = ({ products, title, subtitle, badgeText = "EXCLUS
             // @ts-ignore
             swiper.params.navigation.nextEl = nextRef.current;
           }}
-          className="w-full !overflow-visible"
+          className="w-full !overflow-visible pb-8"
         >
           {products.map((p) => (
             <SwiperSlide key={p.id}>
               {({ isActive }) => (
-                <div className="relative aspect-[21/9] w-full flex items-center justify-center">
-                  <div className={`flex items-center justify-center ${isActive ? 'carousel-glasses' : ''}`}>
-                    <TiltWrapper glare={isActive} maxTilt={isActive ? 15 : 0} className={isActive ? "cursor-grab active:cursor-grabbing" : "pointer-events-none"}>
-                      <img 
-                        src={p.img} 
-                        className={`max-h-full max-w-full object-contain relative z-10 transition-all duration-700 drop-shadow-xl ${isActive ? 'scale-110 blur-0' : 'scale-75 blur-[2px]'}`} 
-                        alt={p.name}
-                      />
-                    </TiltWrapper>
+                <div className="relative aspect-[2/1] w-full flex items-center justify-center">
+                  <div className={`flex items-center justify-center w-full h-full transition-transform duration-700 ease-out ${isActive ? 'scale-110 z-20' : 'scale-75 opacity-40 grayscale blur-[1px]'}`}>
+                    <img 
+                      src={p.img} 
+                      className={`max-h-full max-w-full object-contain drop-shadow-2xl transition-all duration-700 ease-in-out ${isActive ? 'scale-125' : 'scale-90'}`} 
+                      alt={p.name}
+                    />
                   </div>
                 </div>
               )}
@@ -109,29 +109,19 @@ export const ProductCarousel = ({ products, title, subtitle, badgeText = "EXCLUS
       </div>
 
       {/* Bottom Swiper (Details) */}
-      <div className="container-luxe max-w-2xl px-4 -mt-4">
+      <div className="container-luxe max-w-2xl px-4 pb-4">
         <Swiper
-          modules={[EffectFade, Controller, Pagination]}
+          modules={[EffectFade, Controller]}
           onSwiper={setSecondSwiper}
           controller={{ control: firstSwiper }}
           effect="fade"
           fadeEffect={{ crossFade: true }}
-          pagination={{ clickable: true }}
-          className="w-full pb-10"
+          speed={800}
+          className="w-full"
         >
           {products.map((p, i) => (
             <SwiperSlide key={p.id}>
               <div className="text-center py-0">
-                {/* Star Ratings */}
-                <div className="flex items-center justify-center gap-1 mb-3">
-                  {[1,2,3,4,5].map((star) => (
-                    <svg key={star} className={`w-4 h-4 ${star <= 4 ? 'text-amber-400' : 'text-amber-200'}`} fill="currentColor" viewBox="0 0 20 20">
-                      <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                    </svg>
-                  ))}
-                  <span className="text-[11px] text-zinc-400 ml-1">(4.{(i * 3 + 7) % 10 + 1} · {80 + i * 13} avaliações)</span>
-                </div>
-
                 <Button asChild size="lg" className="bg-black text-white hover:bg-zinc-800 rounded-full px-12 h-12 uppercase tracking-widest text-[10px] font-black transition-all hover:scale-105 active:scale-95 shadow-lg">
                   <Link to="/catalogo">COMPRE AGORA</Link>
                 </Button>

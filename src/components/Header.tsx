@@ -1,6 +1,7 @@
 import { Link, NavLink } from "react-router-dom";
 import { Menu, Search, X, Truck, User, ShoppingBag, Glasses } from "lucide-react";
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 
 const navItems = [
   { to: "/", label: "Início" },
@@ -15,10 +16,8 @@ const navItems = [
 const Header = () => {
   const [open, setOpen] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
-
   return (
     <header className="sticky top-0 z-50 w-full shadow-md">
-
       {/* ─── TOP ROW ─────────────────────────────────────────────────── */}
       <div className="bg-accent text-white">
         <div className="container-luxe flex h-16 items-center justify-between gap-6">
@@ -55,21 +54,8 @@ const Header = () => {
           {/* Utility Icons */}
           <div className="hidden md:flex items-center gap-6 shrink-0">
             {/* Rastrear */}
-            <Link to="/localizacao" className="flex items-center gap-2 hover:text-white/70 transition-colors group">
+            <Link to="/localizacao" aria-label="Rastrear Pedidos" className="flex items-center hover:text-white/70 transition-colors">
               <Truck className="h-5 w-5" />
-              <div className="flex flex-col leading-none">
-                <span className="text-[9px] uppercase tracking-wider text-white/60">Rastrear</span>
-                <span className="text-[11px] font-bold uppercase tracking-wide">Pedidos</span>
-              </div>
-            </Link>
-
-            {/* Account */}
-            <Link to="/contato" className="flex items-center gap-2 hover:text-white/70 transition-colors group">
-              <User className="h-5 w-5" />
-              <div className="flex flex-col leading-none">
-                <span className="text-[9px] uppercase tracking-wider text-white/60">Bem-vindo(a)</span>
-                <span className="text-[11px] font-bold uppercase tracking-wide">Entrar ou Cadastrar</span>
-              </div>
             </Link>
 
             {/* Cart */}
@@ -163,10 +149,6 @@ const Header = () => {
             <Link to="/localizacao" onClick={() => setOpen(false)} className="flex flex-col items-center gap-1 text-xs">
               <Truck className="h-5 w-5 text-accent" />
               <span className="uppercase tracking-wide text-[10px] font-bold">Rastrear</span>
-            </Link>
-            <Link to="/contato" onClick={() => setOpen(false)} className="flex flex-col items-center gap-1 text-xs">
-              <User className="h-5 w-5 text-accent" />
-              <span className="uppercase tracking-wide text-[10px] font-bold">Entrar</span>
             </Link>
             <Link to="/catalogo" onClick={() => setOpen(false)} className="flex flex-col items-center gap-1 text-xs relative">
               <ShoppingBag className="h-5 w-5 text-accent" />
