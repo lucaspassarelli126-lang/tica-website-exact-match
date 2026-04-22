@@ -106,7 +106,7 @@ export function CategoryScrollInteractive() {
                   className="group flex flex-col items-center outline-none"
                 >
                   <motion.div 
-                    className="w-16 h-16 md:w-24 md:h-24 rounded-full flex flex-col items-center justify-center transition-shadow duration-300 relative overflow-hidden px-2 text-center bg-white dark:bg-zinc-950"
+                    className="w-16 h-16 md:w-24 md:h-24 rounded-full flex flex-col items-center justify-center transition-shadow duration-300 relative overflow-hidden px-2 text-center bg-white dark:bg-zinc-950 will-change-transform"
                     style={{
                       backgroundColor: bg,
                       borderColor: border,

@@ -91,6 +91,8 @@ export const ProductCarousel = ({ products, title, subtitle, badgeText = "EXCLUS
                       src={p.img} 
                       className={`max-h-full max-w-full object-contain drop-shadow-2xl transition-all duration-700 ease-in-out ${isActive ? 'scale-125' : 'scale-90'}`} 
                       alt={p.name}
+                      loading="lazy"
+                      decoding="async"
                     />
                   </div>
                 </div>
