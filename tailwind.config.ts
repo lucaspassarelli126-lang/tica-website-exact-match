@@ -12,11 +12,11 @@ export default {
     },
     extend: {
       fontFamily: {
-        serif: ['"Cormorant Garamond"', "serif"],
+        serif: ['"Playfair Display"', "serif"],
         sans: ['"Inter"', "system-ui", "sans-serif"],
-        editorial: ['"Cormorant Garamond"', "serif"],
-        script: ['"Meow Script"', "cursive"],
-        numeric: ['"Montserrat"', "sans-serif"],
+        editorial: ['"Playfair Display"', "serif"],
+        script: ['"Playfair Display"', "serif"],
+        numeric: ['"Inter"', "sans-serif"],
       },
       colors: {
         border: "hsl(var(--border))",
