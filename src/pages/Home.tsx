@@ -9,6 +9,7 @@ import celineBanner from "@/assets/banners/celine.jpg";
 import davidBanner from "@/assets/banners/david.jpg";
 import pucciBanner from "@/assets/banners/pucci.jpg";
 import saleBanner from "@/assets/banners/sale.jpg";
+import promoProductBanner from "@/assets/products/Red White Professional Glasses Business Presentation.svg";
 import lensBanner from "@/assets/banners/lens_banner.png";
 import miumiuBanner from "@/assets/banners/miumiu.png";
 import gucciBanner from "@/assets/banners/gucci-vitrine.png";
@@ -322,10 +323,10 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Sale */}
+      {/* Promo Product Banner */}
       <section className="container-luxe py-16">
-        <Link to="/catalogo" className="block overflow-hidden">
-          <img src={saleBanner} alt="Promoções" className="w-full h-auto object-cover" />
+        <Link to="/catalogo" className="block overflow-hidden group">
+          <img src={promoProductBanner} alt="Coleção de Óculos" className="w-full h-auto object-cover transition-transform duration-500 group-hover:scale-[1.01]" />
         </Link>
       </section>
     </>
