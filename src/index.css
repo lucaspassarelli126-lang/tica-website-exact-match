@@ -25,7 +25,7 @@
     --muted: 0 0% 96%;
     --muted-foreground: 0 0% 45%;
 
-    --accent: 25 95% 53%;
+    --accent: 23 68% 40%;
     --accent-foreground: 0 0% 100%;
 
     --destructive: 0 84% 60%;
@@ -33,11 +33,11 @@
 
     --border: 0 0% 89%;
     --input: 0 0% 89%;
-    --ring: 25 95% 53%;
+    --ring: 23 68% 40%;
 
-    --gold: 25 95% 53%;
+    --gold: 23 68% 40%;
     --luxury: 0 0% 5%;
-    --soft: 25 20% 97%;
+    --soft: 23 20% 97%;
 
     --radius: 0.25rem;
   }
@@ -49,19 +49,19 @@
     --card-foreground: 0 0% 98%;
     --popover: 0 0% 3%;
     --popover-foreground: 0 0% 98%;
-    --primary: 25 95% 53%;
+    --primary: 23 68% 40%;
     --primary-foreground: 0 0% 100%;
     --secondary: 0 0% 14%;
     --secondary-foreground: 0 0% 98%;
     --muted: 0 0% 14%;
     --muted-foreground: 0 0% 65%;
-    --accent: 25 95% 53%;
+    --accent: 23 68% 40%;
     --accent-foreground: 0 0% 100%;
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 98%;
     --border: 0 0% 20%;
     --input: 0 0% 20%;
-    --ring: 25 95% 53%;
+    --ring: 23 68% 40%;
   }
 }
 
@@ -71,18 +71,18 @@
   }
   body {
     @apply text-foreground;
-    background-color: #EEEBF2;
+    background-color: #FFFFFF;
     font-family: 'Inter', system-ui, sans-serif;
   }
   h1, h2, h3, h4, .font-serif {
-    font-family: 'Playfair Display', serif;
-    letter-spacing: -0.01em;
+    font-family: 'Inter', sans-serif;
+    letter-spacing: -0.02em;
   }
 }
 
 @layer utilities {
   .container-luxe {
-    @apply mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8;
+    @apply mx-auto w-full max-w-[1600px] px-4 sm:px-6 lg:px-8;
   }
   .text-gold {
     color: hsl(var(--gold));
@@ -109,6 +109,22 @@
 }
 
 
+
+/* Swiper Pagination Dots */
+.swiper-pagination-bullet {
+  background: #AB5621 !important;
+  opacity: 0.3 !important;
+  width: 10px !important;
+  height: 10px !important;
+  margin: 0 6px !important;
+  transition: all 0.3s ease !important;
+}
+
+.swiper-pagination-bullet-active {
+  background: #804018 !important;
+  opacity: 1 !important;
+  transform: scale(1.2);
+}
 
 .swiper-slide {
   transition: transform 0.7s ease, opacity 0.7s ease;

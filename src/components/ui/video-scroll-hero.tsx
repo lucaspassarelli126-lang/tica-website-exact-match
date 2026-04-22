@@ -13,13 +13,15 @@ interface VideoScrollHeroProps {
 export function VideoScrollHero({
   videoSrc = "/Premium_Eyewear_Commercial_One_Take.mp4",
   className = "",
-  title = "ÓTICAS THÉO",
+  title = "ÓTICAS THEO",
   subtitle = "A arte da visão",
 }: VideoScrollHeroProps) {
   const shouldReduceMotion = useReducedMotion();
 
   return (
     <section className={`relative h-screen w-full overflow-hidden bg-black ${className}`}>
+      {/* Top Accent Line */}
+      <div className="absolute top-0 left-0 w-full h-[3px] bg-accent z-30 shadow-[0_2px_10px_rgba(171,86,33,0.3)]" />
       {/* Main Full-Screen Video */}
       <video
         autoPlay
@@ -46,12 +48,12 @@ export function VideoScrollHero({
               {title}
             </h1>
             
-            <motion.div 
-              initial={shouldReduceMotion ? { width: "120px", opacity: 1 } : { width: 0, opacity: 0 }}
-              whileInView={{ width: "120px", opacity: 1 }}
-              transition={{ duration: 1, delay: 0.8 }}
-              className="h-[2px] bg-orange-500 shadow-[0_0_20px_rgba(249,115,22,0.8)]"
-            />
+              <motion.div 
+                initial={shouldReduceMotion ? { width: "120px", opacity: 1 } : { width: 0, opacity: 0 }}
+                whileInView={{ width: "120px", opacity: 1 }}
+                transition={{ duration: 1, delay: 0.8 }}
+                className="h-[2px] bg-accent shadow-[0_0_20px_rgba(171,86,33,0.8)]"
+              />
           </motion.div>
 
           <motion.p

@@ -31,11 +31,11 @@ export const brands = [
 ];
 
 export const categories = [
-  { name: "Clássico", img: classico, slug: "classico" },
-  { name: "Minimalista", img: minimalista, slug: "minimalista" },
-  { name: "Vintage", img: vintage, slug: "vintage" },
-  { name: "Infantil", img: infantil, slug: "infantil" },
-  { name: "Crianças", img: criancas, slug: "criancas" },
+  { name: "Clássico", icon: "Glasses", slug: "classico" },
+  { name: "Minimalista", icon: "Square", slug: "minimalista" },
+  { name: "Vintage", icon: "History", slug: "vintage" },
+  { name: "Infantil", icon: "Smile", slug: "infantil" },
+  { name: "Crianças", icon: "Baby", slug: "criancas" },
 ];
 
 export type Product = {

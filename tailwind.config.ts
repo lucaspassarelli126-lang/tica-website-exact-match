@@ -12,10 +12,10 @@ export default {
     },
     extend: {
       fontFamily: {
-        serif: ['"Playfair Display"', "serif"],
+        serif: ['"Inter"', "sans-serif"],
         sans: ['"Inter"', "system-ui", "sans-serif"],
-        editorial: ['"Playfair Display"', "serif"],
-        script: ['"Playfair Display"', "serif"],
+        editorial: ['"Inter"', "sans-serif"],
+        script: ['"Inter"', "sans-serif"],
         numeric: ['"Inter"', "sans-serif"],
       },
       colors: {

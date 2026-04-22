@@ -1,19 +1,12 @@
 import { Link } from "react-router-dom";
-import { ArrowRight, Award, ShieldCheck, Sparkles, Truck, CreditCard, History } from "lucide-react";
+import { ArrowRight, Award, ShieldCheck, Sparkles, Truck, CreditCard, History, Glasses, Square, Smile, Baby } from "lucide-react";
 import { motion } from "framer-motion";
 import { TiltWrapper } from "@/components/ui/tilt-wrapper";
 import hero from "@/assets/banners/hero-banner1-v3.jpg";
 import heroBanner2 from "@/assets/banners/hero-banner2.jpg";
 import heroBanner3 from "@/assets/banners/hero-banner3.jpg";
-import celineBanner from "@/assets/banners/celine.jpg";
-import davidBanner from "@/assets/banners/david.jpg";
-import pucciBanner from "@/assets/banners/pucci.jpg";
-import saleBanner from "@/assets/banners/sale.jpg";
 import promoProductBanner from "@/assets/products/Red White Professional Glasses Business Presentation.svg";
-import lensBanner from "@/assets/banners/lens_banner.png";
-import miumiuBanner from "@/assets/banners/miumiu.png";
-import gucciBanner from "@/assets/banners/gucci-vitrine.png";
-import { products, brands, categories } from "@/data/site";
+import { products, categories } from "@/data/site";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -23,15 +16,19 @@ import { LayeredText } from "@/components/ui/layered-text";
 import AnimatedTextCycle from "@/components/ui/animated-text-cycle";
 import { HandWrittenTitle } from "@/components/ui/hand-writing-text";
 import { BlurFade } from "@/components/ui/blur-fade";
+import { LampContainer } from "@/components/ui/lamp";
 
 import { ScheduleExamSection } from "@/components/ScheduleExamSection";
 import { VideoScrollHero } from "@/components/ui/video-scroll-hero";
+import { NewsletterSection } from "@/components/NewsletterSection";
+import { RecentlyViewedSection } from "@/components/RecentlyViewedSection";
 import {
   Carousel,
   CarouselContent,
   CarouselItem,
   CarouselNext,
   CarouselPrevious,
+  CarouselDots,
 } from "@/components/ui/carousel";
 
 const Home = () => {
@@ -68,7 +65,7 @@ const Home = () => {
       mainTitle: "TECNOLOGIA",
       editorialAccent: "LENTES DE",
       editorialHighlight: "ALTA DEFINIÇÃO",
-      cta: { label: "Falar com Consultor", href: "https://wa.me/5511999999999" }
+      cta: null
     }
   ];
 
@@ -144,7 +141,7 @@ const Home = () => {
                               initial={{ opacity: 0, y: 10 }}
                               whileInView={{ opacity: 1, y: 0 }}
                               transition={{ duration: 0.8, delay: 0.8 }}
-                              className="text-5xl md:text-7xl lg:text-8xl font-numeric font-black text-orange-500 tracking-tight drop-shadow-lg"
+                              className="text-5xl md:text-7xl lg:text-8xl font-numeric font-black text-accent tracking-tight drop-shadow-lg"
                             >
                               {slide.editorialHighlight}
                             </motion.span>
@@ -160,7 +157,7 @@ const Home = () => {
                               <Link 
                                 to={slide.cta.href}
                                 onClick={(e) => e.stopPropagation()}
-                                className="group relative inline-flex items-center gap-6 bg-black text-white px-16 py-4 rounded-full text-[10px] md:text-xs uppercase tracking-[0.5em] font-sans font-black hover:bg-orange-600 transition-all duration-500 shadow-xl border border-white/5"
+                                className="group relative inline-flex items-center gap-6 bg-accent text-white px-16 py-4 rounded-full text-[10px] md:text-xs uppercase tracking-[0.5em] font-sans font-black hover:bg-accent/90 transition-all duration-500 shadow-xl border border-white/5"
                               >
                                 {slide.cta.label}
                                 <ArrowRight className="w-5 h-5 transform group-hover:translate-x-2 transition-transform" />
@@ -178,7 +175,7 @@ const Home = () => {
                           initial={{ width: "0%" }}
                           animate={{ width: "100%" }}
                           transition={{ duration: 9, ease: "linear" }}
-                          className="h-full bg-amber-400 shadow-[0_0_10px_rgba(251,191,36,0.5)]"
+                          className="h-full bg-accent shadow-[0_0_10px_rgba(171,86,33,0.5)]"
                         />
                       </div>
                     )}
@@ -189,8 +186,10 @@ const Home = () => {
           </CarouselContent>
           <CarouselPrevious className="absolute left-4 top-1/2 -translate-y-1/2 z-10 hidden md:flex bg-background/50 border-none hover:bg-background/80" />
           <CarouselNext className="absolute right-4 top-1/2 -translate-y-1/2 z-10 hidden md:flex bg-background/50 border-none hover:bg-background/80" />
+          <CarouselDots className="absolute bottom-8 left-1/2 -translate-x-1/2 z-30" />
         </Carousel>
       </section>
+
 
       {/* Slim Floating Trust Bar - Solid White */}
       <section className="relative z-30 -mt-8 md:-mt-10 container-luxe px-4 max-w-5xl">
@@ -227,7 +226,7 @@ const Home = () => {
                   className={`flex items-center justify-center gap-3 text-left group ${idx !== 3 ? 'md:border-r border-border/50' : ''}`}
                 >
                   <div className="shrink-0">
-                    <Icon className="h-4 w-4 text-orange-600 dark:text-orange-500" />
+                    <Icon className="h-4 w-4 text-accent" />
                   </div>
                   <div className="flex flex-col">
                     <p className="text-[9px] md:text-[10px] font-black tracking-[0.1em] text-foreground uppercase leading-none">{label}</p>
@@ -240,27 +239,34 @@ const Home = () => {
         </TiltWrapper>
       </section>
 
-      {/* Categories Bubble Navigation */}
-      <section className="container-luxe py-12">
-        <div className="flex flex-wrap justify-center gap-6 md:gap-10 lg:gap-16">
-          {categories.map((c) => (
-            <Link key={c.slug} to={`/catalogo?style=${c.slug}`} className="group flex flex-col items-center">
-              <div className="relative mb-4">
-                <div className="w-24 h-24 md:w-32 md:h-32 lg:w-40 lg:w-40 rounded-full overflow-hidden border-2 border-zinc-100 dark:border-zinc-800 group-hover:border-accent transition-all duration-500 shadow-sm p-1 bg-white dark:bg-zinc-900">
-                  <div className="w-full h-full rounded-full overflow-hidden">
-                    <img
-                      src={c.img}
-                      alt={c.name}
-                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                    />
-                  </div>
+      {/* Categories Navigation - Text inside Bubbles */}
+      <section className="container-luxe py-8 mt-12 md:mt-20">
+        <div className="flex flex-col items-center mb-12">
+          <h2 className="text-xs md:text-sm font-black uppercase tracking-[0.3em] text-zinc-900 mb-4">
+            Explore as Estéticas
+          </h2>
+          <div className="w-1.5 h-1.5 rounded-full bg-accent" />
+        </div>
+        
+        <div className="relative w-full">
+          {/* Connecting Line */}
+          <div className="absolute top-1/2 left-0 w-full h-[2px] bg-accent/30 -translate-y-1/2 z-0" />
+          
+          <div className="relative z-10 flex flex-wrap justify-between items-center w-full gap-4">
+            {categories.map((c: any) => (
+              <Link 
+                key={c.slug} 
+                to={`/catalogo?style=${c.slug}`} 
+                className="group flex flex-col items-center"
+              >
+                <div className="w-16 h-16 md:w-20 md:h-20 rounded-full flex items-center justify-center border border-zinc-200 dark:border-zinc-800 group-hover:border-accent group-hover:bg-accent group-hover:text-white transition-all duration-500 bg-white dark:bg-zinc-950 shadow-sm relative overflow-hidden px-2 text-center">
+                  <span className="text-[8px] md:text-[9px] font-black uppercase tracking-tighter transition-colors leading-tight">
+                    {c.name}
+                  </span>
                 </div>
-              </div>
-              <p className="text-[11px] md:text-sm font-bold uppercase tracking-widest text-zinc-800 dark:text-zinc-200 group-hover:text-accent transition-colors">
-                {c.name}
-              </p>
-            </Link>
-          ))}
+              </Link>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -274,16 +280,19 @@ const Home = () => {
         badgeText="DESTAQUE"
       />
 
-      {/* Promo Product Banner */}
-      <section className="w-full py-0">
-        <Link to="/catalogo" className="block overflow-hidden group">
+      <section className="w-full py-4 md:py-6 flex flex-col items-center gap-2 -mt-12">
+        <Link to="/catalogo" className="w-full block overflow-hidden group">
           <img src={promoProductBanner} alt="Coleção de Óculos" className="w-full h-auto object-cover transition-transform duration-500 group-hover:scale-[1.01]" />
         </Link>
+        <div className="w-1 h-1 rounded-full bg-accent/30" />
       </section>
 
 
       <ScheduleExamSection />
-      <VideoScrollHero />
+      
+      <VideoScrollHero className="-mt-20 md:-mt-32 relative z-10" />
+      <RecentlyViewedSection />
+      <NewsletterSection />
 
 
 
