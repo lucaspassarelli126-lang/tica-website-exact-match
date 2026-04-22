@@ -285,46 +285,12 @@ const Home = () => {
 
 
 
-      {/* Sale banner */}
-      <section className="container-luxe py-16">
-        <Link to="/catalogo" className="block overflow-hidden group">
-          <img src={pucciBanner} alt="Coleção exclusiva" className="w-full h-auto object-cover transition-transform duration-500 group-hover:scale-[1.01]" />
-        </Link>
-      </section>
 
-      {/* Preço Único 99,90 */}
-      <section className="bg-zinc-950 text-white py-24 relative overflow-hidden">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(251,146,60,0.15)_0%,transparent_70%)] pointer-events-none" />
-        <div className="container-luxe relative z-10 text-center max-w-4xl">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-          >
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-orange-500/30 bg-orange-500/10 text-orange-500 text-[10px] md:text-xs font-bold uppercase tracking-widest mb-6">
-              <Sparkles className="w-4 h-4" />
-              Oferta Especial
-            </div>
-            <h2 className="text-4xl md:text-6xl lg:text-7xl font-sans font-black uppercase tracking-tight mb-2">
-              Armações <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-orange-600 block md:inline">Preço Único</span>
-            </h2>
-            <div className="flex justify-center items-baseline gap-2 mt-6 mb-8 drop-shadow-2xl">
-              <span className="text-2xl font-bold text-zinc-400">R$</span>
-              <span className="text-7xl md:text-9xl font-numeric font-black text-white leading-none">99,90</span>
-            </div>
-            <p className="text-zinc-400 text-base md:text-lg max-w-2xl mx-auto mb-10 font-light">
-              Uma seleção impecável de armações com design moderno e qualidade premium. Escolha o seu modelo favorito por um valor indiscutível.
-            </p>
-            <Button asChild size="lg" className="bg-orange-600 hover:bg-orange-700 text-white border-none rounded-full px-10 h-14 text-xs lg:text-sm uppercase tracking-[0.2em] font-bold shadow-xl shadow-orange-900/20">
-              <Link to="/catalogo">Ver Modelos Disponíveis <ArrowRight className="ml-3 h-5 w-5" /></Link>
-            </Button>
-          </motion.div>
-        </div>
-      </section>
+
+
 
       {/* Promo Product Banner */}
-      <section className="container-luxe py-16">
+      <section className="w-full py-8">
         <Link to="/catalogo" className="block overflow-hidden group">
           <img src={promoProductBanner} alt="Coleção de Óculos" className="w-full h-auto object-cover transition-transform duration-500 group-hover:scale-[1.01]" />
         </Link>
