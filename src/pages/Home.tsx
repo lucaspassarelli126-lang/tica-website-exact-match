@@ -5,7 +5,7 @@ import { TiltWrapper } from "@/components/ui/tilt-wrapper";
 import hero from "@/assets/banners/hero-banner1-v3.jpg";
 import heroBanner2 from "@/assets/banners/hero-banner2.jpg";
 import heroBanner3 from "@/assets/banners/hero-banner3.jpg";
-import promoProductBanner from "@/assets/products/Red White Professional Glasses Business Presentation.svg";
+import promoProductBanner from "@/assets/banners/promo-99-v2.png";
 import { products, categories } from "@/data/site";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
@@ -259,13 +259,13 @@ const Home = () => {
         />
       </div>
 
-      <section className="w-full py-4 md:py-8 flex flex-col items-center gap-6 -mt-12">
+      <section className="w-full py-0 flex flex-col items-center gap-6 mt-8">
         <div className="relative w-full max-w-[1920px] mx-auto group overflow-hidden">
           <Link to="/catalogo" className="block">
             <img 
               src={promoProductBanner} 
               alt="Promoção Armações R$ 99,90" 
-              className="w-full h-auto object-cover transition-transform duration-700 group-hover:scale-[1.02]" 
+              className="w-full h-auto max-h-[200px] md:max-h-[350px] object-cover object-center transition-transform duration-700 group-hover:scale-[1.01]" 
             />
           </Link>
         </div>
