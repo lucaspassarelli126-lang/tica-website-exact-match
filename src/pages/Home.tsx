@@ -203,14 +203,14 @@ const Home = () => {
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-0 w-full items-center">
               {[
                 { 
-                  icon: Truck,
-                  label: "FRETE GRÁTIS", 
-                  desc: "Para todo Brasil" 
+                  icon: Glasses,
+                  label: "EXAME DE VISTA", 
+                  desc: "Agende seu horário" 
                 },
                 { 
-                  icon: History,
-                  label: "60 ANOS", 
-                  desc: "Tradição Ótica" 
+                  icon: Award,
+                  label: "7 ANOS", 
+                  desc: "Excelência Visual" 
                 },
                 { 
                   icon: CreditCard,
