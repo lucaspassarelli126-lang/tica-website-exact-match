@@ -20,9 +20,6 @@ const Footer = () => {
             <a href="https://www.instagram.com/oticastheotavares/" target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="p-2 border border-white/20 hover:bg-white/10 transition-colors">
               <Instagram className="h-4 w-4" />
             </a>
-            <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" aria-label="Facebook" className="p-2 border border-white/20 hover:bg-white/10 transition-colors">
-              <Facebook className="h-4 w-4" />
-            </a>
           </div>
         </div>
 

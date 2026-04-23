@@ -20,7 +20,6 @@ import { LampContainer } from "@/components/ui/lamp";
 
 import { ScheduleExamSection } from "@/components/ScheduleExamSection";
 import { VideoScrollHero } from "@/components/ui/video-scroll-hero";
-import { NewsletterSection } from "@/components/NewsletterSection";
 import { RecentlyViewedSection } from "@/components/RecentlyViewedSection";
 import { CategoryScrollInteractive } from "@/components/CategoryScrollInteractive";
 import {
@@ -42,11 +41,11 @@ const Home = () => {
       src: hero, 
       alt: "Exame de vista gratuito Óticas Theo",
       textOverlay: true,
-      tagline: "EXAME DE VISTA GRATUITO • LENTES PREMIUM",
-      mainTitle: "VISÃO PERFEITA\nCOMEÇA AQUI",
-      editorialAccent: "ARMAÇÕES A PARTIR DE",
-      editorialHighlight: "R$ 99,90",
-      cta: { label: "Aproveitar Oferta", href: "https://wa.me/5519971528684?text=Olá! Quero aproveitar a oferta de armações por R$ 99,90 que vi no site." }
+      tagline: "EXCELÊNCIA & SOFISTICAÇÃO VISUAL",
+      mainTitle: "A ARTE DE\nENXERGAR BEM",
+      editorialAccent: "DESCUBRA SUA NOVA",
+      editorialHighlight: "IDENTIDADE",
+      cta: { label: "Explorar Coleção", href: "https://wa.me/5519971528684?text=Olá! Gostaria de explorar a nova coleção de óculos que vi no site." }
     },
     { 
       src: heroBanner2, 
@@ -80,9 +79,9 @@ const Home = () => {
           }}
           plugins={[
             Autoplay({
-              delay: 9000,
-              stopOnInteraction: true,
-              stopOnMouseEnter: true,
+              delay: 4000,
+              stopOnInteraction: false,
+              stopOnMouseEnter: false,
             }),
           ]}
           className="w-full relative"
@@ -179,7 +178,7 @@ const Home = () => {
                           key={index}
                           initial={{ width: "0%" }}
                           animate={{ width: "100%" }}
-                          transition={{ duration: 9, ease: "linear" }}
+                          transition={{ duration: 4, ease: "linear" }}
                           className="h-full bg-accent shadow-[0_0_10px_rgba(171,86,33,0.5)]"
                         />
                       </div>
@@ -286,8 +285,6 @@ const Home = () => {
       
       <VideoScrollHero className="-mt-20 md:-mt-32 relative z-10" />
       <RecentlyViewedSection />
-      <NewsletterSection />
-
 
 
 
