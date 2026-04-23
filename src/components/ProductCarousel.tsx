@@ -1,9 +1,10 @@
 import { useState, useRef } from "react";
-import { Link } from "react-router-dom";
 import { Swiper, SwiperSlide } from "swiper/react";
+import { Swiper as SwiperType } from "swiper";
 import { EffectCoverflow, Pagination, Navigation, Controller, EffectFade } from "swiper/modules";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useCart } from "@/context/CartContext";
 
 // @ts-ignore
 import "swiper/css";
@@ -22,6 +23,7 @@ interface Product {
   brand: string;
   img: string;
   style: string;
+  price?: number;
 }
 
 interface ProductCarouselProps {
@@ -33,10 +35,15 @@ interface ProductCarouselProps {
 }
 
 export const ProductCarousel = ({ products, title, subtitle, badgeText = "EXCLUSIVIDADE", className = "" }: ProductCarouselProps) => {
-  const [firstSwiper, setFirstSwiper] = useState<any>(null);
-  const [secondSwiper, setSecondSwiper] = useState<any>(null);
+  const [firstSwiper, setFirstSwiper] = useState<SwiperType | null>(null);
+  const [secondSwiper, setSecondSwiper] = useState<SwiperType | null>(null);
+  const [activeIndex, setActiveIndex] = useState(0);
+  const { addItem } = useCart();
   const prevRef = useRef<HTMLButtonElement>(null);
   const nextRef = useRef<HTMLButtonElement>(null);
+
+  // Get the real product based on active index, accounting for loop duplicates
+  const activeProduct = products[activeIndex % products.length];
 
   return (
     <section className={`pt-4 pb-8 bg-white text-black overflow-hidden relative ${className}`}>
@@ -66,7 +73,7 @@ export const ProductCarousel = ({ products, title, subtitle, badgeText = "EXCLUS
             1024: { slidesPerView: 3.5 }
           }}
           loop
-          speed={800}
+          speed={400}
           grabCursor={true}
           spaceBetween={40}
           pagination={{ clickable: true }}
@@ -80,16 +87,20 @@ export const ProductCarousel = ({ products, title, subtitle, badgeText = "EXCLUS
             // @ts-ignore
             swiper.params.navigation.nextEl = nextRef.current;
           }}
+          onSlideChange={(swiper) => {
+            // realIndex gives the actual index ignoring loop clones
+            setActiveIndex(swiper.realIndex);
+          }}
           className="w-full !overflow-visible pb-8"
         >
           {products.map((p) => (
             <SwiperSlide key={p.id}>
               {({ isActive }) => (
                 <div className="relative aspect-[2/1] w-full flex items-center justify-center">
-                  <div className={`flex items-center justify-center w-full h-full transition-transform duration-700 ease-out ${isActive ? 'scale-110 z-20' : 'scale-75 opacity-40 grayscale blur-[1px]'}`}>
+                  <div className={`flex items-center justify-center w-full h-full transition-transform duration-500 ease-out ${isActive ? 'scale-110 z-20' : 'scale-75 opacity-40 grayscale blur-[1px]'}`}>
                     <img 
                       src={p.img} 
-                      className={`max-h-full max-w-full object-contain drop-shadow-2xl transition-all duration-700 ease-in-out ${isActive ? 'scale-125' : 'scale-90'}`} 
+                      className={`max-h-full max-w-full object-contain drop-shadow-2xl transition-all duration-500 ease-in-out ${isActive ? 'scale-125' : 'scale-90'}`} 
                       alt={p.name}
                       loading="lazy"
                       decoding="async"
@@ -110,27 +121,23 @@ export const ProductCarousel = ({ products, title, subtitle, badgeText = "EXCLUS
         </button>
       </div>
 
-      {/* Bottom Swiper (Details) */}
-      <div className="container-luxe max-w-2xl px-4 pb-4">
-        <Swiper
-          modules={[EffectFade, Controller]}
-          onSwiper={setSecondSwiper}
-          controller={{ control: firstSwiper }}
-          effect="fade"
-          fadeEffect={{ crossFade: true }}
-          speed={800}
-          className="w-full"
+      {/* Bottom: Single Buy Button (always adds the active product) */}
+      <div className="container-luxe max-w-2xl px-4 pb-4 text-center">
+        <Button 
+          size="lg"
+          onClick={() => {
+            if (!activeProduct) return;
+            addItem({
+              id: String(activeProduct.id),
+              name: "armação",
+              price: activeProduct.price ?? 1200,
+              image: activeProduct.img
+            });
+          }}
+          className="bg-black text-white hover:bg-zinc-800 rounded-full px-12 h-12 uppercase tracking-widest text-[10px] font-black transition-all hover:scale-105 active:scale-95 shadow-lg"
         >
-          {products.map((p, i) => (
-            <SwiperSlide key={p.id}>
-              <div className="text-center py-0">
-                <Button asChild size="lg" className="bg-black text-white hover:bg-zinc-800 rounded-full px-12 h-12 uppercase tracking-widest text-[10px] font-black transition-all hover:scale-105 active:scale-95 shadow-lg">
-                  <Link to="/catalogo">COMPRE AGORA</Link>
-                </Button>
-              </div>
-            </SwiperSlide>
-          ))}
-        </Swiper>
+          COMPRAR AGORA
+        </Button>
       </div>
     </section>
   );

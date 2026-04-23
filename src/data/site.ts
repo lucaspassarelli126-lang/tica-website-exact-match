@@ -82,11 +82,6 @@ export const services = [
     icon: "Shield",
   },
   {
-    title: "Personal shopper óptico",
-    desc: "Consultoria personalizada para encontrar o modelo ideal para o seu rosto e estilo.",
-    icon: "User",
-  },
-  {
     title: "Lentes de contato",
     desc: "Adaptação e venda de lentes de contato gelatinosas, gás permeáveis e especiais.",
     icon: "Circle",
@@ -102,24 +97,57 @@ export const blogPosts = [
     category: "Dicas de estilo",
   },
   {
-    slug: "protecao-uv",
-    title: "Por que proteção UV nos óculos é essencial",
-    excerpt: "Entenda como os raios UV afetam a saúde dos olhos e a importância de lentes com proteção certificada.",
-    date: "02 Abr 2026",
-    category: "Saúde ocular",
+    slug: "importancia-exame-anual",
+    title: "A Importância do Exame Oftalmológico Anual",
+    excerpt: "Muitas doenças oculares são silenciosas. Descubra por que a consulta de rotina é o pilar da prevenção, mesmo para quem não usa óculos.",
+    date: "15 Mai 2024",
+    category: "Saúde Ocular",
+    image: "/blog/exame.png",
+    url: "https://www.oticasdiniz.com.br/blog/saude-visual/importancia-do-exame-oftalmologico/"
   },
   {
-    slug: "luz-azul-telas",
-    title: "Luz azul e telas: como proteger sua visão",
-    excerpt: "Passamos cada vez mais tempo em frente a telas. Veja como reduzir a fadiga visual no dia a dia.",
-    date: "25 Mar 2026",
-    category: "Saúde ocular",
+    slug: "fadiga-digital-telas",
+    title: "Fadiga Digital: Como Proteger seus Olhos das Telas",
+    excerpt: "O uso excessivo de smartphones e computadores pode causar cansaço e secura ocular. Aprenda a regra 20-20-20 e minimize os impactos.",
+    date: "10 Mai 2024",
+    category: "Saúde Ocular",
+    image: "/blog/telas.png",
+    url: "https://www.lenscope.com.br/blog/fadiga-ocular-digital/"
   },
   {
-    slug: "tendencias-2026",
-    title: "Tendências de óculos para 2026",
-    excerpt: "As principais marcas internacionais apostam em modelos atemporais com toques retrô. Confira.",
-    date: "15 Mar 2026",
+    slug: "tendencias-armacoes-2024",
+    title: "Tendências de Armações: O que está em alta em 2024",
+    excerpt: "Dos modelos geométricos aos clássicos retangulares, veja quais armações estão dominando as vitrines de luxo este ano.",
+    date: "05 Mai 2024",
     category: "Tendências",
+    image: "/blog/tendencias.png",
+    url: "https://www.oticadagente.com.br/blog/tendencias-de-oculos-para-2024/"
+  },
+  {
+    slug: "protecao-uv-indispensavel",
+    title: "Proteção UV: Mais que Estilo, uma Necessidade",
+    excerpt: "Lentes de sol sem proteção podem ser mais perigosas do que não usar óculos. Entenda os riscos dos raios UVA e UVB para sua visão.",
+    date: "28 Abr 2024",
+    category: "Saúde Ocular",
+    image: "https://images.unsplash.com/photo-1572635196237-14b3f281503f?auto=format&fit=crop&q=80&w=800",
+    url: "https://www.vizibelli.com.br/blog/protecao-uv-nos-oculos-de-sol/"
+  },
+  {
+    slug: "alimentacao-e-visao",
+    title: "Alimentação: Nutrientes que Fortalecem sua Visão",
+    excerpt: "Ômega-3, Luteína e Vitamina A. Saiba quais alimentos incluir na sua dieta para prevenir a degeneração macular e catarata.",
+    date: "20 Abr 2024",
+    category: "Dicas",
+    image: "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&q=80&w=800",
+    url: "https://www.oticaloryfreitas.com/blog/alimentacao-e-saude-ocular/"
+  },
+  {
+    slug: "higienizacao-lentes",
+    title: "Como Limpar seus Óculos da Maneira Correta",
+    excerpt: "Esfregar na camiseta? Nunca! Aprenda o passo a passo para higienizar suas lentes sem riscar e prolongar a vida útil da sua armação.",
+    date: "12 Abr 2024",
+    category: "Cuidados",
+    image: "https://images.unsplash.com/photo-1509100104048-6373f71cd466?auto=format&fit=crop&q=80&w=800",
+    url: "https://www.oticasdiniz.com.br/blog/cuidados-com-oculos/como-limpar-oculos/"
   },
 ];

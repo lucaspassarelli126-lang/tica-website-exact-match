@@ -9,10 +9,24 @@ export function ScheduleExamSection() {
     period: ""
   });
 
-  const periods = ["Manhã", "Tarde", "Noite"];
+  const periods = ["Manhã", "Tarde"];
+
+  const formatWhatsApp = (value: string) => {
+    const numbers = value.replace(/\D/g, "");
+    if (numbers.length <= 11) {
+      return numbers
+        .replace(/^(\d{2})(\d)/g, "($1) $2")
+        .replace(/(\d{5})(\d)/, "$1-$2");
+    }
+    return value.slice(0, 15);
+  };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setFormData({ ...formData, [e.target.id]: e.target.value });
+    let value = e.target.value;
+    if (e.target.id === "whatsapp") {
+      value = formatWhatsApp(value);
+    }
+    setFormData({ ...formData, [e.target.id]: value });
   };
 
   const handlePeriodSelect = (period: string) => {
@@ -28,8 +42,13 @@ export function ScheduleExamSection() {
       return;
     }
 
+    if (whatsapp.replace(/\D/g, "").length < 11) {
+      alert("Por favor, insira um WhatsApp válido com DDD.");
+      return;
+    }
+
     const message = `Olá, meu nome é ${name}. Gostaria de agendar um exame de vista. Prefiro o período da ${period}.`;
-    const numero = "5519999999999"; // número da ótica
+    const numero = "5519971528684"; // número da ótica
     const url = `https://wa.me/${numero}?text=${encodeURIComponent(message)}`;
 
     window.open(url, "_blank");
@@ -104,6 +123,7 @@ export function ScheduleExamSection() {
                 id="whatsapp"
                 type="text"
                 required
+                maxLength={15}
                 value={formData.whatsapp}
                 onChange={handleChange}
                 placeholder="WhatsApp (00) 00000-0000" 

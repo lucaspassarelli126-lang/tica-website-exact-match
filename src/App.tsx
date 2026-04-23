@@ -9,34 +9,36 @@ import Sobre from "./pages/Sobre";
 import Servicos from "./pages/Servicos";
 import Catalogo from "./pages/Catalogo";
 import Marcas from "./pages/Marcas";
-import Blog from "./pages/Blog";
 import Localizacao from "./pages/Localizacao";
 import Contato from "./pages/Contato";
 import NotFound from "./pages/NotFound.tsx";
+
+import { CartProvider } from "./context/CartContext";
 
 const queryClient = new QueryClient();
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
-    <TooltipProvider>
-      <Toaster />
-      <Sonner />
-      <BrowserRouter>
-        <Routes>
-          <Route element={<Layout />}>
-            <Route path="/" element={<Home />} />
-            <Route path="/sobre" element={<Sobre />} />
-            <Route path="/servicos" element={<Servicos />} />
-            <Route path="/catalogo" element={<Catalogo />} />
-            <Route path="/marcas" element={<Marcas />} />
-            <Route path="/blog" element={<Blog />} />
-            <Route path="/localizacao" element={<Localizacao />} />
-            <Route path="/contato" element={<Contato />} />
-          </Route>
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      </BrowserRouter>
-    </TooltipProvider>
+    <CartProvider>
+      <TooltipProvider>
+        <Toaster />
+        <Sonner />
+        <BrowserRouter>
+          <Routes>
+            <Route element={<Layout />}>
+              <Route path="/" element={<Home />} />
+              <Route path="/sobre" element={<Sobre />} />
+              <Route path="/servicos" element={<Servicos />} />
+              <Route path="/catalogo" element={<Catalogo />} />
+              <Route path="/marcas" element={<Marcas />} />
+              <Route path="/localizacao" element={<Localizacao />} />
+              <Route path="/contato" element={<Contato />} />
+            </Route>
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </BrowserRouter>
+      </TooltipProvider>
+    </CartProvider>
   </QueryClientProvider>
 );
 

@@ -146,7 +146,7 @@ const Contato = () => {
             <div className="grid sm:grid-cols-2 gap-4">
               <div>
                 <Label htmlFor="a-tel">Telefone *</Label>
-                <Input id="a-tel" name="telefone" required maxLength={20} placeholder="(11) 99999-9999" />
+                <Input id="a-tel" name="telefone" required maxLength={20} placeholder="(19) 99999-9999" />
               </div>
               <div>
                 <Label htmlFor="a-email">E-mail</Label>

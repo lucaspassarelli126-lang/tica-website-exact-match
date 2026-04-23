@@ -40,23 +40,23 @@ const Home = () => {
   const heroSlides = [
     { 
       src: hero, 
-      alt: "Exame de vista gratuito Óticas Théo",
+      alt: "Exame de vista gratuito Óticas Theo",
       textOverlay: true,
       tagline: "EXAME DE VISTA GRATUITO • LENTES PREMIUM",
       mainTitle: "VISÃO PERFEITA\nCOMEÇA AQUI",
       editorialAccent: "ARMAÇÕES A PARTIR DE",
       editorialHighlight: "R$ 99,90",
-      cta: { label: "Aproveitar Oferta", href: "/contato#agendamento" }
+      cta: { label: "Aproveitar Oferta", href: "https://wa.me/5519971528684?text=Olá! Quero aproveitar a oferta de armações por R$ 99,90 que vi no site." }
     },
     { 
       src: heroBanner2, 
-      alt: "Conforto Visual Óticas Théo",
+      alt: "Conforto Visual Óticas Theo",
       textOverlay: true,
       tagline: "DESIGN EXCLUSIVO",
       mainTitle: "CONFORTO",
       editorialAccent: "COLEÇÃO DE",
       editorialHighlight: "LUXO",
-      cta: { label: "Ver Coleção", href: "/catalogo" }
+      cta: { label: "Ver Coleção", href: "https://wa.me/5519971528684?text=Olá! Gostaria de ver a coleção de luxo que vi no site." }
     },
     { 
       src: heroBanner3, 
@@ -157,14 +157,16 @@ const Home = () => {
                               whileInView={{ opacity: 1, y: 0 }}
                               transition={{ duration: 0.8, delay: 1 }}
                             >
-                              <Link 
-                                to={slide.cta.href}
+                              <a 
+                                href={slide.cta.href}
+                                target="_blank"
+                                rel="noopener noreferrer"
                                 onClick={(e) => e.stopPropagation()}
                                 className="group relative inline-flex items-center gap-6 bg-accent text-white px-16 py-4 rounded-full text-[10px] md:text-xs uppercase tracking-[0.5em] font-sans font-black hover:bg-accent/90 transition-all duration-500 shadow-xl border border-white/5"
                               >
                                 {slide.cta.label}
                                 <ArrowRight className="w-5 h-5 transform group-hover:translate-x-2 transition-transform" />
-                              </Link>
+                              </a>
                             </motion.div>
                           )}
                         </div>
@@ -257,11 +259,26 @@ const Home = () => {
         />
       </div>
 
-      <section className="w-full py-4 md:py-6 flex flex-col items-center gap-2 -mt-12">
-        <Link to="/catalogo" className="w-full block overflow-hidden group">
-          <img src={promoProductBanner} alt="Coleção de Óculos" className="w-full h-auto object-cover transition-transform duration-500 group-hover:scale-[1.01]" />
-        </Link>
-        <div className="w-1 h-1 rounded-full bg-accent/30" />
+      <section className="w-full py-4 md:py-8 flex flex-col items-center gap-6 -mt-12">
+        <div className="relative w-full max-w-[1920px] mx-auto group overflow-hidden">
+          <Link to="/catalogo" className="block">
+            <img 
+              src={promoProductBanner} 
+              alt="Promoção Armações R$ 99,90" 
+              className="w-full h-auto object-cover transition-transform duration-700 group-hover:scale-[1.02]" 
+            />
+          </Link>
+        </div>
+        
+        <Button 
+          asChild
+          size="lg"
+          className="bg-black text-white hover:bg-zinc-800 rounded-full px-16 h-14 uppercase tracking-[0.3em] text-[11px] font-black transition-all hover:scale-105 active:scale-95 shadow-2xl"
+        >
+          <Link to="/catalogo">VER AGORA!</Link>
+        </Button>
+
+        <div className="w-1 h-1 rounded-full bg-accent/30 mt-2" />
       </section>
 
 

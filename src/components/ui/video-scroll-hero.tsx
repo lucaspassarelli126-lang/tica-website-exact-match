@@ -13,7 +13,7 @@ interface VideoScrollHeroProps {
 export function VideoScrollHero({
   videoSrc = "/Premium_Eyewear_Commercial_One_Take.mp4",
   className = "",
-  title = "ÓTICAS THEO",
+  title = "ÓTICAS THÉO",
   subtitle = "A arte da visão",
 }: VideoScrollHeroProps) {
   const shouldReduceMotion = useReducedMotion();

@@ -1,10 +1,13 @@
 import { useMemo, useState } from "react";
 import { products, brands } from "@/data/site";
 import { Button } from "@/components/ui/button";
+import { Plus } from "lucide-react";
+import { useCart } from "@/context/CartContext";
 
 const Catalogo = () => {
   const [brand, setBrand] = useState<string>("todas");
   const [category, setCategory] = useState<"todos" | "solar" | "grau">("todos");
+  const { addItem } = useCart();
 
   const filtered = useMemo(
     () =>
@@ -27,20 +30,7 @@ const Catalogo = () => {
 
       <section className="container-luxe py-12">
         {/* Filters */}
-        <div className="flex flex-wrap gap-4 mb-10 items-center justify-between">
-          <div className="flex flex-wrap gap-2">
-            {(["todos", "solar", "grau"] as const).map((c) => (
-              <button
-                key={c}
-                onClick={() => setCategory(c)}
-                className={`px-4 py-2 text-sm uppercase tracking-wider border transition-colors ${
-                  category === c ? "bg-luxury text-primary-foreground border-luxury" : "border-border hover:border-accent"
-                }`}
-              >
-                {c === "todos" ? "Todos" : c === "solar" ? "Solar" : "Grau"}
-              </button>
-            ))}
-          </div>
+        <div className="flex flex-wrap gap-4 mb-10 items-center justify-start">
           <select
             value={brand}
             onChange={(e) => setBrand(e.target.value)}
@@ -57,25 +47,47 @@ const Catalogo = () => {
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
           {filtered.map((p) => (
             <article key={p.id} className="group">
-              <div className="aspect-square bg-soft overflow-hidden p-6 flex items-center justify-center">
-                <img src={p.img} alt={p.name} className="max-h-full max-w-full object-contain transition-transform duration-500 group-hover:scale-110" />
+              <div className="aspect-square bg-soft overflow-hidden p-6 flex items-center justify-center relative">
+                <img src={p.img} alt="Armação" className="max-h-full max-w-full object-contain transition-transform duration-500 group-hover:scale-110" />
+                <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                  <Button 
+                    onClick={() => {
+                      addItem({
+                        id: String(p.id),
+                        name: "armação",
+                        price: p.price ?? 1200,
+                        image: p.img
+                      });
+                    }}
+                    className="bg-black text-white rounded-full text-[10px] px-6 h-10 uppercase tracking-widest font-black"
+                  >
+                    COMPRAR
+                  </Button>
+                </div>
               </div>
               <div className="mt-4">
-                <p className="text-xs uppercase tracking-widest text-muted-foreground">{p.brand}</p>
-                <h3 className="text-lg font-medium mt-1">{p.name}</h3>
-                <p className="text-accent font-medium mt-1">
-                  R$ {p.price.toLocaleString("pt-BR")}
-                </p>
+                <h3 className="text-sm font-black uppercase tracking-widest mt-1">Armação</h3>
               </div>
             </article>
           ))}
+          
+          {/* Special WhatsApp Card */}
+          <article 
+            onClick={() => window.open(`https://wa.me/5519971528684?text=${encodeURIComponent("Olá! Gostaria de ver mais modelos de armações.")}`, '_blank')}
+            className="group cursor-pointer"
+          >
+            <div className="aspect-square bg-zinc-100 overflow-hidden flex flex-col items-center justify-center text-center p-6 border-2 border-dashed border-zinc-300 hover:border-accent transition-colors">
+              <div className="w-16 h-16 rounded-full bg-[#25D366]/10 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                <svg viewBox="0 0 24 24" fill="#25D366" className="h-10 w-10" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.067 2.877 1.215 3.076.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+              </div>
+              <p className="text-sm font-black uppercase tracking-widest">Ver mais modelos</p>
+              <p className="text-[10px] text-muted-foreground mt-2 uppercase tracking-widest">Atendimento WhatsApp</p>
+            </div>
+          </article>
+
           {filtered.length === 0 && (
             <p className="col-span-full text-center text-muted-foreground py-20">Nenhum produto encontrado.</p>
           )}
-        </div>
-
-        <div className="text-center mt-14">
-          <Button variant="outline" size="lg">Carregar mais</Button>
         </div>
       </section>
     </>

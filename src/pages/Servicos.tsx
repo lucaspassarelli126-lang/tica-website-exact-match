@@ -2,6 +2,7 @@ import { Circle, Eye, Shield, Sparkles, User, Wrench } from "lucide-react";
 import { services } from "@/data/site";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
+import { motion } from "framer-motion";
 
 const iconMap: Record<string, any> = { Eye, Sparkles, Wrench, Shield, User, Circle };
 
@@ -19,15 +20,35 @@ const Servicos = () => {
       </section>
 
       <section className="container-luxe py-16">
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {services.map((s) => {
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-10">
+          {services.map((s, idx) => {
             const Icon = iconMap[s.icon] ?? Circle;
             return (
-              <div key={s.title} className="border border-border p-8 hover:border-accent transition-colors">
-                <Icon className="h-8 w-8 text-accent mb-4" />
-                <h3 className="text-2xl font-serif mb-3">{s.title}</h3>
-                <p className="text-muted-foreground leading-relaxed">{s.desc}</p>
-              </div>
+              <motion.div 
+                key={s.title}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: idx * 0.1 }}
+                className="group relative flex flex-col p-10 bg-white border border-zinc-100 hover:border-accent/30 transition-all duration-500 hover:shadow-2xl hover:shadow-accent/5"
+              >
+                {/* Number Badge */}
+                <div className="absolute top-8 right-8 text-4xl font-serif text-zinc-50 font-black group-hover:text-accent/10 transition-colors duration-500">
+                  {String(idx + 1).padStart(2, '0')}
+                </div>
+                
+                <div className="relative z-10">
+                  <div className="w-14 h-14 rounded-full bg-zinc-50 flex items-center justify-center mb-8 group-hover:bg-accent/10 transition-colors duration-500">
+                    <Icon className="h-6 w-6 text-accent group-hover:scale-110 transition-transform duration-500" />
+                  </div>
+                  
+                  <h3 className="text-2xl font-serif mb-4 tracking-tight">{s.title}</h3>
+                  <div className="w-8 h-[2px] bg-accent mb-6 transform origin-left group-hover:w-16 transition-all duration-500" />
+                  
+                  <p className="text-sm text-muted-foreground leading-relaxed font-sans font-medium opacity-80">
+                    {s.desc}
+                  </p>
+                </div>
+              </motion.div>
             );
           })}
         </div>
