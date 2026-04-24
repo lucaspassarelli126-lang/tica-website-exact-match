@@ -41,7 +41,7 @@ export const ContainerScroll = ({
       <div
         className="py-6 md:py-10 w-full relative"
         style={{
-          perspective: isMobile ? "none" : "1000px",
+          perspective: "1000px",
         }}
       >
         <Header translate={translate} titleComponent={titleComponent} />
@@ -76,23 +76,14 @@ export const Card = ({
   translate: MotionValue<number>;
   children: React.ReactNode;
 }) => {
-  const [isMobile, setIsMobile] = React.useState(false);
-
-  React.useEffect(() => {
-    const checkMobile = () => setIsMobile(window.innerWidth <= 768);
-    checkMobile();
-    window.addEventListener("resize", checkMobile);
-    return () => window.removeEventListener("resize", checkMobile);
-  }, []);
-
   return (
     <motion.div
       style={{
-        rotateX: isMobile ? 0 : rotate,
-        scale: isMobile ? 1 : scale,
+        rotateX: rotate,
+        scale,
         boxShadow: "0 20px 50px rgba(0,0,0,0.15)",
       }}
-      className="max-w-5xl -mt-12 mx-auto h-[35rem] md:h-[45rem] w-full border-4 border-[#6C6C6C] p-2 md:p-6 bg-[#222222] rounded-[30px] shadow-2xl"
+      className="max-w-5xl -mt-12 mx-auto h-[35rem] md:h-[45rem] w-full border-4 border-[#6C6C6C] p-2 md:p-6 bg-[#222222] rounded-[30px] shadow-2xl will-change-transform"
     >
       <div className="h-full w-full overflow-hidden rounded-2xl bg-gray-100 dark:bg-zinc-900 md:rounded-2xl">
         {children}
