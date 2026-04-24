@@ -54,33 +54,45 @@ export function RecentlyViewedSection() {
                 style={{ transitionDelay: `${i * 80}ms` }}
               >
                 {/* Image */}
-                <div className="w-full aspect-square bg-zinc-50 rounded-xl overflow-hidden mb-3 relative border border-zinc-100 group-hover:border-accent/30 transition-colors duration-300">
+                <div className="w-full aspect-square bg-[#FDFDFD] rounded-xl overflow-hidden mb-4 relative border border-zinc-100 group-hover:border-accent/30 transition-all duration-500 group-hover:shadow-xl">
                   <img
                     src={product.img}
                     alt={product.name}
-                    className="w-full h-full object-contain p-4 transition-transform duration-500 group-hover:scale-110"
+                    className="w-full h-full object-contain p-6 transition-transform duration-700 group-hover:scale-105"
                   />
-                  {/* "Continuar Vendo" pill on hover */}
-                  <div className="absolute inset-0 flex items-end justify-center pb-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    <span className="bg-accent text-white text-[9px] font-black uppercase tracking-widest px-3 py-1 rounded-full shadow-lg">
-                      Ver produto
+                  {/* Category Badge */}
+                  <div className="absolute top-3 left-3">
+                    <span className="bg-white/90 backdrop-blur-sm text-zinc-500 text-[8px] font-black uppercase tracking-tighter px-2 py-0.5 rounded-sm border border-zinc-100">
+                      {product.brand}
+                    </span>
+                  </div>
+                  {/* Hover Overlay */}
+                  <div className="absolute inset-0 bg-black/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                    <span className="bg-accent text-white text-[9px] font-black uppercase tracking-widest px-4 py-2 rounded-full shadow-2xl transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
+                      Ver detalhes
                     </span>
                   </div>
                 </div>
 
-                {/* Stars */}
-                <div className="flex items-center gap-0.5">
-                  {[1, 2, 3, 4, 5].map((star) => (
-                    <Star
-                      key={star}
-                      className={`w-3 h-3 ${
-                        star <= Math.round(rating.stars)
-                          ? "text-amber-400 fill-amber-400"
-                          : "text-zinc-200 fill-zinc-200"
-                      }`}
-                    />
-                  ))}
-                  <span className="text-[9px] text-zinc-400 ml-1">({rating.count})</span>
+                {/* Info */}
+                <div className="flex flex-col items-center gap-1">
+                  <span className="text-[10px] text-accent font-black uppercase tracking-[0.1em]">{product.brand}</span>
+                  <h3 className="text-[13px] font-medium text-zinc-900 tracking-tight leading-tight mb-1">{product.name}</h3>
+                  
+                  {/* Stars */}
+                  <div className="flex items-center gap-0.5 mb-1">
+                    {[1, 2, 3, 4, 5].map((star) => (
+                      <Star
+                        key={star}
+                        className={`w-2.5 h-2.5 ${
+                          star <= Math.round(rating.stars)
+                            ? "text-accent fill-accent"
+                            : "text-zinc-200 fill-zinc-200"
+                        }`}
+                      />
+                    ))}
+                    <span className="text-[8px] text-zinc-400 font-bold ml-1">{rating.stars}</span>
+                  </div>
                 </div>
               </Link>
             );
