@@ -1,5 +1,7 @@
-import { useRef, useEffect } from "react";
+import { useRef, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { ChevronDown } from "lucide-react";
+import { motion } from "framer-motion";
 import { categories } from "@/data/site";
 
 // Função de lerp igual à do usuário
@@ -8,7 +10,7 @@ function lerp(start: number, end: number, t: number) {
 }
 
 export function CategoryScrollInteractive() {
-  const sectionRef = useRef<HTMLSelectElement>(null);
+  const sectionRef = useRef<HTMLElement>(null);
   const linhaRef = useRef<HTMLDivElement>(null);
   const bolinhasRef = useRef<(HTMLDivElement | null)[]>([]);
 
@@ -84,9 +86,18 @@ export function CategoryScrollInteractive() {
               <Link key={c.slug} to={`/catalogo?style=${c.slug}`} className="outline-none">
                 <div
                   ref={(el) => (bolinhasRef.current[index] = el)}
-                  className="bolinha"
+                  className="bolinha relative"
                 >
                   {c.name.toUpperCase()}
+                  {index === 2 && (
+                    <motion.div 
+                      className="md:hidden absolute -bottom-8 left-[40%] -translate-x-1/2"
+                      animate={{ y: [0, 4, 0], opacity: [0.4, 1, 0.4] }}
+                      transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+                    >
+                      <ChevronDown className="w-4 h-4 text-[#c45a1c]" />
+                    </motion.div>
+                  )}
                 </div>
               </Link>
             ))}
