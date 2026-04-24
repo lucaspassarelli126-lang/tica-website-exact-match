@@ -1,6 +1,5 @@
-import { Link } from "react-router-dom";
 import { Clock, Star } from "lucide-react";
-import { products } from "@/data/site";
+import { products, Product } from "@/data/site";
 import { useEffect, useState } from "react";
 
 // Simulates recently viewed — in production this would come from localStorage
@@ -13,7 +12,11 @@ const ratings: Record<string, { stars: number; count: number }> = {
   "4": { stars: 4.7, count: 76 },
 };
 
-export function RecentlyViewedSection() {
+interface RecentlyViewedProps {
+  onProductClick: (product: Product) => void;
+}
+
+export function RecentlyViewedSection({ onProductClick }: RecentlyViewedProps) {
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
@@ -32,12 +35,12 @@ export function RecentlyViewedSection() {
               Vistos Recentemente
             </h2>
           </div>
-          <Link
-            to="/catalogo"
+          <button
+            onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
             className="text-[10px] uppercase tracking-widest text-accent hover:underline underline-offset-4 font-bold"
           >
             Ver catálogo completo →
-          </Link>
+          </button>
         </div>
 
         {/* Product Grid */}
@@ -45,10 +48,10 @@ export function RecentlyViewedSection() {
           {recentlyViewed.map((product, i) => {
             const rating = ratings[product.id] ?? { stars: 4.5, count: 80 };
             return (
-              <Link
+              <div
                 key={product.id}
-                to="/catalogo"
-                className={`group flex flex-col items-center text-center transition-all duration-700 ${
+                onClick={() => onProductClick(product)}
+                className={`group flex flex-col items-center text-center cursor-pointer transition-all duration-700 ${
                   visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
                 }`}
                 style={{ transitionDelay: `${i * 80}ms` }}
@@ -95,7 +98,7 @@ export function RecentlyViewedSection() {
                     <span className="text-[8px] text-zinc-400 font-bold ml-1">{rating.stars}</span>
                   </div>
                 </div>
-              </Link>
+              </div>
             );
           })}
         </div>
@@ -103,3 +106,4 @@ export function RecentlyViewedSection() {
     </section>
   );
 }
+

@@ -22,6 +22,8 @@ import { ScheduleExamSection } from "@/components/ScheduleExamSection";
 import { VideoScrollHero } from "@/components/ui/video-scroll-hero";
 import { RecentlyViewedSection } from "@/components/RecentlyViewedSection";
 import { CategoryScrollInteractive } from "@/components/CategoryScrollInteractive";
+import { ProductDetailModal } from "@/components/ProductDetailModal";
+import { Product as ProductType } from "@/data/site";
 import {
   Carousel,
   CarouselContent,
@@ -34,7 +36,14 @@ import {
 const Home = () => {
   const [firstSwiper, setFirstSwiper] = useState<any>(null);
   const [secondSwiper, setSecondSwiper] = useState<any>(null);
+  const [selectedProduct, setSelectedProduct] = useState<ProductType | null>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const navigate = useNavigate();
+
+  const handleProductClick = (product: ProductType) => {
+    setSelectedProduct(product);
+    setIsModalOpen(true);
+  };
 
   const heroSlides = [
     { 
@@ -255,6 +264,7 @@ const Home = () => {
           subtitle="Destaques da Temporada"
           title="Encontre o seu estilo"
           badgeText="DESTAQUE"
+          onProductClick={handleProductClick}
         />
       </div>
 
@@ -284,7 +294,7 @@ const Home = () => {
       <ScheduleExamSection />
       
       <VideoScrollHero className="-mt-20 md:-mt-32 relative z-10" />
-      <RecentlyViewedSection />
+      <RecentlyViewedSection onProductClick={handleProductClick} />
 
 
 
@@ -292,11 +302,11 @@ const Home = () => {
 
 
 
-
-
-
-
-
+      <ProductDetailModal 
+        product={selectedProduct}
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+      />
     </>
   );
 };

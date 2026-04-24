@@ -27,14 +27,22 @@ interface Product {
 }
 
 interface ProductCarouselProps {
-  products: Product[];
+  products: any[];
   title?: string;
   subtitle?: string;
   badgeText?: string;
   className?: string;
+  onProductClick: (product: any) => void;
 }
 
-export const ProductCarousel = ({ products, title, subtitle, badgeText = "EXCLUSIVIDADE", className = "" }: ProductCarouselProps) => {
+export const ProductCarousel = ({ 
+  products, 
+  title, 
+  subtitle, 
+  badgeText = "EXCLUSIVIDADE", 
+  className = "",
+  onProductClick 
+}: ProductCarouselProps) => {
   const [firstSwiper, setFirstSwiper] = useState<SwiperType | null>(null);
   const [secondSwiper, setSecondSwiper] = useState<SwiperType | null>(null);
   const [activeIndex, setActiveIndex] = useState(0);
@@ -132,16 +140,11 @@ export const ProductCarousel = ({ products, title, subtitle, badgeText = "EXCLUS
           size="lg"
           onClick={() => {
             if (!activeProduct) return;
-            addItem({
-              id: String(activeProduct.id),
-              name: "armação",
-              price: activeProduct.price ?? 1200,
-              image: activeProduct.img
-            });
+            onProductClick(activeProduct);
           }}
           className="bg-black text-white hover:bg-zinc-800 rounded-full px-12 h-12 uppercase tracking-widest text-[10px] font-black transition-all hover:scale-105 active:scale-95 shadow-lg"
         >
-          COMPRAR AGORA
+          VER DETALHES
         </Button>
       </div>
     </section>
