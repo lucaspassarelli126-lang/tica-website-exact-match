@@ -192,3 +192,17 @@
     font-size: 7px;
   }
 }
+
+/* Ocultar badge do Lovable */
+[data-lovable-badge],
+#lovable-badge,
+.lovable-badge,
+[class*="lovable-badge"],
+[id*="lovable-badge"],
+iframe[src*="lovable"],
+div[style*="lovable"] {
+  display: none !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+  visibility: hidden !important;
+}
