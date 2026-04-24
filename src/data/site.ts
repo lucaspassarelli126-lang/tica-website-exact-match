@@ -49,13 +49,13 @@ export type Product = {
 };
 
 export const products: Product[] = [
-  { id: "1", name: "Óculos de Sol Luxury", brand: "Gucci", category: "solar", style: "classico", price: 2890, img: gucciGg0061s },
-  { id: "2", name: "Óculos de Sol Modern", brand: "Prada", category: "solar", style: "minimalista", price: 2390, img: prada17ws },
+  { id: "1", name: "Armação de Grau Luxury", brand: "Gucci", category: "grau", style: "classico", price: 2890, img: gucciGg0061s },
+  { id: "2", name: "Armação de Grau Modern", brand: "Prada", category: "grau", style: "minimalista", price: 2390, img: prada17ws },
   { id: "3", name: "Armação de Grau Premium", brand: "Céline", category: "grau", style: "minimalista", price: 3290, img: celine40026i },
   { id: "4", name: "Armação de Grau Vintage", brand: "Oliver Peoples", category: "grau", style: "vintage", price: 2790, img: oliver5036 },
-  { id: "5", name: "Óculos de Sol Classic", brand: "Valentino", category: "solar", style: "classico", price: 2590, img: valentino4081 },
+  { id: "5", name: "Armação de Grau Classic", brand: "Valentino", category: "grau", style: "classico", price: 2590, img: valentino4081 },
   { id: "6", name: "Armação de Grau Executive", brand: "Zegna", category: "grau", style: "classico", price: 2190, img: zegna5239 },
-  { id: "7", name: "Óculos de Sol Especial", brand: "Exclusivo", category: "solar", style: "vintage", price: 3190, img: productA },
+  { id: "7", name: "Armação de Grau Especial", brand: "Exclusivo", category: "grau", style: "vintage", price: 3190, img: productA },
   { id: "8", name: "Armação de Grau Minimal", brand: "Exclusivo", category: "grau", style: "minimalista", price: 2690, img: productB },
   { id: "9", name: "Armação de Grau Edition", brand: "Oliver Peoples", category: "grau", style: "vintage", price: 2890, img: oliver5036_2 },
 ];
