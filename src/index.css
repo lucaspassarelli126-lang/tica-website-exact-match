@@ -69,6 +69,19 @@
   * {
     @apply border-border;
   }
+  body, html {
+    margin: 0;
+    padding: 0;
+  }
+  main, section {
+    margin: 0;
+    padding: 0;
+  }
+  header {
+    position: sticky;
+    top: 0;
+    z-index: 999;
+  }
   body {
     @apply text-foreground;
     background-color: #FFFFFF;
@@ -149,3 +162,33 @@
   opacity: 0.5;
 }
 
+/* Estilos específicos das bolinhas (CategoryScrollInteractive) fornecidos pelo usuário */
+.bolinha {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  background: #eee;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: bold;
+  transform: scale(0.9);
+  opacity: 0.5;
+  transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.bolinha.ativa {
+  background: #c45a1c !important;
+  color: white !important;
+  transform: scale(1.15) !important;
+  opacity: 1 !important;
+}
+
+@media (max-width: 768px) {
+  .bolinha {
+    width: 50px;
+    height: 50px;
+    font-size: 7px;
+  }
+}

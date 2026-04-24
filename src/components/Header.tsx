@@ -1,6 +1,6 @@
 import { Link, NavLink } from "react-router-dom";
-import { Menu, Search, X, Truck, ShoppingBag, Glasses } from "lucide-react";
-import { useState, useRef } from "react";
+import { Menu, Search, X, Truck, ShoppingBag, Glasses, MapPin } from "lucide-react";
+import { useState, useRef, useEffect } from "react";
 import { useCart } from "@/context/CartContext";
 import { CartDrawer } from "./CartDrawer";
 
@@ -16,15 +16,56 @@ const navItems = [
 const Header = () => {
   const [open, setOpen] = useState(false);
   const [cartOpen, setCartOpen] = useState(false);
+  const [mobileSearchOpen, setMobileSearchOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
   const { totalItems } = useCart();
   const inputRef = useRef<HTMLInputElement>(null);
 
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 40);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   return (
-    <header className="sticky top-0 z-50 w-full shadow-md">
+    <header className="sticky top-0 z-50 w-full shadow-md bg-accent">
+      {/* ─── SUPER TOP BAR ─────────────────────────────────────────────── */}
+      <div 
+        className={`bg-accent text-white border-b border-white/20 transition-all duration-300 overflow-hidden ${
+          isScrolled ? "h-0 py-0 opacity-0" : "h-[28px] md:h-[32px] opacity-100"
+        }`}
+      >
+        <div className="container-luxe flex justify-between items-center px-4 md:px-6 text-[9px] md:text-[11px] font-medium tracking-wider uppercase h-full">
+          <Link to="/localizacao" className="flex items-center gap-1.5 hover:text-white/80 transition-colors">
+            <MapPin className="h-3 w-3 md:h-3.5 md:w-3.5 text-white" />
+            <span className="hidden sm:inline">Encontre uma loja</span>
+            <span className="sm:hidden">Lojas</span>
+          </Link>
+          <a href="https://wa.me/5519971528685" target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 hover:text-white/80 transition-colors">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-3 w-3 md:h-3.5 md:w-3.5 text-white"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            (19) 97152-8685
+          </a>
+        </div>
+      </div>
+
       {/* ─── TOP ROW ─────────────────────────────────────────────────── */}
       <div className="bg-accent text-white">
         <div className="container-luxe relative flex h-16 items-center justify-center">
-          {/* Group: Logo + Search (shifted slightly left) */}
+          
+          {/* Mobile Search Icon (Absolute Left) */}
+          <div className="absolute left-4 flex items-center md:hidden shrink-0">
+            <button 
+              className="p-1 text-white hover:text-white/70 transition-colors focus:outline-none"
+              aria-label="Buscar"
+              onClick={() => setMobileSearchOpen(!mobileSearchOpen)}
+            >
+              <Search className="h-6 w-6" />
+            </button>
+          </div>
+
+          {/* Group: Logo + Desktop Search */}
           <div className="flex items-center gap-10 md:-ml-32">
             {/* Logo */}
             <Link to="/" className="flex items-center shrink-0" aria-label="ÓTICAS THEO TAVARES">
@@ -77,6 +118,29 @@ const Header = () => {
               onClick={() => setOpen(!open)}
             >
               {open ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+            </button>
+          </div>
+        </div>
+
+        {/* Mobile Search Bar Dropdown */}
+        <div 
+          className={`md:hidden bg-white overflow-hidden transition-all duration-300 ${
+            mobileSearchOpen ? 'max-h-16 border-b border-zinc-200 opacity-100' : 'max-h-0 opacity-0'
+          }`}
+        >
+          <div className="flex items-center h-14 px-4 gap-2">
+            <Search className="h-4 w-4 text-zinc-400" />
+            <input
+              type="text"
+              placeholder="O que você está procurando?"
+              className="flex-1 h-full bg-transparent border-none outline-none text-zinc-700 placeholder:text-zinc-400 text-sm font-sans"
+              autoFocus={mobileSearchOpen}
+            />
+            <button 
+              onClick={() => setMobileSearchOpen(false)}
+              className="p-2 text-zinc-400 hover:text-accent transition-colors"
+            >
+              <X className="h-5 w-5" />
             </button>
           </div>
         </div>

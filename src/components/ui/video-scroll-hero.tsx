@@ -60,10 +60,26 @@ export function VideoScrollHero({
             initial={shouldReduceMotion ? { opacity: 1 } : { opacity: 0 }}
             whileInView={{ opacity: 1 }}
             transition={{ duration: 1.5, delay: 1.2 }}
-            className="text-white/95 text-xs md:text-sm lg:text-base tracking-[1em] uppercase font-sans font-light pl-[1em]"
+            className="text-white/95 text-xs md:text-sm lg:text-base tracking-[1em] uppercase font-sans font-light pl-[1em] mb-8"
           >
             {subtitle}
           </motion.p>
+
+          {/* Discrete Action Button */}
+          <motion.div
+            initial={shouldReduceMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 1.5 }}
+            className="flex justify-center mt-6"
+          >
+            <a 
+              href="#catalogo" 
+              className="group relative inline-flex items-center gap-4 bg-white/10 backdrop-blur-md border border-white/20 text-white px-8 md:px-12 py-3 rounded-full text-[10px] md:text-xs uppercase tracking-[0.2em] font-sans font-medium hover:bg-white/20 transition-all duration-300 shadow-sm"
+            >
+              Conhecer a Marca
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="w-4 h-4 transition-transform group-hover:translate-x-1"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+            </a>
+          </motion.div>
         </div>
       </div>
       

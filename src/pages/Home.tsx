@@ -112,7 +112,7 @@ const Home = () => {
                             initial={{ opacity: 0, y: -20 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             transition={{ duration: 1.2, ease: "easeOut" }}
-                            className="text-4xl md:text-6xl lg:text-[5rem] font-sans font-black text-white leading-tight mb-6 whitespace-pre-line tracking-tight drop-shadow-md"
+                            className="text-xl md:text-6xl lg:text-[5rem] font-sans font-black text-white leading-tight mb-3 md:mb-6 whitespace-pre-line tracking-tight drop-shadow-md"
                           >
                             {slide.mainTitle}
                           </motion.h1>
@@ -122,18 +122,18 @@ const Home = () => {
                             initial={{ opacity: 0, y: 10 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             transition={{ duration: 1, delay: 0.4 }}
-                            className="text-xs md:text-sm tracking-[0.5em] uppercase text-white mb-12 font-sans font-bold bg-black/40 px-6 py-2 rounded-full"
+                            className="text-[7.5px] md:text-sm tracking-[0.2em] md:tracking-[0.5em] uppercase text-white mb-6 md:mb-12 font-sans font-bold bg-black/40 px-3 py-1 md:px-6 md:py-2 rounded-full"
                           >
                             {slide.tagline}
                           </motion.p>
                           
                           {/* Promo Block */}
-                          <div className="flex flex-col items-center gap-0 mb-12">
+                          <div className="flex flex-col items-center gap-0 mb-6 md:mb-12">
                             <motion.h2 
                               initial={{ opacity: 0 }}
                               whileInView={{ opacity: 1 }}
                               transition={{ duration: 1, delay: 0.6 }}
-                              className="text-lg md:text-2xl font-sans font-bold text-white tracking-[0.3em] uppercase"
+                              className="text-[9px] md:text-2xl font-sans font-bold text-white tracking-[0.2em] md:tracking-[0.3em] uppercase"
                             >
                               {slide.editorialAccent}
                             </motion.h2>
@@ -143,7 +143,7 @@ const Home = () => {
                               initial={{ opacity: 0, y: 10 }}
                               whileInView={{ opacity: 1, y: 0 }}
                               transition={{ duration: 0.8, delay: 0.8 }}
-                              className="text-5xl md:text-7xl lg:text-8xl font-numeric font-black text-accent tracking-tight drop-shadow-lg"
+                              className="text-3xl md:text-7xl lg:text-8xl font-numeric font-black text-accent tracking-tight drop-shadow-lg"
                             >
                               {slide.editorialHighlight}
                             </motion.span>
@@ -161,10 +161,10 @@ const Home = () => {
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 onClick={(e) => e.stopPropagation()}
-                                className="group relative inline-flex items-center gap-6 bg-accent text-white px-16 py-4 rounded-full text-[10px] md:text-xs uppercase tracking-[0.5em] font-sans font-black hover:bg-accent/90 transition-all duration-500 shadow-xl border border-white/5"
+                                className="group relative inline-flex items-center gap-2 md:gap-6 bg-accent text-white px-6 py-2.5 md:px-16 md:py-4 rounded-full text-[7px] md:text-xs uppercase tracking-[0.2em] md:tracking-[0.5em] font-sans font-black hover:bg-accent/90 transition-all duration-500 shadow-xl border border-white/5"
                               >
                                 {slide.cta.label}
-                                <ArrowRight className="w-5 h-5 transform group-hover:translate-x-2 transition-transform" />
+                                <ArrowRight className="w-3 h-3 md:w-5 md:h-5 transform group-hover:translate-x-2 transition-transform" />
                               </a>
                             </motion.div>
                           )}
@@ -196,30 +196,30 @@ const Home = () => {
 
 
       {/* Slim Floating Trust Bar - Solid White */}
-      <section className="relative z-30 -mt-8 md:-mt-10 container-luxe px-4 max-w-5xl">
+      <section className="relative z-30 -mt-6 md:-mt-10 container-luxe px-2 md:px-4 max-w-5xl">
         <TiltWrapper glare={true} maxTilt={3}>
-          <div className="bg-white dark:bg-zinc-950 rounded-xl md:rounded-full border border-border/50 shadow-lg py-4 md:py-5 px-8 md:px-12">
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-0 w-full items-center">
+          <div className="bg-white dark:bg-zinc-950 rounded-xl md:rounded-full border border-border/50 shadow-lg py-2.5 md:py-5 px-2 md:px-12">
+            <div className="grid grid-cols-4 gap-1 md:gap-0 w-full items-start md:items-center px-0 md:px-0">
               {[
                 { 
                   icon: Glasses,
-                  label: "EXAME DE VISTA", 
-                  desc: "Agende seu horário" 
+                  label: "EXAME", 
+                  desc: "De Vista" 
                 },
                 { 
                   icon: Award,
                   label: "7 ANOS", 
-                  desc: "Excelência Visual" 
+                  desc: "Excelência" 
                 },
                 { 
                   icon: CreditCard,
-                  label: "PAGAMENTO FACILITADO", 
-                  desc: "Consulte Condições" 
+                  label: "PARCELA", 
+                  desc: "Facilitada" 
                 },
                 { 
                   icon: ShieldCheck,
-                  label: "ORIGINALIDADE", 
-                  desc: "Garantia Total" 
+                  label: "GARANTIA", 
+                  desc: "Total" 
                 },
               ].map(({ icon: Icon, label, desc }, idx) => (
                 <motion.div 
@@ -227,14 +227,14 @@ const Home = () => {
                   initial={{ opacity: 0 }}
                   whileInView={{ opacity: 1 }}
                   transition={{ duration: 0.5, delay: idx * 0.1 }}
-                  className={`flex items-center justify-center gap-3 text-left group ${idx !== 3 ? 'md:border-r border-border/50' : ''}`}
+                  className={`flex flex-col md:flex-row items-center justify-start md:justify-center gap-1.5 md:gap-3 text-center md:text-left group ${idx !== 3 ? 'md:border-r border-border/50' : ''}`}
                 >
-                  <div className="shrink-0">
-                    <Icon className="h-4 w-4 text-accent" />
+                  <div className="shrink-0 mb-1 md:mb-0">
+                    <Icon className="h-4 w-4 md:h-5 md:w-5 text-accent" />
                   </div>
                   <div className="flex flex-col">
-                    <p className="text-[9px] md:text-[10px] font-black tracking-[0.1em] text-foreground uppercase leading-none">{label}</p>
-                    <p className="text-[7px] md:text-[8px] text-muted-foreground uppercase tracking-widest font-medium opacity-70 mt-0.5">{desc}</p>
+                    <p className="text-[7.5px] md:text-[10px] font-black tracking-[0.05em] md:tracking-[0.1em] text-foreground uppercase leading-tight md:leading-none">{label}</p>
+                    <p className="text-[6px] md:text-[8px] text-muted-foreground uppercase tracking-widest font-medium opacity-70 mt-0.5 md:mt-1">{desc}</p>
                   </div>
                 </motion.div>
               ))}
@@ -249,7 +249,7 @@ const Home = () => {
 
 
 
-      <div className="relative z-30 bg-background -mt-[45vh] md:-mt-[55vh] pt-12 md:pt-20">
+      <div className="relative z-30 bg-background mt-0 pt-12 md:pt-20">
         <ProductCarousel 
           products={products} 
           subtitle="Destaques da Temporada"
@@ -258,13 +258,13 @@ const Home = () => {
         />
       </div>
 
-      <section className="w-full py-0 flex flex-col items-center gap-6 mt-8">
-        <div className="relative w-full max-w-[1920px] mx-auto group overflow-hidden">
+      <section className="w-full py-0 flex flex-col items-center gap-6 mt-8 px-4 md:px-8">
+        <div className="relative w-full max-w-6xl mx-auto group overflow-hidden rounded-3xl shadow-xl">
           <Link to="/catalogo" className="block">
             <img 
               src={promoProductBanner} 
               alt="Promoção Armações R$ 99,90" 
-              className="w-full h-auto max-h-[200px] md:max-h-[350px] object-cover object-center transition-transform duration-700 group-hover:scale-[1.01]" 
+              className="w-full h-auto max-h-[200px] md:max-h-[350px] object-cover object-center transition-transform duration-700 group-hover:scale-[1.03]" 
             />
           </Link>
         </div>
@@ -272,7 +272,7 @@ const Home = () => {
         <Button 
           asChild
           size="lg"
-          className="bg-black text-white hover:bg-zinc-800 rounded-full px-16 h-14 uppercase tracking-[0.3em] text-[11px] font-black transition-all hover:scale-105 active:scale-95 shadow-2xl"
+          className="bg-black text-white hover:bg-zinc-800 rounded-full px-8 md:px-16 h-10 md:h-14 uppercase tracking-[0.3em] text-[9px] md:text-[11px] font-black transition-all hover:scale-105 active:scale-95 shadow-2xl"
         >
           <Link to="/catalogo">VER AGORA!</Link>
         </Button>
