@@ -49,15 +49,24 @@ export const TiltWrapper = ({
     y.set(0.5);
   };
 
+  const [isMobile, setIsMobile] = React.useState(false);
+
+  React.useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth <= 768);
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
+
   return (
     <motion.div
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
       style={{
-        rotateX,
-        rotateY,
-        transformStyle: "preserve-3d",
-        perspective: `${perspective}px`,
+        rotateX: isMobile ? 0 : rotateX,
+        rotateY: isMobile ? 0 : rotateY,
+        transformStyle: isMobile ? "flat" : "preserve-3d",
+        perspective: isMobile ? "none" : `${perspective}px`,
       }}
       className={`relative ${className}`}
     >

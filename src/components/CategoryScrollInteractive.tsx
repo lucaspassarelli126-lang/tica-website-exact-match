@@ -17,47 +17,46 @@ export function CategoryScrollInteractive() {
   useEffect(() => {
     let current = 0;
     let target = 0;
-    let animationFrameId: number;
 
     const update = () => {
       if (!sectionRef.current || !linhaRef.current) return;
       
       const rect = sectionRef.current.getBoundingClientRect();
+      const windowHeight = window.innerHeight;
 
       // Duração exata do pin: altura total - (altura da tela - offset do header)
-      const pinDuration = rect.height - (window.innerHeight - 80);
+      const pinDuration = rect.height - (windowHeight - 80);
       let progress = (80 - rect.top) / pinDuration;
       progress = Math.max(0, Math.min(progress, 1));
 
       target = progress;
-
-      /* suaviza movimento - o usuário testou 0.08, 0.12, 0.05. Vou usar 0.08 como no script base */
-      current = lerp(current, target, 0.08);
+      current = lerp(current, target, 0.12); // Slightly faster lerp for snappiness
 
       // linha
       linhaRef.current.style.width = `${current * 100}%`;
 
-      // bolinhas com delay natural
+      // bolinhas
       const total = bolinhasRef.current.length;
-
       bolinhasRef.current.forEach((b, i) => {
         if (!b) return;
         const threshold = i / total;
-
         if (current > threshold) {
           b.classList.add('ativa');
         } else {
           b.classList.remove('ativa');
         }
       });
-
-      animationFrameId = requestAnimationFrame(update);
     };
 
-    update();
+    const onScroll = () => {
+      update();
+    };
+
+    window.addEventListener("scroll", onScroll, { passive: true });
+    update(); // Initial call
 
     return () => {
-      cancelAnimationFrame(animationFrameId);
+      window.removeEventListener("scroll", onScroll);
     };
   }, []);
 
