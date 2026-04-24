@@ -77,7 +77,8 @@ export function RecentlyViewedSection() {
                 {/* Info */}
                 <div className="flex flex-col items-center gap-1">
                   <span className="text-[10px] text-accent font-black uppercase tracking-[0.1em]">{product.brand}</span>
-                  <h3 className="text-[13px] font-medium text-zinc-900 tracking-tight leading-tight mb-1">{product.name}</h3>
+                  <h3 className="text-[13px] font-medium text-zinc-900 tracking-tight leading-tight">{product.name}</h3>
+                  <p className="text-[9px] text-zinc-400 line-clamp-1 mb-1 px-2">{product.description}</p>
                   
                   {/* Stars */}
                   <div className="flex items-center gap-0.5 mb-1">

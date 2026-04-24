@@ -123,6 +123,11 @@ export const ProductCarousel = ({ products, title, subtitle, badgeText = "EXCLUS
 
       {/* Bottom: Single Buy Button (always adds the active product) */}
       <div className="container-luxe max-w-2xl px-4 pb-4 text-center">
+        {activeProduct && (
+          <p className="text-[10px] md:text-xs text-zinc-500 mb-6 font-medium tracking-wide max-w-xs mx-auto animate-in fade-in slide-in-from-bottom-1 duration-500">
+            {activeProduct.description}
+          </p>
+        )}
         <Button 
           size="lg"
           onClick={() => {
