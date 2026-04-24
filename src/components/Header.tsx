@@ -1,6 +1,8 @@
 import { Link, NavLink } from "react-router-dom";
-import { Menu, Search, X, Glasses, MapPin } from "lucide-react";
+import { Menu, Search, X, ShoppingBag, Glasses, MapPin } from "lucide-react";
 import { useState, useRef, useEffect } from "react";
+import { useCart } from "@/context/CartContext";
+import { CartDrawer } from "./CartDrawer";
 
 const navItems = [
   { to: "/", label: "Início" },
@@ -13,8 +15,10 @@ const navItems = [
 
 const Header = () => {
   const [open, setOpen] = useState(false);
+  const [cartOpen, setCartOpen] = useState(false);
   const [mobileSearchOpen, setMobileSearchOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const { totalItems } = useCart();
   const inputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
@@ -93,6 +97,20 @@ const Header = () => {
 
           {/* Utility Icons (Absolute Right) */}
           <div className="absolute right-4 lg:right-6 flex items-center gap-5 shrink-0">
+            {/* Cart */}
+            <button 
+              onClick={() => setCartOpen(true)}
+              className="relative hover:text-white/70 transition-colors focus:outline-none"
+              aria-label="Ver Carrinho"
+            >
+              <ShoppingBag className="h-6 w-6" />
+              {totalItems > 0 && (
+                <span className="absolute -top-2 -right-2 bg-white text-accent text-[9px] font-black w-4 h-4 rounded-full flex items-center justify-center animate-in zoom-in duration-300">
+                  {totalItems}
+                </span>
+              )}
+            </button>
+
             {/* Mobile Hamburger */}
             <button
               aria-label="Menu"
@@ -126,6 +144,8 @@ const Header = () => {
             </button>
           </div>
         </div>
+
+        <CartDrawer open={cartOpen} onClose={() => setCartOpen(false)} />
       </div>
 
       {/* ─── BOTTOM NAV ROW ──────────────────────────────────────────── */}
@@ -193,6 +213,21 @@ const Header = () => {
               </NavLink>
             ))}
           </nav>
+
+          {/* Mobile Utilities */}
+          <div className="flex items-center justify-center px-4 py-4 border-t border-zinc-100 text-zinc-600">
+            <button 
+              onClick={() => {
+                setOpen(false);
+                setCartOpen(true);
+              }} 
+              className="flex flex-col items-center gap-1 text-xs relative"
+            >
+              <ShoppingBag className="h-5 w-5 text-accent" />
+              <span className="uppercase tracking-wide text-[10px] font-bold">Carrinho</span>
+              <span className="absolute -top-1 right-2 bg-accent text-white text-[9px] font-black w-4 h-4 rounded-full flex items-center justify-center">{totalItems}</span>
+            </button>
+          </div>
         </div>
       )}
     </header>

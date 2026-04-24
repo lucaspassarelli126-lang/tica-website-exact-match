@@ -1,7 +1,7 @@
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Product } from "@/data/site";
-import { ShoppingCart, X, ShieldCheck, Truck, RotateCcw } from "lucide-react";
+import { ShoppingCart, ShoppingBag, X, ShieldCheck } from "lucide-react";
 import { useCart } from "@/context/CartContext";
 
 interface ProductDetailModalProps {
@@ -70,17 +70,35 @@ export function ProductDetailModal({ product, isOpen, onClose }: ProductDetailMo
                 </div>
               </div>
 
-              <div className="pt-4">
+              <div className="pt-4 space-y-3">
                 <Button 
                   onClick={() => {
-                    const message = `Olá! Gostaria de consultar a disponibilidade da ${product.name} que vi no site.`;
+                    addItem({
+                      id: product.id,
+                      name: product.name,
+                      price: 0, // No price
+                      image: product.img
+                    });
+                    onClose();
+                  }}
+                  size="lg"
+                  variant="outline"
+                  className="w-full h-12 border-zinc-200 text-zinc-900 rounded-full text-[10px] font-black uppercase tracking-widest gap-2 hover:bg-zinc-50 transition-all"
+                >
+                  <ShoppingBag className="w-4 h-4" />
+                  Adicionar à Sacola
+                </Button>
+
+                <Button 
+                  onClick={() => {
+                    const message = `Olá! Gostaria de falar sobre o modelo ${product.name} que vi no site.`;
                     window.open(`https://wa.me/5519971528684?text=${encodeURIComponent(message)}`, '_blank');
                   }}
                   size="lg"
                   className="w-full h-14 bg-black text-white hover:bg-zinc-800 rounded-full text-xs font-black uppercase tracking-widest gap-3 shadow-xl transition-all hover:scale-[1.02] active:scale-[0.98]"
                 >
                   <ShoppingCart className="w-5 h-5" />
-                  Consultar Disponibilidade
+                  Fale Conosco
                 </Button>
               </div>
             </div>

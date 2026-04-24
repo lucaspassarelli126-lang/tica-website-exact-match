@@ -44,7 +44,7 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({ open, onClose }) => {
           <SheetTitle className="flex items-center justify-between font-serif text-2xl w-full pr-8">
             <div className="flex items-center gap-2">
               <ShoppingBag className="h-6 w-6" />
-              Seu Carrinho
+              Sua Seleção
               {totalItems > 0 && (
                 <span className="text-sm font-sans font-medium text-muted-foreground ml-1">
                   ({totalItems})
@@ -69,8 +69,8 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({ open, onClose }) => {
                 <ShoppingBag className="h-10 w-10 text-zinc-300" />
               </div>
               <div>
-                <p className="text-lg font-medium">Seu carrinho está vazio</p>
-                <p className="text-sm text-muted-foreground">Adicione alguns modelos para começar.</p>
+                <p className="text-lg font-medium">Sua lista está vazia</p>
+                <p className="text-sm text-muted-foreground">Selecione os modelos que você mais gostou.</p>
               </div>
               <Button variant="outline" onClick={onClose} className="rounded-full px-8">
                 VER COLEÇÃO
