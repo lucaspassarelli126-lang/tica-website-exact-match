@@ -14,6 +14,7 @@ import Contato from "./pages/Contato";
 import NotFound from "./pages/NotFound.tsx";
 
 import { CartProvider } from "./context/CartContext";
+import { SmoothScroll } from "./components/SmoothScroll";
 
 const queryClient = new QueryClient();
 
@@ -21,22 +22,24 @@ const App = () => (
   <QueryClientProvider client={queryClient}>
     <CartProvider>
       <TooltipProvider>
-        <Toaster />
-        <Sonner />
-        <BrowserRouter>
-          <Routes>
-            <Route element={<Layout />}>
-              <Route path="/" element={<Home />} />
-              <Route path="/sobre" element={<Sobre />} />
-              <Route path="/servicos" element={<Servicos />} />
-              <Route path="/catalogo" element={<Catalogo />} />
-              <Route path="/marcas" element={<Marcas />} />
-              <Route path="/localizacao" element={<Localizacao />} />
-              <Route path="/contato" element={<Contato />} />
-            </Route>
-            <Route path="*" element={<NotFound />} />
-          </Routes>
-        </BrowserRouter>
+        <SmoothScroll>
+          <Toaster />
+          <Sonner />
+          <BrowserRouter>
+            <Routes>
+              <Route element={<Layout />}>
+                <Route path="/" element={<Home />} />
+                <Route path="/sobre" element={<Sobre />} />
+                <Route path="/servicos" element={<Servicos />} />
+                <Route path="/catalogo" element={<Catalogo />} />
+                <Route path="/marcas" element={<Marcas />} />
+                <Route path="/localizacao" element={<Localizacao />} />
+                <Route path="/contato" element={<Contato />} />
+              </Route>
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+          </BrowserRouter>
+        </SmoothScroll>
       </TooltipProvider>
     </CartProvider>
   </QueryClientProvider>
