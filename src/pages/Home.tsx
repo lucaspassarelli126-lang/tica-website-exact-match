@@ -112,28 +112,28 @@ const Home = () => {
                             initial={{ opacity: 0, y: -20 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             transition={{ duration: 1.2, ease: "easeOut" }}
-                            className="text-xl md:text-6xl lg:text-[5rem] font-sans font-black text-white leading-tight mb-3 md:mb-6 whitespace-pre-line tracking-tight drop-shadow-md"
+                            className="text-2xl md:text-6xl lg:text-[5rem] font-sans font-black text-white leading-[1.1] mb-2 md:mb-6 whitespace-pre-line tracking-tight drop-shadow-md"
                           >
                             {slide.mainTitle}
                           </motion.h1>
                           
-                          {/* Tagline (O ÍCONE ATEMPORAL style) */}
+                          {/* Tagline (O ÍCONE ATEMPORAL style) - More refined, no heavy pill */}
                           <motion.p 
                             initial={{ opacity: 0, y: 10 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             transition={{ duration: 1, delay: 0.4 }}
-                            className="text-[7.5px] md:text-sm tracking-[0.2em] md:tracking-[0.5em] uppercase text-white mb-6 md:mb-12 font-sans font-bold bg-black/40 px-3 py-1 md:px-6 md:py-2 rounded-full"
+                            className="text-[9px] md:text-sm tracking-[0.3em] md:tracking-[0.5em] uppercase text-white/80 mb-8 md:mb-12 font-sans font-medium border-y border-white/20 py-1"
                           >
                             {slide.tagline}
                           </motion.p>
                           
                           {/* Promo Block */}
-                          <div className="flex flex-col items-center gap-0 mb-6 md:mb-12">
+                          <div className="flex flex-col items-center gap-0 mb-8 md:mb-12">
                             <motion.h2 
                               initial={{ opacity: 0 }}
                               whileInView={{ opacity: 1 }}
                               transition={{ duration: 1, delay: 0.6 }}
-                              className="text-[9px] md:text-2xl font-sans font-bold text-white tracking-[0.2em] md:tracking-[0.3em] uppercase"
+                              className="text-[10px] md:text-2xl font-serif italic text-white/90 tracking-[0.15em] md:tracking-[0.3em] uppercase"
                             >
                               {slide.editorialAccent}
                             </motion.h2>
@@ -143,7 +143,7 @@ const Home = () => {
                               initial={{ opacity: 0, y: 10 }}
                               whileInView={{ opacity: 1, y: 0 }}
                               transition={{ duration: 0.8, delay: 0.8 }}
-                              className="text-3xl md:text-7xl lg:text-8xl font-numeric font-black text-accent tracking-tight drop-shadow-lg"
+                              className="text-4xl md:text-7xl lg:text-8xl font-numeric font-black text-accent tracking-tighter leading-none drop-shadow-lg"
                             >
                               {slide.editorialHighlight}
                             </motion.span>
