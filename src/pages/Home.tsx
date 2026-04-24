@@ -97,7 +97,7 @@ const Home = () => {
                     <img
                       src={slide.src}
                       alt={slide.alt}
-                      className={`absolute inset-0 w-full h-full object-cover transition-transform duration-[2000ms] ${slide.textOverlay ? 'group-hover:scale-105' : ''}`}
+                      className={`absolute inset-0 w-full h-full object-cover transition-transform duration-[1200ms] will-change-transform ${slide.textOverlay ? 'group-hover:scale-105' : ''}`}
                     />
                     
                     {/* Celine Style Layout (Center-Aligned) */}

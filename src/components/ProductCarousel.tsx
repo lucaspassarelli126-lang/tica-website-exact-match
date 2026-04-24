@@ -97,10 +97,10 @@ export const ProductCarousel = ({ products, title, subtitle, badgeText = "EXCLUS
             <SwiperSlide key={p.id}>
               {({ isActive }) => (
                 <div className="relative aspect-[2/1] w-full flex items-center justify-center">
-                  <div className={`flex items-center justify-center w-full h-full transition-transform duration-500 ease-out ${isActive ? 'scale-110 z-20' : 'scale-75 opacity-40 grayscale blur-[1px]'}`}>
+                  <div className={`flex items-center justify-center w-full h-full transition-all duration-300 ease-out will-change-transform ${isActive ? 'scale-110 z-20' : 'scale-75 opacity-40 grayscale'}`}>
                     <img 
                       src={p.img} 
-                      className={`max-h-full max-w-full object-contain drop-shadow-2xl transition-all duration-500 ease-in-out ${isActive ? 'scale-125' : 'scale-90'}`} 
+                      className={`max-h-full max-w-full object-contain drop-shadow-xl transition-all duration-300 ease-in-out will-change-transform ${isActive ? 'scale-125' : 'scale-90'}`} 
                       alt={p.name}
                       loading="lazy"
                       decoding="async"

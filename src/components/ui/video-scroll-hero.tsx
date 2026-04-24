@@ -35,7 +35,7 @@ export function VideoScrollHero({
       </video>
 
       {/* Luxury Overlay Content */}
-      <div className="absolute inset-0 flex flex-col items-center justify-center p-8 text-center bg-black/30 backdrop-blur-[1px]">
+      <div className="absolute inset-0 flex flex-col items-center justify-center p-8 text-center bg-black/40">
         <div className="relative space-y-8">
           <motion.div
             initial={shouldReduceMotion ? { opacity: 1 } : { opacity: 0, y: 30 }}
