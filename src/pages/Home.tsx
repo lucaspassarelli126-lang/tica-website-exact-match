@@ -221,9 +221,9 @@ const Home = () => {
                   desc: "Excelência" 
                 },
                 { 
-                  icon: CreditCard,
-                  label: "PARCELA", 
-                  desc: "Facilitada" 
+                  icon: Sparkles,
+                  label: "ESTILO", 
+                  desc: "Exclusivo" 
                 },
                 { 
                   icon: ShieldCheck,

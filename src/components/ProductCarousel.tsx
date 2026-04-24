@@ -23,7 +23,6 @@ interface Product {
   brand: string;
   img: string;
   style: string;
-  price?: number;
 }
 
 interface ProductCarouselProps {

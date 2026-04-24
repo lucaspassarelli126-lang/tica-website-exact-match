@@ -53,13 +53,6 @@ export function ProductDetailModal({ product, isOpen, onClose }: ProductDetailMo
                 </DialogTitle>
               </div>
 
-              <div className="text-2xl md:text-3xl font-numeric font-black text-zinc-900">
-                R$ {product.price.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}
-                <span className="text-xs text-zinc-400 font-medium ml-2 block mt-1">
-                  ou 10x de R$ {(product.price / 10).toLocaleString('pt-BR', { minimumFractionDigits: 2 })} sem juros
-                </span>
-              </div>
-
               <div className="h-[1px] w-full bg-zinc-100" />
 
               <div>
@@ -69,34 +62,25 @@ export function ProductDetailModal({ product, isOpen, onClose }: ProductDetailMo
                 </p>
               </div>
 
-              {/* Trust Indicators */}
+              {/* Trust Indicators - Simplified to quality only */}
               <div className="grid grid-cols-1 gap-4 pt-2">
                 <div className="flex items-center gap-3 text-[10px] uppercase font-bold tracking-wider text-zinc-500">
-                  <Truck className="w-4 h-4 text-accent" />
-                  Envio imediato para todo o Brasil
-                </div>
-                <div className="flex items-center gap-3 text-[10px] uppercase font-bold tracking-wider text-zinc-500">
                   <ShieldCheck className="w-4 h-4 text-accent" />
-                  Garantia vitalícia de ajustes
+                  Garantia de Qualidade Visão Total
                 </div>
               </div>
 
               <div className="pt-4">
                 <Button 
                   onClick={() => {
-                    addItem({
-                      id: product.id,
-                      name: product.name,
-                      price: product.price,
-                      image: product.img
-                    });
-                    onClose();
+                    const message = `Olá! Gostaria de consultar a disponibilidade da ${product.name} que vi no site.`;
+                    window.open(`https://wa.me/5519971528684?text=${encodeURIComponent(message)}`, '_blank');
                   }}
                   size="lg"
                   className="w-full h-14 bg-black text-white hover:bg-zinc-800 rounded-full text-xs font-black uppercase tracking-widest gap-3 shadow-xl transition-all hover:scale-[1.02] active:scale-[0.98]"
                 >
                   <ShoppingCart className="w-5 h-5" />
-                  Adicionar ao Carrinho
+                  Consultar Disponibilidade
                 </Button>
               </div>
             </div>

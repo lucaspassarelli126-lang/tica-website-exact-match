@@ -44,21 +44,20 @@ export type Product = {
   brand: string;
   category: "solar" | "grau";
   style: string;
-  price: number;
   img: string;
   description: string;
 };
 
 export const products: Product[] = [
-  { id: "1", name: "Armação de Grau Luxury", brand: "Coleção Premium", category: "grau", style: "classico", price: 2890, img: gucciGg0061s, description: "Elegância italiana para um olhar marcante e sofisticado." },
-  { id: "2", name: "Armação de Grau Modern", brand: "Exclusivo", category: "grau", style: "minimalista", price: 2390, img: prada17ws, description: "Design contemporâneo com leveza e conforto incomparáveis." },
-  { id: "3", name: "Armação de Grau Kids Style", brand: "Lançamento", category: "grau", style: "infantil", price: 3290, img: celine40026i, description: "Para os pequenos cheios de estilo e personalidade." },
-  { id: "4", name: "Armação de Grau Vintage", brand: "Coleção Premium", category: "grau", style: "vintage", price: 2790, img: oliver5036, description: "Charme retrô com acabamento artesanal de altíssima qualidade." },
-  { id: "5", name: "Armação de Grau Adventure", brand: "Destaque", category: "grau", style: "infantil", price: 2590, img: valentino4081, description: "Conforto e resistência para acompanhar todas as aventuras!" },
-  { id: "6", name: "Armação de Grau Executive", brand: "Coleção Premium", category: "grau", style: "classico", price: 2190, img: zegna5239, description: "O equilíbrio perfeito entre sobriedade e luxo masculino." },
-  { id: "7", name: "Armação de Grau Especial", brand: "Exclusivo", category: "grau", style: "vintage", price: 3190, img: productA, description: "Edição limitada com design exclusivo para quem busca o único." },
-  { id: "8", name: "Armação de Grau Junior", brand: "Lançamento", category: "grau", style: "infantil", price: 2690, img: productB, description: "Segurança e ergonomia pensada no bem-estar das crianças." },
-  { id: "9", name: "Armação de Grau Edition", brand: "Coleção Premium", category: "grau", style: "vintage", price: 2890, img: oliver5036_2, description: "Uma peça de colecionador que redefine o estilo clássico." },
+  { id: "1", name: "Armação de Grau Luxury", brand: "Coleção Premium", category: "grau", style: "classico", img: gucciGg0061s, description: "Elegância italiana para um olhar marcante e sofisticado." },
+  { id: "2", name: "Armação de Grau Modern", brand: "Exclusivo", category: "grau", style: "minimalista", img: prada17ws, description: "Design contemporâneo com leveza e conforto incomparáveis." },
+  { id: "3", name: "Armação de Grau Kids Style", brand: "Lançamento", category: "grau", style: "infantil", img: celine40026i, description: "Para os pequenos cheios de estilo e personalidade." },
+  { id: "4", name: "Armação de Grau Vintage", brand: "Coleção Premium", category: "grau", style: "vintage", img: oliver5036, description: "Charme retrô com acabamento artesanal de altíssima qualidade." },
+  { id: "5", name: "Armação de Grau Adventure", brand: "Destaque", category: "grau", style: "infantil", img: valentino4081, description: "Conforto e resistência para acompanhar todas as aventuras!" },
+  { id: "6", name: "Armação de Grau Executive", brand: "Coleção Premium", category: "grau", style: "classico", img: zegna5239, description: "O equilíbrio perfeito entre sobriedade e luxo masculino." },
+  { id: "7", name: "Armação de Grau Especial", brand: "Exclusivo", category: "grau", style: "vintage", img: productA, description: "Edição limitada com design exclusivo para quem busca o único." },
+  { id: "8", name: "Armação de Grau Junior", brand: "Lançamento", category: "grau", style: "infantil", img: productB, description: "Segurança e ergonomia pensada no bem-estar das crianças." },
+  { id: "9", name: "Armação de Grau Edition", brand: "Coleção Premium", category: "grau", style: "vintage", img: oliver5036_2, description: "Uma peça de colecionador que redefine o estilo clássico." },
 ];
 
 export const services = [
