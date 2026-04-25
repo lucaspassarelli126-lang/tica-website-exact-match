@@ -61,7 +61,7 @@ export function CategoryScrollInteractive() {
   }, []);
 
   return (
-    <section ref={sectionRef as any} className="relative w-full min-h-[110vh] bg-background z-20">
+    <section ref={sectionRef as any} className="relative w-full min-h-[65vh] md:min-h-[110vh] bg-background z-20">
       <div className="sticky top-[80px] h-[35vh] w-full flex flex-col items-center justify-start pt-[10vh] gap-[40px] bg-background overflow-hidden">
         
         <h2 className="text-[11px] md:text-[14px] font-black uppercase tracking-[3px] md:tracking-[3px] opacity-80 text-center px-4 text-zinc-900 dark:text-zinc-100">
