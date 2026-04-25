@@ -1,40 +1,20 @@
-import { useRef, useEffect, useState } from "react";
+import { useRef, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { ChevronDown } from "lucide-react";
 import { motion } from "framer-motion";
 import { categories } from "@/data/site";
 
-// Função de lerp igual à do usuário
+// Função de lerp
 function lerp(start: number, end: number, t: number) {
   return start + (end - start) * t;
 }
 
 export function CategoryScrollInteractive() {
   const sectionRef = useRef<HTMLElement>(null);
-  const stickyRef = useRef<HTMLDivElement>(null);
   const linhaRef = useRef<HTMLDivElement>(null);
   const bolinhasRef = useRef<(HTMLDivElement | null)[]>([]);
 
-  // Ajuste dinâmico de altura: no mobile a seção deve ter exatamente
-  // a altura do conteúdo sticky (sem espaço vazio sobrando)
-  useEffect(() => {
-    const adjustHeight = () => {
-      if (!sectionRef.current || !stickyRef.current) return;
-      const isMobile = window.innerWidth < 768;
-      if (isMobile) {
-        const stickyH = stickyRef.current.offsetHeight;
-        sectionRef.current.style.minHeight = `${stickyH}px`;
-      } else {
-        sectionRef.current.style.minHeight = "110vh";
-      }
-    };
-
-    adjustHeight();
-    window.addEventListener("resize", adjustHeight);
-    return () => window.removeEventListener("resize", adjustHeight);
-  }, []);
-
-  // Animação de scroll (não mexa aqui)
+  // Animação de scroll — não mexa aqui
   useEffect(() => {
     let current = 0;
     let target = 0;
@@ -45,7 +25,6 @@ export function CategoryScrollInteractive() {
       const rect = sectionRef.current.getBoundingClientRect();
       const windowHeight = window.innerHeight;
 
-      // Duração exata do pin: altura total - (altura da tela - offset do header)
       const pinDuration = rect.height - (windowHeight - 80);
       let progress = (80 - rect.top) / pinDuration;
       progress = Math.max(0, Math.min(progress, 1));
@@ -53,10 +32,8 @@ export function CategoryScrollInteractive() {
       target = progress;
       current = lerp(current, target, 0.12);
 
-      // linha
       linhaRef.current.style.width = `${current * 100}%`;
 
-      // bolinhas
       const total = bolinhasRef.current.length;
       bolinhasRef.current.forEach((b, i) => {
         if (!b) return;
@@ -69,24 +46,26 @@ export function CategoryScrollInteractive() {
       });
     };
 
+    function onScroll() { update(); }
+
     window.addEventListener("scroll", onScroll, { passive: true });
     update();
 
-    function onScroll() { update(); }
-
-    return () => {
-      window.removeEventListener("scroll", onScroll);
-    };
+    return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
   return (
-    <section ref={sectionRef as any} className="relative w-full bg-background z-20" style={{ minHeight: "110vh" }}>
-      <div
-        ref={stickyRef}
-        className="sticky top-[80px] w-full flex flex-col items-center justify-start bg-background overflow-hidden"
-        style={{ height: "clamp(180px, 25vh, 300px)", paddingTop: "clamp(16px, 5vh, 80px)", gap: "clamp(16px, 3vh, 40px)" }}
+    <section
+      ref={sectionRef as any}
+      className="relative w-full bg-background z-20 min-h-[85vh] md:min-h-[110vh]"
+    >
+      <div className="sticky top-[80px] w-full flex flex-col items-center justify-start bg-background overflow-hidden"
+        style={{
+          height: "clamp(160px, 22vh, 280px)",
+          paddingTop: "clamp(12px, 4vh, 64px)",
+          gap: "clamp(14px, 2.5vh, 36px)",
+        }}
       >
-        
         <h2 className="text-[11px] md:text-[14px] font-black uppercase tracking-[3px] opacity-80 text-center px-4 text-zinc-900 dark:text-zinc-100">
           EXPLORE AS ESTÉTICAS
         </h2>
