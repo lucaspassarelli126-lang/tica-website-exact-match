@@ -167,14 +167,15 @@
   width: 90px;
   height: 90px;
   border-radius: 50%;
-  background: #eee;
+  background: #c45a1c;
+  color: white;
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 12px;
   font-weight: bold;
   transform: scale(0.9);
-  opacity: 0.5;
+  opacity: 0.65;
   transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
@@ -183,6 +184,7 @@
   color: white !important;
   transform: scale(1.15) !important;
   opacity: 1 !important;
+  box-shadow: 0 0 0 4px rgba(196, 90, 28, 0.25) !important;
 }
 
 @media (max-width: 768px) {
@@ -191,6 +193,32 @@
     height: 50px;
     font-size: 7px;
   }
+}
+
+@media (min-width: 769px) {
+  .bolinha {
+    opacity: 1;
+    transform: scale(1);
+  }
+  .bolinha.ativa {
+    transform: scale(1.1) !important;
+    box-shadow: 0 0 0 5px rgba(196, 90, 28, 0.3) !important;
+  }
+}
+
+/* Recently Viewed Carousel pagination */
+.recently-viewed-swiper .swiper-pagination-bullet {
+  background: #d4b5a0 !important;
+  opacity: 1 !important;
+  width: 6px !important;
+  height: 6px !important;
+}
+
+.recently-viewed-swiper .swiper-pagination-bullet-active {
+  background: #c45a1c !important;
+  width: 20px !important;
+  height: 6px !important;
+  border-radius: 3px !important;
 }
 
 /* Ocultar badge do Lovable */
