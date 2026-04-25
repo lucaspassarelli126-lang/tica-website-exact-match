@@ -22,8 +22,8 @@ import { ScheduleExamSection } from "@/components/ScheduleExamSection";
 import { VideoScrollHero } from "@/components/ui/video-scroll-hero";
 import { RecentlyViewedSection } from "@/components/RecentlyViewedSection";
 import { CategoryScrollInteractive } from "@/components/CategoryScrollInteractive";
-import { ProductDetailModal } from "@/components/ProductDetailModal";
-import { Product as ProductType } from "@/data/site";
+import { Product as ProductType, editorialProducts } from "@/data/site";
+import { EditorialCarousel } from "@/components/EditorialCarousel";
 import {
   Carousel,
   CarouselContent,
@@ -267,6 +267,11 @@ const Home = () => {
           onProductClick={handleProductClick}
         />
       </div>
+
+      <EditorialCarousel 
+        products={editorialProducts}
+        onProductClick={handleProductClick}
+      />
 
       <section className="w-full py-0 flex flex-col items-center gap-6 mt-8 px-4 md:px-8">
         <div className="relative w-full max-w-6xl mx-auto group overflow-hidden rounded-3xl shadow-xl">

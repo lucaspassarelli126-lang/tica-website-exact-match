@@ -21,11 +21,11 @@ import zegna5239 from "@/assets/products/zegna.png";
 import productA from "@/assets/products/a.png";
 import productB from "@/assets/products/b.png";
 
-import newGlasses1 from "@/assets/products/new_glasses_1.png";
-import newGlasses2 from "@/assets/products/new_glasses_2.png";
-import newGlasses3 from "@/assets/products/new_glasses_3.png";
-import newGlasses4 from "@/assets/products/new_glasses_4.png";
-import newGlasses5 from "@/assets/products/new_glasses_5.png";
+import editorial1 from "@/assets/editorial/editorial_glasses_1.jpg";
+import editorial2 from "@/assets/editorial/editorial_glasses_2.jpg";
+import editorial3 from "@/assets/editorial/editorial_glasses_3.jpg";
+import editorial4 from "@/assets/editorial/editorial_glasses_4.jpg";
+import editorial5 from "@/assets/editorial/editorial_glasses_5.jpg";
 
 export const brands = [
   { name: "Gucci", img: gucci, slug: "gucci", desc: "Sofisticação italiana com personalidade marcante." },
@@ -55,11 +55,6 @@ export type Product = {
 };
 
 export const products: Product[] = [
-  { id: "101", name: "Armação Transparente Cristal", brand: "Coleção Nova", category: "grau", style: "minimalista", img: newGlasses1, description: "Design arrojado com transparência elegante para um visual clean." },
-  { id: "102", name: "Armação Clássica Onyx", brand: "Coleção Nova", category: "grau", style: "classico", img: newGlasses2, description: "Clássico com toque moderno, hastes refinadas e linhas atemporais." },
-  { id: "103", name: "Armação Nude Essence", brand: "Coleção Nova", category: "grau", style: "vintage", img: newGlasses3, description: "Leveza e sutileza em tons pastel para o dia a dia." },
-  { id: "104", name: "Armação Fio de Nylon Pro", brand: "Coleção Nova", category: "grau", style: "minimalista", img: newGlasses4, description: "Discrição e profissionalismo com design fio de nylon." },
-  { id: "105", name: "Armação Square Bold", brand: "Coleção Nova", category: "grau", style: "classico", img: newGlasses5, description: "Presença marcante com contornos definidos e cor intensa." },
   { id: "1", name: "Armação de Grau Luxury", brand: "Coleção Premium", category: "grau", style: "classico", img: gucciGg0061s, description: "Elegância italiana para um olhar marcante e sofisticado." },
   { id: "2", name: "Armação de Grau Modern", brand: "Exclusivo", category: "grau", style: "minimalista", img: prada17ws, description: "Design contemporâneo com leveza e conforto incomparáveis." },
   { id: "3", name: "Armação de Grau Kids Style", brand: "Lançamento", category: "grau", style: "infantil", img: celine40026i, description: "Para os pequenos cheios de estilo e personalidade." },
@@ -161,4 +156,12 @@ export const blogPosts = [
     image: "https://images.unsplash.com/photo-1509100104048-6373f71cd466?auto=format&fit=crop&q=80&w=800",
     url: "https://www.oticasdiniz.com.br/blog/cuidados-com-oculos/como-limpar-oculos/"
   },
+];
+
+export const editorialProducts: Product[] = [
+  { id: "e1", name: "Transparente Cristal", brand: "Cápsula", category: "grau", style: "minimalista", img: editorial1, description: "Design arrojado com transparência elegante para um visual clean." },
+  { id: "e2", name: "Clássica Onyx", brand: "Cápsula", category: "grau", style: "classico", img: editorial2, description: "Clássico com toque moderno, hastes refinadas e linhas atemporais." },
+  { id: "e3", name: "Nude Essence", brand: "Cápsula", category: "grau", style: "vintage", img: editorial3, description: "Leveza e sutileza em tons pastel para o dia a dia." },
+  { id: "e4", name: "Fio de Nylon Pro", brand: "Cápsula", category: "grau", style: "minimalista", img: editorial4, description: "Discrição e profissionalismo com design fio de nylon." },
+  { id: "e5", name: "Square Bold", brand: "Cápsula", category: "grau", style: "classico", img: editorial5, description: "Presença marcante com contornos definidos e cor intensa." },
 ];

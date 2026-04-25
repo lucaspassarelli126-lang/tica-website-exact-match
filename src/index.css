@@ -221,6 +221,21 @@
   border-radius: 3px !important;
 }
 
+/* Editorial Carousel Pagination */
+.editorial-pagination .swiper-pagination-bullet {
+  background: #d4b5a0 !important;
+  opacity: 1 !important;
+  width: 8px !important;
+  height: 8px !important;
+  transition: all 0.3s ease !important;
+}
+
+.editorial-pagination .swiper-pagination-bullet-active {
+  background: #c45a1c !important;
+  width: 24px !important;
+  border-radius: 4px !important;
+}
+
 /* Ocultar badge do Lovable */
 [data-lovable-badge],
 #lovable-badge,
