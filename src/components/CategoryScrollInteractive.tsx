@@ -4,7 +4,6 @@ import { ChevronDown } from "lucide-react";
 import { motion } from "framer-motion";
 import { categories } from "@/data/site";
 
-// Função de lerp
 function lerp(start: number, end: number, t: number) {
   return start + (end - start) * t;
 }
@@ -14,56 +13,107 @@ export function CategoryScrollInteractive() {
   const linhaRef = useRef<HTMLDivElement>(null);
   const bolinhasRef = useRef<(HTMLDivElement | null)[]>([]);
 
-  // Animação de scroll — não mexa aqui
   useEffect(() => {
-    let current = 0;
-    let target = 0;
+    const isMobile = window.innerWidth < 768;
 
-    const update = () => {
-      if (!sectionRef.current || !linhaRef.current) return;
-      
-      const rect = sectionRef.current.getBoundingClientRect();
-      const windowHeight = window.innerHeight;
+    if (isMobile) {
+      // ── MOBILE: animação automática ao entrar na tela ──────────────────
+      let rafId: number;
+      let current = 0;
+      let target = 0;
+      let running = false;
 
-      const pinDuration = rect.height - (windowHeight - 80);
-      let progress = (80 - rect.top) / pinDuration;
-      progress = Math.max(0, Math.min(progress, 1));
-
-      target = progress;
-      current = lerp(current, target, 0.12);
-
-      linhaRef.current.style.width = `${current * 100}%`;
-
-      const total = bolinhasRef.current.length;
-      bolinhasRef.current.forEach((b, i) => {
-        if (!b) return;
-        const threshold = i / total;
-        if (current > threshold) {
-          b.classList.add('ativa');
-        } else {
-          b.classList.remove('ativa');
+      const animateTo = (value: number) => {
+        target = value;
+        if (!running) {
+          running = true;
+          const tick = () => {
+            current = lerp(current, target, 0.06);
+            if (linhaRef.current) {
+              linhaRef.current.style.width = `${current * 100}%`;
+            }
+            const total = bolinhasRef.current.length;
+            bolinhasRef.current.forEach((b, i) => {
+              if (!b) return;
+              if (current > i / total) b.classList.add("ativa");
+              else b.classList.remove("ativa");
+            });
+            if (Math.abs(current - target) > 0.002) {
+              rafId = requestAnimationFrame(tick);
+            } else {
+              running = false;
+            }
+          };
+          rafId = requestAnimationFrame(tick);
         }
-      });
-    };
+      };
 
-    function onScroll() { update(); }
+      const observer = new IntersectionObserver(
+        ([entry]) => {
+          if (entry.isIntersecting) {
+            // Anima até o fim quando a seção aparece
+            setTimeout(() => animateTo(1), 200);
+          } else {
+            // Reseta quando sai da tela
+            cancelAnimationFrame(rafId);
+            current = 0;
+            target = 0;
+            running = false;
+            if (linhaRef.current) linhaRef.current.style.width = "0%";
+            bolinhasRef.current.forEach((b) => b?.classList.remove("ativa"));
+          }
+        },
+        { threshold: 0.3 }
+      );
 
-    window.addEventListener("scroll", onScroll, { passive: true });
-    update();
+      if (sectionRef.current) observer.observe(sectionRef.current);
 
-    return () => window.removeEventListener("scroll", onScroll);
+      return () => {
+        observer.disconnect();
+        cancelAnimationFrame(rafId);
+      };
+    } else {
+      // ── DESKTOP: animação por scroll (original, não mexa) ──────────────
+      let current = 0;
+      let target = 0;
+
+      const update = () => {
+        if (!sectionRef.current || !linhaRef.current) return;
+        const rect = sectionRef.current.getBoundingClientRect();
+        const windowHeight = window.innerHeight;
+        const pinDuration = rect.height - (windowHeight - 80);
+        let progress = (80 - rect.top) / pinDuration;
+        progress = Math.max(0, Math.min(progress, 1));
+        target = progress;
+        current = lerp(current, target, 0.12);
+        linhaRef.current.style.width = `${current * 100}%`;
+        const total = bolinhasRef.current.length;
+        bolinhasRef.current.forEach((b, i) => {
+          if (!b) return;
+          if (current > i / total) b.classList.add("ativa");
+          else b.classList.remove("ativa");
+        });
+      };
+
+      function onScroll() { update(); }
+      window.addEventListener("scroll", onScroll, { passive: true });
+      update();
+      return () => window.removeEventListener("scroll", onScroll);
+    }
   }, []);
 
   return (
     <section
       ref={sectionRef as any}
-      className="relative w-full bg-background z-20 min-h-[85vh] md:min-h-[110vh]"
+      className="relative w-full bg-background z-20 md:min-h-[110vh]"
     >
-      <div className="sticky top-[80px] w-full flex flex-col items-center justify-start bg-background overflow-hidden"
+      <div
+        className="md:sticky md:top-[80px] w-full flex flex-col items-center justify-center bg-background overflow-hidden"
         style={{
-          height: "clamp(160px, 22vh, 280px)",
-          paddingTop: "clamp(12px, 4vh, 64px)",
-          gap: "clamp(14px, 2.5vh, 36px)",
+          height: "clamp(160px, 22vh, 300px)",
+          paddingTop: "clamp(12px, 3vh, 60px)",
+          paddingBottom: "clamp(12px, 3vh, 60px)",
+          gap: "clamp(14px, 2.5vh, 40px)",
         }}
       >
         <h2 className="text-[11px] md:text-[14px] font-black uppercase tracking-[3px] opacity-80 text-center px-4 text-zinc-900 dark:text-zinc-100">
@@ -71,17 +121,12 @@ export function CategoryScrollInteractive() {
         </h2>
 
         <div className="relative w-[95%] md:w-[70%] max-w-5xl flex items-center justify-center">
-          {/* linha base */}
           <div className="absolute top-1/2 -translate-y-1/2 left-0 right-0 h-[2px] bg-black/10 dark:bg-white/10 z-0" />
-          
-          {/* linha animada */}
-          <div 
+          <div
             ref={linhaRef}
             className="absolute top-1/2 -translate-y-1/2 left-0 h-[3px] bg-[#c45a1c] z-0 transition-none"
             style={{ width: "0%" }}
           />
-
-          {/* bolinhas */}
           <div className="relative z-10 flex justify-between items-center w-full">
             {categories.map((c, index) => (
               <Link key={c.slug} to={`/catalogo?style=${c.slug}`} className="outline-none">
@@ -91,7 +136,7 @@ export function CategoryScrollInteractive() {
                 >
                   {c.name.toUpperCase()}
                   {index === 2 && (
-                    <motion.div 
+                    <motion.div
                       className="md:hidden absolute -bottom-8 left-[40%] -translate-x-1/2"
                       animate={{ y: [0, 4, 0], opacity: [0.4, 1, 0.4] }}
                       transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
