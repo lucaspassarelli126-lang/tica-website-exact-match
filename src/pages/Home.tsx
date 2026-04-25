@@ -1,13 +1,12 @@
 import { Link } from "react-router-dom";
-import { ArrowRight, Award, ShieldCheck, Sparkles, Truck, CreditCard, History, Glasses, Square, Smile, Baby, ArrowUpRight } from "lucide-react";
+import { ArrowRight, Award, ShieldCheck, Sparkles, Truck, CreditCard, History, Glasses, Square, Smile, Baby, ArrowUpRight, Package, RotateCcw } from "lucide-react";
 import { motion } from "framer-motion";
 import { TiltWrapper } from "@/components/ui/tilt-wrapper";
 import hero from "@/assets/banners/hero-banner1-v3.jpg";
 import heroBanner2 from "@/assets/banners/hero-banner2.jpg";
 import heroBanner3 from "@/assets/banners/hero-banner3.jpg";
 import promoProductBanner from "@/assets/banners/promo-99-v2.png";
-import { products, categories, editorialProducts, Product as ProductType } from "@/data/site";
-import { ProductDetailModal } from "@/components/ProductDetailModal";
+import { products, categories, editorialProducts, newArrivals, Product as ProductType } from "@/data/site";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -21,6 +20,7 @@ import { VideoScrollHero } from "@/components/ui/video-scroll-hero";
 import { RecentlyViewedSection } from "@/components/RecentlyViewedSection";
 import { CategoryScrollInteractive } from "@/components/CategoryScrollInteractive";
 import { CategoryGrid } from "@/components/CategoryGrid";
+import { PromotionalTicker } from "@/components/PromotionalTicker";
 
 import { EditorialCarousel } from "@/components/EditorialCarousel";
 import {
@@ -35,13 +35,10 @@ import {
 
 
 const Home = () => {
-  const [selectedProduct, setSelectedProduct] = useState<ProductType | null>(null);
-  const [isModalOpen, setIsModalOpen] = useState(false);
   const navigate = useNavigate();
 
   const handleProductClick = (product: ProductType) => {
-    setSelectedProduct(product);
-    setIsModalOpen(true);
+    navigate(`/produto/${product.id}`);
   };
 
   const heroSlides = [
@@ -79,6 +76,7 @@ const Home = () => {
 
   return (
     <>
+      <PromotionalTicker />
       {/* Hero */}
       <section className="relative w-full">
         <Carousel
@@ -254,7 +252,7 @@ const Home = () => {
       {/* Interactive Categories Navigation */}
       <CategoryScrollInteractive />
 
-      <div className="relative z-30 bg-background mt-0 pt-12 md:pt-20">
+      <div className="relative z-30 bg-background mt-0 pt-2 md:pt-4">
         <ProductCarousel 
           products={products} 
           subtitle="Destaques da Temporada"
@@ -264,19 +262,27 @@ const Home = () => {
         />
       </div>
 
-      <CategoryGrid />
+      <div className="-mt-4">
+        <CategoryGrid />
+      </div>
 
-      <EditorialCarousel 
-        products={editorialProducts}
-        onProductClick={handleProductClick}
-      />
-      <section className="w-full py-20 flex flex-col items-center gap-6 px-4 md:px-8 bg-background">
+      <div className="relative z-30 bg-background pt-2 md:pt-4">
+        <ProductCarousel 
+          products={[...newArrivals, ...newArrivals.map(p => ({...p, id: p.id + '_copy'}))]} 
+          subtitle="Recém Chegados"
+          title="Estilo & Personalidade"
+          badgeText="NOVIDADE"
+          onProductClick={handleProductClick}
+        />
+      </div>
+
+      <section className="w-full py-4 md:py-6 flex flex-col items-center gap-2 px-4 md:px-8 bg-background">
         <div className="relative w-full max-w-6xl mx-auto overflow-hidden rounded-[2rem] shadow-xl">
           <Link to="/catalogo" className="block">
             <img 
               src={promoProductBanner} 
               alt="Promoção Armações R$ 99,90" 
-              className="w-full h-auto max-h-[200px] md:max-h-[350px] object-cover object-center scale-[1.1]" 
+              className="w-full h-auto max-h-[200px] md:max-h-[350px] object-cover object-center scale-[1.02]" 
             />
           </Link>
         </div>
@@ -292,17 +298,44 @@ const Home = () => {
         <div className="w-1 h-1 rounded-full bg-accent/30 mt-2" />
       </section>
 
-      <RecentlyViewedSection onProductClick={handleProductClick} />
+      <div className="-mt-8">
+        <RecentlyViewedSection onProductClick={handleProductClick} />
+      </div>
 
-      <ScheduleExamSection />
+      <div className="-mt-8">
+        <ScheduleExamSection />
+      </div>
       
-      <VideoScrollHero className="-mt-20 md:-mt-32 relative z-10" />
+      <VideoScrollHero className="-mt-10 md:-mt-16 relative z-10" />
 
-      <ProductDetailModal 
-        product={selectedProduct}
-        isOpen={isModalOpen}
-        onClose={() => setIsModalOpen(false)}
-      />
+      {/* Serviços Incomparáveis Section */}
+      <section className="w-full py-16 md:py-24 bg-white flex flex-col items-center justify-center text-center px-4 relative z-20 border-t border-zinc-100">
+        <div className="flex flex-col items-center max-w-md mx-auto gap-4">
+          <div className="relative mb-2">
+            <Package className="w-8 h-8 md:w-10 md:h-10 text-zinc-800" strokeWidth={1.5} />
+            <div className="absolute -bottom-1 -left-2 bg-white rounded-full p-0.5">
+              <RotateCcw className="w-3.5 h-3.5 md:w-4 md:h-4 text-zinc-800" strokeWidth={2} />
+            </div>
+          </div>
+          
+          <div className="flex flex-col gap-1.5">
+            <h3 className="text-xs md:text-sm font-black tracking-widest text-zinc-900 uppercase">
+              Serviços Incomparáveis
+            </h3>
+            <p className="text-[10px] md:text-xs text-zinc-500 font-medium">
+              Explore o mundo Óticas Théo com facilidade.
+            </p>
+          </div>
+
+          <Link 
+            to="/servicos" 
+            className="mt-4 text-[10px] md:text-xs font-bold text-zinc-900 uppercase tracking-widest underline underline-offset-[6px] decoration-zinc-300 hover:decoration-zinc-900 transition-colors"
+          >
+            Saiba Mais
+          </Link>
+        </div>
+      </section>
+
     </>
   );
 };

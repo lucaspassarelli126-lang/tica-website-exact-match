@@ -20,6 +20,11 @@ import valentino4081 from "@/assets/products/valentino.png";
 import zegna5239 from "@/assets/products/zegna.png";
 import productA from "@/assets/products/a.png";
 import productB from "@/assets/products/b.png";
+import new1 from "@/assets/products/new_1.svg";
+import new2 from "@/assets/products/new_2.svg";
+import new3 from "@/assets/products/new_3.svg";
+import new4 from "@/assets/products/new_4.svg";
+import new5 from "@/assets/products/new_5.svg";
 
 import editorial1 from "@/assets/editorial/editorial_glasses_1.jpg";
 import editorial2 from "@/assets/editorial/editorial_glasses_2.jpg";
@@ -164,4 +169,12 @@ export const editorialProducts: Product[] = [
   { id: "e3", name: "Nude Essence", brand: "Cápsula", category: "grau", style: "vintage", img: editorial3, description: "Leveza e sutileza em tons pastel para o dia a dia." },
   { id: "e4", name: "Fio de Nylon Pro", brand: "Cápsula", category: "grau", style: "minimalista", img: editorial4, description: "Discrição e profissionalismo com design fio de nylon." },
   { id: "e5", name: "Square Bold", brand: "Cápsula", category: "grau", style: "classico", img: editorial5, description: "Presença marcante com contornos definidos e cor intensa." },
+];
+
+export const newArrivals: Product[] = [
+  { id: "n1", name: "Lançamento Noir", brand: "New Collection", category: "grau", style: "moderno", img: new1, description: "Elegância em preto fosco para um visual contemporâneo." },
+  { id: "n2", name: "Destaque Gold", brand: "New Collection", category: "grau", style: "luxo", img: new2, description: "Detalhes dourados que elevam qualquer look." },
+  { id: "n3", name: "Minimal Silver", brand: "New Collection", category: "grau", style: "minimalista", img: new3, description: "Simplicidade e sofisticação em metal prateado." },
+  { id: "n4", name: "Vintage Tortoise", brand: "New Collection", category: "grau", style: "vintage", img: new4, description: "O clássico tartaruga revisitado com design moderno." },
+  { id: "n5", name: "Arctic Clear", brand: "New Collection", category: "grau", style: "minimalista", img: new5, description: "Transparência total para quem busca leveza absoluta." },
 ];

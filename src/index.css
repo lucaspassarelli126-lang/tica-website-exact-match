@@ -124,22 +124,20 @@
 
 
 /* Swiper Pagination Dots */
+/* Swiper Pagination Bars */
 .swiper-pagination-bullet {
-  background: #AB5621 !important;
+  background: #E5E7EB !important; /* gray-200 */
   opacity: 1 !important;
-  width: 8px !important;
-  height: 8px !important;
-  margin: 0 5px !important;
+  width: 32px !important;
+  height: 2px !important;
+  margin: 0 4px !important;
   transition: all 0.3s ease !important;
-  border-radius: 50% !important;
+  border-radius: 0 !important;
 }
 
 .swiper-pagination-bullet-active {
-  background: #6b3514 !important;
-  opacity: 1 !important;
-  width: 12px !important;
-  height: 12px !important;
-  transform: scale(1.1);
+  background: #000000 !important;
+  width: 32px !important;
 }
 
 .swiper-slide {
@@ -206,34 +204,13 @@
   }
 }
 
-/* Recently Viewed Carousel pagination */
+/* Recently Viewed Carousel pagination (unified) */
 .recently-viewed-swiper .swiper-pagination-bullet {
-  background: #d4b5a0 !important;
-  opacity: 1 !important;
-  width: 6px !important;
-  height: 6px !important;
+  width: 24px !important;
 }
 
 .recently-viewed-swiper .swiper-pagination-bullet-active {
-  background: #c45a1c !important;
-  width: 20px !important;
-  height: 6px !important;
-  border-radius: 3px !important;
-}
-
-/* Editorial Carousel Pagination */
-.editorial-pagination .swiper-pagination-bullet {
-  background: #d4b5a0 !important;
-  opacity: 1 !important;
-  width: 8px !important;
-  height: 8px !important;
-  transition: all 0.3s ease !important;
-}
-
-.editorial-pagination .swiper-pagination-bullet-active {
-  background: #c45a1c !important;
   width: 24px !important;
-  border-radius: 4px !important;
 }
 
 /* Ocultar badge do Lovable */

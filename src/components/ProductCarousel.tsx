@@ -42,12 +42,10 @@ export const ProductCarousel = ({
   className = "",
   onProductClick 
 }: ProductCarouselProps) => {
-  const [firstSwiper, setFirstSwiper] = useState<SwiperType | null>(null);
-  const [secondSwiper, setSecondSwiper] = useState<SwiperType | null>(null);
   const [activeIndex, setActiveIndex] = useState(0);
+  const [prevEl, setPrevEl] = useState<HTMLButtonElement | null>(null);
+  const [nextEl, setNextEl] = useState<HTMLButtonElement | null>(null);
   const { addItem } = useCart();
-  const prevRef = useRef<HTMLButtonElement>(null);
-  const nextRef = useRef<HTMLButtonElement>(null);
 
   // Get the real product based on active index, accounting for loop duplicates
   const activeProduct = products[activeIndex % products.length];
@@ -70,9 +68,8 @@ export const ProductCarousel = ({
       {/* Top Swiper (Images) */}
       <div className="relative pt-2 pb-4 px-4 max-w-[1300px] mx-auto">
         <Swiper
-          modules={[Navigation, Controller, Pagination]}
-          onSwiper={setFirstSwiper}
-          controller={{ control: secondSwiper }}
+          modules={[Navigation, Pagination]}
+          initialSlide={0}
           centeredSlides
           slidesPerView={1.5}
           breakpoints={{
@@ -85,14 +82,8 @@ export const ProductCarousel = ({
           spaceBetween={40}
           pagination={{ clickable: true }}
           navigation={{
-            prevEl: prevRef.current,
-            nextEl: nextRef.current,
-          }}
-          onBeforeInit={(swiper) => {
-            // @ts-ignore
-            swiper.params.navigation.prevEl = prevRef.current;
-            // @ts-ignore
-            swiper.params.navigation.nextEl = nextRef.current;
+            prevEl: prevEl,
+            nextEl: nextEl,
           }}
           onSlideChange={(swiper) => {
             // realIndex gives the actual index ignoring loop clones
@@ -103,11 +94,11 @@ export const ProductCarousel = ({
           {products.map((p) => (
             <SwiperSlide key={p.id}>
               {({ isActive }) => (
-                <div className="relative aspect-[2/1] w-full flex items-center justify-center">
-                  <div className={`flex items-center justify-center w-full h-full transition-all duration-300 ease-out will-change-transform ${isActive ? 'scale-110 z-20' : 'scale-75 opacity-40 grayscale'}`}>
+                <div className="relative aspect-[2.5/1] w-full flex items-center justify-center">
+                  <div className={`flex items-center justify-center w-full h-full transition-all duration-300 ease-out will-change-transform ${isActive ? 'scale-[1.45] z-20' : 'scale-75 opacity-40 grayscale'}`}>
                     <img 
                       src={p.img} 
-                      className={`max-h-full max-w-full object-contain drop-shadow-xl transition-all duration-300 ease-in-out will-change-transform ${isActive ? 'scale-125' : 'scale-90'}`} 
+                      className={`max-h-full max-w-full object-contain drop-shadow-2xl transition-all duration-300 ease-in-out will-change-transform ${isActive ? 'scale-[1.35]' : 'scale-90'}`} 
                       alt={p.name}
                       loading="lazy"
                       decoding="async"
@@ -120,10 +111,10 @@ export const ProductCarousel = ({
         </Swiper>
         
         {/* Custom Navigation Arrows */}
-        <button ref={prevRef} className="absolute left-2 md:left-4 top-[45%] -translate-y-1/2 z-20 w-10 h-10 rounded-full bg-zinc-400/80 flex items-center justify-center hover:bg-zinc-500 transition-colors shadow-sm disabled:opacity-30 disabled:pointer-events-none">
+        <button ref={setPrevEl} className="absolute left-2 md:left-4 top-[45%] -translate-y-1/2 z-20 w-10 h-10 rounded-full bg-zinc-400/80 flex items-center justify-center hover:bg-zinc-500 transition-colors shadow-sm disabled:opacity-30 disabled:pointer-events-none">
           <ChevronLeft className="w-6 h-6 text-white" />
         </button>
-        <button ref={nextRef} className="absolute right-2 md:right-4 top-[45%] -translate-y-1/2 z-20 w-10 h-10 rounded-full bg-zinc-400/80 flex items-center justify-center hover:bg-zinc-500 transition-colors shadow-sm disabled:opacity-30 disabled:pointer-events-none">
+        <button ref={setNextEl} className="absolute right-2 md:right-4 top-[45%] -translate-y-1/2 z-20 w-10 h-10 rounded-full bg-zinc-400/80 flex items-center justify-center hover:bg-zinc-500 transition-colors shadow-sm disabled:opacity-30 disabled:pointer-events-none">
           <ChevronRight className="w-6 h-6 text-white" />
         </button>
       </div>

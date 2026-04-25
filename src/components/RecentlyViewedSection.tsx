@@ -34,7 +34,7 @@ export function RecentlyViewedSection({ onProductClick }: RecentlyViewedProps) {
   }, []);
 
   return (
-    <section className="bg-white py-14 border-t border-zinc-100">
+    <section className="bg-white py-4 md:py-8 border-t border-zinc-100">
       <div className="container-luxe">
         {/* Header */}
         <div className="flex items-center justify-between mb-8">

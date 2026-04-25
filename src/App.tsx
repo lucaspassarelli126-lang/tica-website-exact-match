@@ -11,6 +11,7 @@ import Catalogo from "./pages/Catalogo";
 import Marcas from "./pages/Marcas";
 import Localizacao from "./pages/Localizacao";
 import Contato from "./pages/Contato";
+import Produto from "./pages/Produto";
 import NotFound from "./pages/NotFound.tsx";
 
 import { CartProvider } from "./context/CartContext";
@@ -35,6 +36,7 @@ const App = () => (
                 <Route path="/marcas" element={<Marcas />} />
                 <Route path="/localizacao" element={<Localizacao />} />
                 <Route path="/contato" element={<Contato />} />
+                <Route path="/produto/:id" element={<Produto />} />
               </Route>
               <Route path="*" element={<NotFound />} />
             </Routes>

@@ -4,10 +4,13 @@ import { Button } from "@/components/ui/button";
 import { Plus } from "lucide-react";
 import { useCart } from "@/context/CartContext";
 
+import { useNavigate } from "react-router-dom";
+
 const Catalogo = () => {
   const [brand, setBrand] = useState<string>("todas");
   const [category, setCategory] = useState<"todos" | "solar" | "grau">("todos");
   const { addItem } = useCart();
+  const navigate = useNavigate();
 
   const filtered = useMemo(
     () =>
@@ -52,16 +55,11 @@ const Catalogo = () => {
                 <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
                   <Button 
                     onClick={() => {
-                      addItem({
-                        id: String(p.id),
-                        name: "armação",
-                        price: p.price ?? 1200,
-                        image: p.img
-                      });
+                      navigate(`/produto/${p.id}`);
                     }}
                     className="bg-black text-white rounded-full text-[10px] px-6 h-10 uppercase tracking-widest font-black"
                   >
-                    COMPRAR
+                    VER DETALHES
                   </Button>
                 </div>
               </div>

@@ -33,7 +33,7 @@ const categoryBanners = [
 
 export function CategoryGrid() {
   return (
-    <section className="w-full py-12 md:py-20 bg-background">
+    <section className="w-full py-4 md:py-8 bg-background">
       <div className="container-luxe">
         <div className="text-center mb-8 md:mb-12">
           <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-slate-800">
