@@ -1,28 +1,27 @@
 import { Link } from "react-router-dom";
-import { ArrowRight, Award, ShieldCheck, Sparkles, Truck, CreditCard, History, Glasses, Square, Smile, Baby } from "lucide-react";
+import { ArrowRight, Award, ShieldCheck, Sparkles, Truck, CreditCard, History, Glasses, Square, Smile, Baby, ArrowUpRight } from "lucide-react";
 import { motion } from "framer-motion";
 import { TiltWrapper } from "@/components/ui/tilt-wrapper";
 import hero from "@/assets/banners/hero-banner1-v3.jpg";
 import heroBanner2 from "@/assets/banners/hero-banner2.jpg";
 import heroBanner3 from "@/assets/banners/hero-banner3.jpg";
 import promoProductBanner from "@/assets/banners/promo-99-v2.png";
-import { products, categories } from "@/data/site";
+import { products, categories, editorialProducts, Product as ProductType } from "@/data/site";
+import { ProductDetailModal } from "@/components/ProductDetailModal";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Autoplay from "embla-carousel-autoplay";
 import { ProductCarousel } from "@/components/ProductCarousel";
-import { LayeredText } from "@/components/ui/layered-text";
-import AnimatedTextCycle from "@/components/ui/animated-text-cycle";
 import { HandWrittenTitle } from "@/components/ui/hand-writing-text";
 import { BlurFade } from "@/components/ui/blur-fade";
-import { LampContainer } from "@/components/ui/lamp";
 
 import { ScheduleExamSection } from "@/components/ScheduleExamSection";
 import { VideoScrollHero } from "@/components/ui/video-scroll-hero";
 import { RecentlyViewedSection } from "@/components/RecentlyViewedSection";
 import { CategoryScrollInteractive } from "@/components/CategoryScrollInteractive";
-import { Product as ProductType, editorialProducts } from "@/data/site";
+import { CategoryGrid } from "@/components/CategoryGrid";
+
 import { EditorialCarousel } from "@/components/EditorialCarousel";
 import {
   Carousel,
@@ -33,9 +32,9 @@ import {
   CarouselDots,
 } from "@/components/ui/carousel";
 
+
+
 const Home = () => {
-  const [firstSwiper, setFirstSwiper] = useState<any>(null);
-  const [secondSwiper, setSecondSwiper] = useState<any>(null);
   const [selectedProduct, setSelectedProduct] = useState<ProductType | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const navigate = useNavigate();
@@ -255,9 +254,6 @@ const Home = () => {
       {/* Interactive Categories Navigation */}
       <CategoryScrollInteractive />
 
-
-
-
       <div className="relative z-30 bg-background mt-0 pt-12 md:pt-20">
         <ProductCarousel 
           products={products} 
@@ -268,12 +264,13 @@ const Home = () => {
         />
       </div>
 
+      <CategoryGrid />
+
       <EditorialCarousel 
         products={editorialProducts}
         onProductClick={handleProductClick}
       />
-
-      <section className="w-full py-0 flex flex-col items-center gap-6 mt-8 px-4 md:px-8">
+      <section className="w-full py-20 flex flex-col items-center gap-6 px-4 md:px-8 bg-background">
         <div className="relative w-full max-w-6xl mx-auto group overflow-hidden rounded-3xl shadow-xl">
           <Link to="/catalogo" className="block">
             <img 
@@ -300,12 +297,6 @@ const Home = () => {
       <ScheduleExamSection />
       
       <VideoScrollHero className="-mt-20 md:-mt-32 relative z-10" />
-
-
-
-
-
-
 
       <ProductDetailModal 
         product={selectedProduct}

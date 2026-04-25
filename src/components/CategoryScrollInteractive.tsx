@@ -86,42 +86,22 @@ export function CategoryScrollInteractive() {
         }
       };
     } else {
-      // ── DESKTOP: animação por scroll (original, não mexa) ──────────────
-      let current = 0;
-      let target = 0;
-
-      const update = () => {
-        if (!sectionRef.current || !linhaRef.current) return;
-        const rect = sectionRef.current.getBoundingClientRect();
-        const windowHeight = window.innerHeight;
-        const pinDuration = rect.height - (windowHeight - 80);
-        let progress = (80 - rect.top) / pinDuration;
-        progress = Math.max(0, Math.min(progress, 1));
-        target = progress;
-        current = lerp(current, target, 0.12);
-        linhaRef.current.style.width = `${current * 100}%`;
-        const total = bolinhasRef.current.length;
-        bolinhasRef.current.forEach((b, i) => {
-          if (!b) return;
-          if (current > i / total) b.classList.add("ativa");
-          else b.classList.remove("ativa");
-        });
-      };
-
-      function onScroll() { update(); }
-      window.addEventListener("scroll", onScroll, { passive: true });
-      update();
-      return () => window.removeEventListener("scroll", onScroll);
+      // ── DESKTOP: Estático (Sem animação de scroll) ──────────────
+      if (linhaRef.current) {
+        linhaRef.current.style.width = "100%";
+      }
+      bolinhasRef.current.forEach((b) => b?.classList.add("ativa"));
+      return () => {};
     }
   }, []);
 
   return (
     <section
       ref={sectionRef as any}
-      className="relative w-full bg-background z-20 md:min-h-[110vh]"
+      className="relative w-full bg-background z-20"
     >
       <div
-        className="md:sticky md:top-[80px] w-full flex flex-col items-center justify-center bg-background overflow-hidden"
+        className="w-full flex flex-col items-center justify-center bg-background overflow-hidden"
         style={{
           height: "clamp(160px, 22vh, 300px)",
           paddingTop: "clamp(12px, 3vh, 60px)",
