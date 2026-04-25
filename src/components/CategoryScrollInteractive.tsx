@@ -17,11 +17,17 @@ export function CategoryScrollInteractive() {
     const isMobile = window.innerWidth < 768;
 
     if (isMobile) {
-      // ── MOBILE: animação automática ao entrar na tela ──────────────────
+      // ── MOBILE: animação automática ao entrar na tela (direita → esquerda) ──
       let rafId: number;
       let current = 0;
       let target = 0;
       let running = false;
+
+      // Ancora a linha na direita para crescer da direita para a esquerda
+      if (linhaRef.current) {
+        linhaRef.current.style.left = "auto";
+        linhaRef.current.style.right = "0";
+      }
 
       const animateTo = (value: number) => {
         target = value;
@@ -35,7 +41,9 @@ export function CategoryScrollInteractive() {
             const total = bolinhasRef.current.length;
             bolinhasRef.current.forEach((b, i) => {
               if (!b) return;
-              if (current > i / total) b.classList.add("ativa");
+              // Threshold invertido: última bolinha acende primeiro
+              const reversedThreshold = (total - 1 - i) / total;
+              if (current > reversedThreshold) b.classList.add("ativa");
               else b.classList.remove("ativa");
             });
             if (Math.abs(current - target) > 0.002) {
@@ -51,15 +59,15 @@ export function CategoryScrollInteractive() {
       const observer = new IntersectionObserver(
         ([entry]) => {
           if (entry.isIntersecting) {
-            // Anima até o fim quando a seção aparece
             setTimeout(() => animateTo(1), 200);
           } else {
-            // Reseta quando sai da tela
             cancelAnimationFrame(rafId);
             current = 0;
             target = 0;
             running = false;
-            if (linhaRef.current) linhaRef.current.style.width = "0%";
+            if (linhaRef.current) {
+              linhaRef.current.style.width = "0%";
+            }
             bolinhasRef.current.forEach((b) => b?.classList.remove("ativa"));
           }
         },
@@ -71,6 +79,11 @@ export function CategoryScrollInteractive() {
       return () => {
         observer.disconnect();
         cancelAnimationFrame(rafId);
+        // Reseta âncora da linha ao desmontar
+        if (linhaRef.current) {
+          linhaRef.current.style.left = "0";
+          linhaRef.current.style.right = "auto";
+        }
       };
     } else {
       // ── DESKTOP: animação por scroll (original, não mexa) ──────────────
