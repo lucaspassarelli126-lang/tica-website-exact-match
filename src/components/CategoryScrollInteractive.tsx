@@ -11,9 +11,30 @@ function lerp(start: number, end: number, t: number) {
 
 export function CategoryScrollInteractive() {
   const sectionRef = useRef<HTMLElement>(null);
+  const stickyRef = useRef<HTMLDivElement>(null);
   const linhaRef = useRef<HTMLDivElement>(null);
   const bolinhasRef = useRef<(HTMLDivElement | null)[]>([]);
 
+  // Ajuste dinâmico de altura: no mobile a seção deve ter exatamente
+  // a altura do conteúdo sticky (sem espaço vazio sobrando)
+  useEffect(() => {
+    const adjustHeight = () => {
+      if (!sectionRef.current || !stickyRef.current) return;
+      const isMobile = window.innerWidth < 768;
+      if (isMobile) {
+        const stickyH = stickyRef.current.offsetHeight;
+        sectionRef.current.style.minHeight = `${stickyH}px`;
+      } else {
+        sectionRef.current.style.minHeight = "110vh";
+      }
+    };
+
+    adjustHeight();
+    window.addEventListener("resize", adjustHeight);
+    return () => window.removeEventListener("resize", adjustHeight);
+  }, []);
+
+  // Animação de scroll (não mexa aqui)
   useEffect(() => {
     let current = 0;
     let target = 0;
@@ -30,7 +51,7 @@ export function CategoryScrollInteractive() {
       progress = Math.max(0, Math.min(progress, 1));
 
       target = progress;
-      current = lerp(current, target, 0.12); // Slightly faster lerp for snappiness
+      current = lerp(current, target, 0.12);
 
       // linha
       linhaRef.current.style.width = `${current * 100}%`;
@@ -48,12 +69,10 @@ export function CategoryScrollInteractive() {
       });
     };
 
-    const onScroll = () => {
-      update();
-    };
-
     window.addEventListener("scroll", onScroll, { passive: true });
-    update(); // Initial call
+    update();
+
+    function onScroll() { update(); }
 
     return () => {
       window.removeEventListener("scroll", onScroll);
@@ -61,10 +80,14 @@ export function CategoryScrollInteractive() {
   }, []);
 
   return (
-    <section ref={sectionRef as any} className="relative w-full min-h-[65vh] md:min-h-[110vh] bg-background z-20">
-      <div className="sticky top-[80px] h-[25vh] md:h-[35vh] w-full flex flex-col items-center justify-start pt-[5vh] md:pt-[10vh] gap-[20px] md:gap-[40px] bg-background overflow-hidden">
+    <section ref={sectionRef as any} className="relative w-full bg-background z-20" style={{ minHeight: "110vh" }}>
+      <div
+        ref={stickyRef}
+        className="sticky top-[80px] w-full flex flex-col items-center justify-start bg-background overflow-hidden"
+        style={{ height: "clamp(180px, 25vh, 300px)", paddingTop: "clamp(16px, 5vh, 80px)", gap: "clamp(16px, 3vh, 40px)" }}
+      >
         
-        <h2 className="text-[11px] md:text-[14px] font-black uppercase tracking-[3px] md:tracking-[3px] opacity-80 text-center px-4 text-zinc-900 dark:text-zinc-100">
+        <h2 className="text-[11px] md:text-[14px] font-black uppercase tracking-[3px] opacity-80 text-center px-4 text-zinc-900 dark:text-zinc-100">
           EXPLORE AS ESTÉTICAS
         </h2>
 
