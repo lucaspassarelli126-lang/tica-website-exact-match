@@ -21,6 +21,12 @@ import zegna5239 from "@/assets/products/zegna.png";
 import productA from "@/assets/products/a.png";
 import productB from "@/assets/products/b.png";
 
+import newGlasses1 from "@/assets/products/new_glasses_1.png";
+import newGlasses2 from "@/assets/products/new_glasses_2.png";
+import newGlasses3 from "@/assets/products/new_glasses_3.png";
+import newGlasses4 from "@/assets/products/new_glasses_4.png";
+import newGlasses5 from "@/assets/products/new_glasses_5.png";
+
 export const brands = [
   { name: "Gucci", img: gucci, slug: "gucci", desc: "Sofisticação italiana com personalidade marcante." },
   { name: "Prada", img: prada, slug: "prada", desc: "Design contemporâneo e elegância atemporal." },
@@ -49,6 +55,11 @@ export type Product = {
 };
 
 export const products: Product[] = [
+  { id: "101", name: "Armação Transparente Cristal", brand: "Coleção Nova", category: "grau", style: "minimalista", img: newGlasses1, description: "Design arrojado com transparência elegante para um visual clean." },
+  { id: "102", name: "Armação Clássica Onyx", brand: "Coleção Nova", category: "grau", style: "classico", img: newGlasses2, description: "Clássico com toque moderno, hastes refinadas e linhas atemporais." },
+  { id: "103", name: "Armação Nude Essence", brand: "Coleção Nova", category: "grau", style: "vintage", img: newGlasses3, description: "Leveza e sutileza em tons pastel para o dia a dia." },
+  { id: "104", name: "Armação Fio de Nylon Pro", brand: "Coleção Nova", category: "grau", style: "minimalista", img: newGlasses4, description: "Discrição e profissionalismo com design fio de nylon." },
+  { id: "105", name: "Armação Square Bold", brand: "Coleção Nova", category: "grau", style: "classico", img: newGlasses5, description: "Presença marcante com contornos definidos e cor intensa." },
   { id: "1", name: "Armação de Grau Luxury", brand: "Coleção Premium", category: "grau", style: "classico", img: gucciGg0061s, description: "Elegância italiana para um olhar marcante e sofisticado." },
   { id: "2", name: "Armação de Grau Modern", brand: "Exclusivo", category: "grau", style: "minimalista", img: prada17ws, description: "Design contemporâneo com leveza e conforto incomparáveis." },
   { id: "3", name: "Armação de Grau Kids Style", brand: "Lançamento", category: "grau", style: "infantil", img: celine40026i, description: "Para os pequenos cheios de estilo e personalidade." },
