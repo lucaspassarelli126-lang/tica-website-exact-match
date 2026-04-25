@@ -290,11 +290,11 @@ const Home = () => {
         <div className="w-1 h-1 rounded-full bg-accent/30 mt-2" />
       </section>
 
+      <RecentlyViewedSection onProductClick={handleProductClick} />
 
       <ScheduleExamSection />
       
       <VideoScrollHero className="-mt-20 md:-mt-32 relative z-10" />
-      <RecentlyViewedSection onProductClick={handleProductClick} />
 
 
 

@@ -44,39 +44,36 @@ export function RecentlyViewedSection({ onProductClick }: RecentlyViewedProps) {
               Vistos Recentemente
             </h2>
           </div>
-          <div className="flex items-center gap-4">
-            {/* Arrow buttons */}
-            <div className="flex items-center gap-2">
-              <button
-                onClick={() => swiperRef.current?.slidePrev()}
-                className="w-8 h-8 rounded-full border border-zinc-200 flex items-center justify-center hover:border-accent hover:bg-accent hover:text-white text-zinc-400 transition-all duration-300"
-                aria-label="Anterior"
-              >
-                <ChevronLeft className="w-4 h-4" />
-              </button>
-              <button
-                onClick={() => swiperRef.current?.slideNext()}
-                className="w-8 h-8 rounded-full border border-zinc-200 flex items-center justify-center hover:border-accent hover:bg-accent hover:text-white text-zinc-400 transition-all duration-300"
-                aria-label="Próximo"
-              >
-                <ChevronRight className="w-4 h-4" />
-              </button>
-            </div>
-            <button
+          <button
               onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
               className="text-[10px] uppercase tracking-widest text-accent hover:underline underline-offset-4 font-bold"
             >
               Ver catálogo completo →
             </button>
-          </div>
         </div>
 
         {/* Carousel */}
         <div
-          className={`transition-all duration-700 ${
+          className={`relative transition-all duration-700 ${
             visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
           }`}
         >
+          {/* Left Arrow */}
+          <button
+            onClick={() => swiperRef.current?.slidePrev()}
+            className="absolute left-0 top-[40%] -translate-y-1/2 -translate-x-4 z-10 w-9 h-9 rounded-full bg-white border border-zinc-200 shadow-md flex items-center justify-center hover:border-accent hover:bg-accent hover:text-white text-zinc-400 transition-all duration-300"
+            aria-label="Anterior"
+          >
+            <ChevronLeft className="w-4 h-4" />
+          </button>
+          {/* Right Arrow */}
+          <button
+            onClick={() => swiperRef.current?.slideNext()}
+            className="absolute right-0 top-[40%] -translate-y-1/2 translate-x-4 z-10 w-9 h-9 rounded-full bg-white border border-zinc-200 shadow-md flex items-center justify-center hover:border-accent hover:bg-accent hover:text-white text-zinc-400 transition-all duration-300"
+            aria-label="Próximo"
+          >
+            <ChevronRight className="w-4 h-4" />
+          </button>
           <Swiper
             modules={[Navigation, Pagination, A11y]}
             onSwiper={(swiper) => { swiperRef.current = swiper; }}
