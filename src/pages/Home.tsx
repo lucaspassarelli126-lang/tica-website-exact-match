@@ -271,12 +271,12 @@ const Home = () => {
         onProductClick={handleProductClick}
       />
       <section className="w-full py-20 flex flex-col items-center gap-6 px-4 md:px-8 bg-background">
-        <div className="relative w-full max-w-6xl mx-auto group overflow-hidden rounded-3xl shadow-xl">
+        <div className="relative w-full max-w-6xl mx-auto overflow-hidden rounded-[2rem] shadow-xl">
           <Link to="/catalogo" className="block">
             <img 
               src={promoProductBanner} 
               alt="Promoção Armações R$ 99,90" 
-              className="w-full h-auto max-h-[200px] md:max-h-[350px] object-cover object-center transition-transform duration-700 group-hover:scale-[1.03]" 
+              className="w-full h-auto max-h-[200px] md:max-h-[350px] object-cover object-center scale-[1.1]" 
             />
           </Link>
         </div>
