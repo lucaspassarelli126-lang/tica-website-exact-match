@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Product } from "@/data/site";
 import { ShoppingCart, ShoppingBag, X, ShieldCheck } from "lucide-react";
 import { useCart } from "@/context/CartContext";
+import { WHATSAPP_NUMBER, getProductLink } from "@/lib/constants";
 
 interface ProductDetailModalProps {
   product: Product | null;
@@ -91,8 +92,9 @@ export function ProductDetailModal({ product, isOpen, onClose }: ProductDetailMo
 
                 <Button 
                   onClick={() => {
-                    const message = `Olá! Gostaria de falar sobre o modelo ${product.name} que vi no site.`;
-                    window.open(`https://wa.me/5519971528684?text=${encodeURIComponent(message)}`, '_blank');
+                    const productLink = getProductLink(product.id);
+                    const message = `Olá, tenho interesse neste modelo de óculos: ${product.name}\nLink: ${productLink}`;
+                    window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`, '_blank');
                   }}
                   size="lg"
                   className="w-full h-14 bg-black text-white hover:bg-zinc-800 rounded-full text-xs font-black uppercase tracking-widest gap-3 shadow-xl transition-all hover:scale-[1.02] active:scale-[0.98]"

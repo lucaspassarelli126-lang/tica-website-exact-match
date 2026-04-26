@@ -12,8 +12,7 @@ import { Button } from '@/components/ui/button';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { Separator } from '@/components/ui/separator';
 
-// Número do WhatsApp da ótica (somente números, com DDI)
-const WHATSAPP_NUMBER = "5519971528684"; // ← Atualizado
+import { WHATSAPP_NUMBER, getProductLink } from '@/lib/constants';
 
 interface CartDrawerProps {
   open: boolean;
@@ -27,11 +26,12 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({ open, onClose }) => {
     new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(value);
 
   const handleWhatsApp = () => {
-    const itemLines = cart.map((item) =>
-      `• Modelo: ${item.name} — Qtd: ${item.quantity}`
-    ).join('\n');
+    const itemLines = cart.map((item) => {
+      const productLink = getProductLink(item.id);
+      return `• Modelo: *${item.name}*\nLink: ${productLink}`;
+    }).join('\n\n');
 
-    const message = `Olá! Tudo bem? Vim pelo site e gostaria de saber sobre esse modelo: *Mandar a foto*.`;
+    const message = `Olá! Gostaria de fazer uma solicitação destes modelos:\n\n${itemLines}`;
 
     const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
     window.open(url, '_blank');

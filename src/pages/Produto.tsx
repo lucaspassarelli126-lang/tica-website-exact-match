@@ -11,6 +11,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import { WHATSAPP_NUMBER, getProductLink } from "@/lib/constants";
 
 export default function Produto() {
   const { id } = useParams();
@@ -173,8 +174,9 @@ export default function Produto() {
             <div className="pt-2">
               <Button 
                 onClick={() => {
-                  const message = `Olá! Gostaria de falar sobre o modelo ${product.name} que vi no site.`;
-                  window.open(`https://wa.me/5519971528684?text=${encodeURIComponent(message)}`, '_blank');
+                  const productLink = getProductLink(product.id);
+                  const message = `Olá, tenho interesse neste modelo de óculos: ${product.name}\nLink: ${productLink}`;
+                  window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`, '_blank');
                 }}
                 variant="outline"
                 className="w-full h-12 border-zinc-200 text-zinc-900 rounded-md text-[10px] font-black uppercase tracking-widest gap-2 hover:bg-zinc-50 transition-all"
