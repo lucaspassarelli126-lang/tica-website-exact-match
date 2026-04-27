@@ -36,7 +36,7 @@ export function ScheduleExamSection() {
   };
 
   return (
-    <section className="bg-white font-sans py-0" id="agendamento">
+    <section className="bg-white font-sans py-16 md:py-32 lg:py-48" id="agendamento">
       <ContainerScroll
         titleComponent={
           <div className="flex flex-col items-center mb-10 px-4">
