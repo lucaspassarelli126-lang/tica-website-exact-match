@@ -98,7 +98,12 @@ export const ProductCarousel = ({
                   <div className={`flex items-center justify-center w-full h-full transition-all duration-300 ease-out will-change-transform ${isActive ? 'scale-[1.45] z-20' : 'scale-75 opacity-40 grayscale'}`}>
                     <img 
                       src={p.img} 
-                      className={`max-h-full max-w-full object-contain drop-shadow-2xl transition-all duration-300 ease-in-out will-change-transform ${isActive ? 'scale-[1.35]' : 'scale-90'}`} 
+                      className={`object-contain drop-shadow-2xl transition-all duration-300 ease-in-out will-change-transform ${isActive ? 'scale-[1.4] opacity-100' : 'scale-90 opacity-40'}`} 
+                      style={{
+                        width: '90%',
+                        height: 'auto',
+                        maxHeight: '120px'
+                      }}
                       alt={p.name}
                       loading="lazy"
                       decoding="async"

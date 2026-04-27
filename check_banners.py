@@ -1,4 +1,4 @@
-from PIL import Image
+Wrom PIL import Image
 import os
 
 banners = ['promo-completo.png', 'promo-kids.png', 'promo-games.png', 'promo-clipon.png']

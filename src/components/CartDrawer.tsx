@@ -80,8 +80,17 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({ open, onClose }) => {
             <div className="space-y-5">
               {cart.map((item) => (
                 <div key={item.id} className="flex gap-4">
-                  <div className="h-20 w-24 bg-zinc-50 rounded-md overflow-hidden flex items-center justify-center p-2 shrink-0 border border-zinc-100">
-                    <img src={item.image} alt="Óculos" className="max-h-full max-w-full object-contain" />
+                  <div className="h-24 w-24 bg-zinc-50 rounded-lg overflow-hidden flex items-center justify-center p-0 shrink-0 border border-zinc-100 relative group">
+                    <img 
+                      src={item.image} 
+                      alt="Óculos" 
+                      className="object-contain transition-transform duration-500 group-hover:scale-110" 
+                      style={{ 
+                        width: '85%', 
+                        height: 'auto',
+                        transform: `scale(${item.visualScale || 1})` 
+                      }}
+                    />
                   </div>
                   <div className="flex-1 flex flex-col justify-between py-0.5">
                     <div className="flex justify-between items-start">
@@ -124,18 +133,26 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({ open, onClose }) => {
         </ScrollArea>
 
         {cart.length > 0 && (
-          <SheetFooter className="p-6 bg-zinc-50/50 border-t border-zinc-100 sm:flex-col items-stretch gap-4">
-            <p className="text-[11px] text-muted-foreground leading-snug text-center">
-              Nosso atendente vai confirmar disponibilidade e valores pelo WhatsApp.
-            </p>
-            <Button 
-              onClick={handleWhatsApp}
-              className="w-full bg-[#25D366] hover:bg-[#20ba58] text-white h-12 rounded-full font-bold uppercase tracking-widest text-[10px] shadow-lg gap-2 flex items-center justify-center"
-            >
-              <MessageCircle className="h-4 w-4" />
-              PEDIR VIA WHATSAPP
-            </Button>
-            <p className="text-center text-[10px] text-muted-foreground">
+          <SheetFooter className="p-6 bg-zinc-50/50 border-t border-zinc-100 !flex !flex-col items-center w-full">
+            {/* Linha 1: Botões lado a lado */}
+            <div className="flex w-full gap-3 mb-4">
+              <Button 
+                onClick={onClose}
+                variant="outline"
+                className="flex-1 border-zinc-900 text-zinc-900 h-10 rounded-full font-bold uppercase tracking-widest text-[8.5px] hover:bg-zinc-50 transition-all px-1"
+              >
+                Continue Comprando
+              </Button>
+              <Button 
+                onClick={handleWhatsApp}
+                className="flex-1 bg-zinc-900 hover:bg-zinc-800 text-white h-10 rounded-full font-bold uppercase tracking-widest text-[8.5px] shadow-lg flex items-center justify-center transition-all px-1"
+              >
+                Completar Pedido
+              </Button>
+            </div>
+            
+            {/* Linha 2: Texto abaixo centralizado */}
+            <p className="w-full text-center text-[8.5px] text-muted-foreground uppercase tracking-widest opacity-60 leading-tight">
               Você será redirecionado para o WhatsApp da loja com seu pedido pronto.
             </p>
           </SheetFooter>

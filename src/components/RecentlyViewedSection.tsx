@@ -98,11 +98,13 @@ export function RecentlyViewedSection({ onProductClick }: RecentlyViewedProps) {
                   >
                     {/* Image */}
                     <div className="w-full aspect-square bg-[#FDFDFD] rounded-xl overflow-hidden mb-4 relative border border-zinc-100 group-hover:border-accent/30 transition-all duration-500 group-hover:shadow-xl">
+                      <div className="w-full h-full flex items-center justify-center">
                       <img
                         src={product.img}
                         alt={product.name}
                         className="w-full h-full object-contain p-6 transition-transform duration-700 group-hover:scale-105"
                       />
+                      </div>
                       {/* Category Badge */}
                       <div className="absolute top-3 left-3">
                         <span className="bg-white/90 backdrop-blur-sm text-zinc-500 text-[8px] font-black uppercase tracking-tighter px-2 py-0.5 rounded-sm border border-zinc-100">

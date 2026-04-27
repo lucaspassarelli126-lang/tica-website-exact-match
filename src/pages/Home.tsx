@@ -302,39 +302,13 @@ const Home = () => {
         <RecentlyViewedSection onProductClick={handleProductClick} />
       </div>
 
-      <div className="-mt-8">
-        <ScheduleExamSection />
-      </div>
-      
       <VideoScrollHero className="-mt-10 md:-mt-16 relative z-10" />
 
-      {/* Serviços Incomparáveis Section */}
-      <section className="w-full py-16 md:py-24 bg-white flex flex-col items-center justify-center text-center px-4 relative z-20 border-t border-zinc-100">
-        <div className="flex flex-col items-center max-w-md mx-auto gap-4">
-          <div className="relative mb-2">
-            <Package className="w-8 h-8 md:w-10 md:h-10 text-zinc-800" strokeWidth={1.5} />
-            <div className="absolute -bottom-1 -left-2 bg-white rounded-full p-0.5">
-              <RotateCcw className="w-3.5 h-3.5 md:w-4 md:h-4 text-zinc-800" strokeWidth={2} />
-            </div>
-          </div>
-          
-          <div className="flex flex-col gap-1.5">
-            <h3 className="text-xs md:text-sm font-black tracking-widest text-zinc-900 uppercase">
-              Serviços Incomparáveis
-            </h3>
-            <p className="text-[10px] md:text-xs text-zinc-500 font-medium">
-              Explore o mundo Óticas Théo com facilidade.
-            </p>
-          </div>
+      <div className="relative z-20 bg-white">
+        <ScheduleExamSection />
+      </div>
 
-          <Link 
-            to="/servicos" 
-            className="mt-4 text-[10px] md:text-xs font-bold text-zinc-900 uppercase tracking-widest underline underline-offset-[6px] decoration-zinc-300 hover:decoration-zinc-900 transition-colors"
-          >
-            Saiba Mais
-          </Link>
-        </div>
-      </section>
+
 
     </>
   );

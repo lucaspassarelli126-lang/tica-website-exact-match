@@ -57,18 +57,24 @@ export type Product = {
   style: string;
   img: string;
   description: string;
+  visualScale?: number; // Zoom individual para normalizar o tamanho visual
 };
 
 export const products: Product[] = [
-  { id: "1", name: "Armação de Grau Luxury", brand: "Coleção Premium", category: "grau", style: "classico", img: gucciGg0061s, description: "Elegância italiana para um olhar marcante e sofisticado." },
-  { id: "2", name: "Armação de Grau Modern", brand: "Exclusivo", category: "grau", style: "minimalista", img: prada17ws, description: "Design contemporâneo com leveza e conforto incomparáveis." },
-  { id: "3", name: "Armação de Grau Kids Style", brand: "Lançamento", category: "grau", style: "infantil", img: celine40026i, description: "Para os pequenos cheios de estilo e personalidade." },
-  { id: "4", name: "Armação de Grau Vintage", brand: "Coleção Premium", category: "grau", style: "vintage", img: oliver5036, description: "Charme retrô com acabamento artesanal de altíssima qualidade." },
-  { id: "5", name: "Armação de Grau Adventure", brand: "Destaque", category: "grau", style: "infantil", img: valentino4081, description: "Conforto e resistência para acompanhar todas as aventuras!" },
-  { id: "6", name: "Armação de Grau Executive", brand: "Coleção Premium", category: "grau", style: "classico", img: zegna5239, description: "O equilíbrio perfeito entre sobriedade e luxo masculino." },
-  { id: "7", name: "Armação de Grau Especial", brand: "Exclusivo", category: "grau", style: "vintage", img: productA, description: "Edição limitada com design exclusivo para quem busca o único." },
-  { id: "8", name: "Armação de Grau Junior", brand: "Lançamento", category: "grau", style: "infantil", img: productB, description: "Segurança e ergonomia pensada no bem-estar das crianças." },
-  { id: "9", name: "Armação de Grau Edition", brand: "Coleção Premium", category: "grau", style: "vintage", img: oliver5036_2, description: "Uma peça de colecionador que redefine o estilo clássico." },
+  { id: "1", name: "Armação de Grau Luxury", brand: "Coleção Premium", category: "grau", style: "classico", img: gucciGg0061s, description: "Elegância italiana para um olhar marcante e sofisticado.", visualScale: 1.3 },
+  { id: "2", name: "Armação de Grau Modern", brand: "Exclusivo", category: "grau", style: "minimalista", img: prada17ws, description: "Design contemporâneo com leveza e conforto incomparáveis.", visualScale: 1.2 },
+  { id: "3", name: "Armação de Grau Kids Style", brand: "Lançamento", category: "grau", style: "infantil", img: celine40026i, description: "Para os pequenos cheios de estilo e personalidade.", visualScale: 1.4 },
+  { id: "4", name: "Armação de Grau Vintage", brand: "Coleção Premium", category: "grau", style: "vintage", img: oliver5036, description: "Charme retrô com acabamento artesanal de altíssima qualidade.", visualScale: 1.2 },
+  { id: "5", name: "Armação de Grau Adventure", brand: "Destaque", category: "grau", style: "infantil", img: valentino4081, description: "Conforto e resistência para acompanhar todas as aventuras!", visualScale: 1.4 },
+  { id: "6", name: "Armação de Grau Executive", brand: "Coleção Premium", category: "grau", style: "classico", img: zegna5239, description: "O equilíbrio perfeito entre sobriedade e luxo masculino.", visualScale: 1.3 },
+  { id: "7", name: "Armação de Grau Especial", brand: "Exclusivo", category: "grau", style: "vintage", img: productA, description: "Edição limitada com design exclusivo para quem busca o único.", visualScale: 1.2 },
+  { id: "8", name: "Armação de Grau Junior", brand: "Lançamento", category: "grau", style: "infantil", img: productB, description: "Segurança e ergonomia pensada no bem-estar das crianças.", visualScale: 1.4 },
+  { id: "9", name: "Armação de Grau Edition", brand: "Coleção Premium", category: "grau", style: "vintage", img: oliver5036_2, description: "Uma peça de colecionador que redefine o estilo clássico.", visualScale: 1.2 },
+  { id: "10", name: "Lançamento Noir", brand: "New Collection", category: "grau", style: "moderno", img: new1, description: "Elegância em preto fosco para um visual contemporâneo.", visualScale: 1.7 },
+  { id: "11", name: "Destaque Gold", brand: "New Collection", category: "grau", style: "luxo", img: new2, description: "Detalhes dourados que elevam qualquer look.", visualScale: 1.5 },
+  { id: "12", name: "Minimal Silver", brand: "New Collection", category: "grau", style: "minimalista", img: new3, description: "Simplicidade e sofisticação em metal prateado.", visualScale: 1.5 },
+  { id: "13", name: "Vintage Tortoise", brand: "New Collection", category: "grau", style: "vintage", img: new4, description: "O clássico tartaruga revisitado com design moderno.", visualScale: 1.4 },
+  { id: "14", name: "Arctic Clear", brand: "New Collection", category: "grau", style: "minimalista", img: new5, description: "Transparência total para quem busca leveza absoluta.", visualScale: 1.5 },
 ];
 
 export const services = [
@@ -172,9 +178,9 @@ export const editorialProducts: Product[] = [
 ];
 
 export const newArrivals: Product[] = [
-  { id: "n1", name: "Lançamento Noir", brand: "New Collection", category: "grau", style: "moderno", img: new1, description: "Elegância em preto fosco para um visual contemporâneo." },
-  { id: "n2", name: "Destaque Gold", brand: "New Collection", category: "grau", style: "luxo", img: new2, description: "Detalhes dourados que elevam qualquer look." },
-  { id: "n3", name: "Minimal Silver", brand: "New Collection", category: "grau", style: "minimalista", img: new3, description: "Simplicidade e sofisticação em metal prateado." },
-  { id: "n4", name: "Vintage Tortoise", brand: "New Collection", category: "grau", style: "vintage", img: new4, description: "O clássico tartaruga revisitado com design moderno." },
-  { id: "n5", name: "Arctic Clear", brand: "New Collection", category: "grau", style: "minimalista", img: new5, description: "Transparência total para quem busca leveza absoluta." },
+  { id: "n1", name: "Lançamento Noir", brand: "New Collection", category: "grau", style: "moderno", img: new1, description: "Elegância em preto fosco para um visual contemporâneo.", visualScale: 1.7 },
+  { id: "n2", name: "Destaque Gold", brand: "New Collection", category: "grau", style: "luxo", img: new2, description: "Detalhes dourados que elevam qualquer look.", visualScale: 1.5 },
+  { id: "n3", name: "Minimal Silver", brand: "New Collection", category: "grau", style: "minimalista", img: new3, description: "Simplicidade e sofisticação em metal prateado.", visualScale: 1.5 },
+  { id: "n4", name: "Vintage Tortoise", brand: "New Collection", category: "grau", style: "vintage", img: new4, description: "O clássico tartaruga revisitado com design moderno.", visualScale: 1.4 },
+  { id: "n5", name: "Arctic Clear", brand: "New Collection", category: "grau", style: "minimalista", img: new5, description: "Transparência total para quem busca leveza absoluta.", visualScale: 1.5 },
 ];

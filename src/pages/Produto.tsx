@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { useCart } from "@/context/CartContext";
 import { useEffect } from "react";
 import { toast } from "sonner";
-import { ShieldCheck, Lock, RotateCcw, HelpCircle, MessageSquare, Mail, Phone } from "lucide-react";
+import { ShieldCheck, Lock, RotateCcw, HelpCircle, MessageSquare, Mail, Phone, UserCheck } from "lucide-react";
 import {
   Accordion,
   AccordionContent,
@@ -62,32 +62,31 @@ export default function Produto() {
               </div>
               <div className="space-y-0.5">
                 <p className="text-[12px] font-bold text-zinc-800 uppercase tracking-tight">Garantia e Assistência</p>
-                <p className="text-[10px] text-zinc-600 leading-snug">
-                  Suporte técnico original Óticas Théo
-                </p>
+                <p className="text-[10px] text-zinc-600 leading-snug">Suporte técnico original Óticas Théo</p>
               </div>
             </div>
 
             <div className="flex items-start gap-3 pt-2 border-t border-zinc-100">
               <div className="w-9 h-9 rounded-full bg-white flex items-center justify-center shadow-sm border border-zinc-100 shrink-0">
-                <MessageSquare className="w-4 h-4 text-zinc-600" />
+                <UserCheck className="w-4 h-4 text-zinc-600" />
               </div>
               <div>
-                <p className="text-[12px] font-bold text-zinc-800">Fale conosco por chat</p>
-                <p className="text-[10px] text-zinc-500">Atendimento em tempo real</p>
+                <p className="text-[12px] font-bold text-zinc-800">Consultoria de Visagismo</p>
+                <p className="text-[10px] text-zinc-500">Encontre a armação ideal</p>
               </div>
             </div>
 
-            <div className="flex items-start gap-3">
+            <div className="flex items-start gap-3 pt-2 border-t border-zinc-100">
               <div className="w-9 h-9 rounded-full bg-white flex items-center justify-center shadow-sm border border-zinc-100 shrink-0">
-                <Mail className="w-4 h-4 text-zinc-600" />
+                <Lock className="w-4 h-4 text-zinc-600" />
               </div>
-              <div className="overflow-hidden">
-                <p className="text-[11px] text-zinc-800 break-words font-semibold mt-1.5">contato@oticastheo.com.br</p>
+              <div>
+                <p className="text-[12px] font-bold text-zinc-800">Autenticidade Garantida</p>
+                <p className="text-[10px] text-zinc-500">Peças 100% originais</p>
               </div>
             </div>
 
-            <div className="flex items-start gap-3">
+            <div className="flex items-start gap-3 pt-2 border-t border-zinc-100">
               <div className="w-9 h-9 rounded-full bg-white flex items-center justify-center shadow-sm border border-zinc-100 shrink-0">
                 <Phone className="w-4 h-4 text-zinc-600" />
               </div>
@@ -137,11 +136,12 @@ export default function Produto() {
                 id: product.id,
                 name: product.name,
                 price: 0,
-                image: product.img
+                image: product.img,
+                visualScale: product.visualScale
               });
               toast.success("Adicionado ao carrinho com sucesso!");
             }}
-            className="w-full h-12 bg-[#c33131] hover:bg-[#a32828] text-white rounded-md text-[11px] font-black uppercase tracking-wider transition-all shadow-md"
+            className="w-full h-12 bg-[#c33131] hover:bg-[#a32828] text-white rounded-full text-[11px] font-black uppercase tracking-wider transition-all shadow-md"
           >
             ADICIONE AO CARRINHO
           </Button>
@@ -179,7 +179,7 @@ export default function Produto() {
                   window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`, '_blank');
                 }}
                 variant="outline"
-                className="w-full h-12 border-zinc-200 text-zinc-900 rounded-md text-[10px] font-black uppercase tracking-widest gap-2 hover:bg-zinc-50 transition-all"
+                className="w-full h-12 border-zinc-200 text-zinc-900 rounded-full text-[10px] font-black uppercase tracking-widest gap-2 hover:bg-zinc-50 transition-all"
               >
                 Falar com um Consultor
               </Button>

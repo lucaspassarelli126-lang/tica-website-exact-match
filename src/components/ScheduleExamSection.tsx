@@ -5,27 +5,13 @@ import { ContainerScroll } from "@/components/ui/container-scroll-animation";
 export function ScheduleExamSection() {
   const [formData, setFormData] = useState({
     name: "",
-    whatsapp: "",
     period: ""
   });
 
   const periods = ["Manhã", "Tarde"];
 
-  const formatWhatsApp = (value: string) => {
-    const numbers = value.replace(/\D/g, "");
-    if (numbers.length <= 11) {
-      return numbers
-        .replace(/^(\d{2})(\d)/g, "($1) $2")
-        .replace(/(\d{5})(\d)/, "$1-$2");
-    }
-    return value.slice(0, 15);
-  };
-
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     let value = e.target.value;
-    if (e.target.id === "whatsapp") {
-      value = formatWhatsApp(value);
-    }
     setFormData({ ...formData, [e.target.id]: value });
   };
 
@@ -35,15 +21,10 @@ export function ScheduleExamSection() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    const { name, whatsapp, period } = formData;
+    const { name, period } = formData;
     
     if (!period) {
       alert("Por favor, selecione um período.");
-      return;
-    }
-
-    if (whatsapp.replace(/\D/g, "").length < 11) {
-      alert("Por favor, insira um WhatsApp válido com DDD.");
       return;
     }
 
@@ -117,16 +98,6 @@ export function ScheduleExamSection() {
                 value={formData.name}
                 onChange={handleChange}
                 placeholder="Seu nome completo" 
-                className="p-4 rounded-[14px] border border-[#e5e5e5] outline-none w-full bg-[#fcfcfc] text-zinc-900 focus:border-black transition-colors"
-              />
-              <input 
-                id="whatsapp"
-                type="text"
-                required
-                maxLength={15}
-                value={formData.whatsapp}
-                onChange={handleChange}
-                placeholder="WhatsApp (00) 00000-0000" 
                 className="p-4 rounded-[14px] border border-[#e5e5e5] outline-none w-full bg-[#fcfcfc] text-zinc-900 focus:border-black transition-colors"
               />
 

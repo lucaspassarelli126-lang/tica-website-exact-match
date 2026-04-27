@@ -25,7 +25,7 @@ const App = () => (
       <TooltipProvider>
         <SmoothScroll>
           <Toaster />
-          <Sonner />
+          <Sonner position="bottom-left" />
           <BrowserRouter>
             <Routes>
               <Route element={<Layout />}>
