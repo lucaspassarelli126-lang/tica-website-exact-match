@@ -4,6 +4,11 @@
 @tailwind components;
 @tailwind utilities;
 
+html, body {
+  overflow-x: hidden;
+  max-width: 100%;
+}
+
 
 @layer base {
   :root {
@@ -140,6 +145,16 @@
   width: 32px !important;
 }
 
+@media (max-width: 768px) {
+  .swiper-pagination-bullet {
+    width: 12px !important;
+    margin: 0 2px !important;
+  }
+  .swiper-pagination-bullet-active {
+    width: 12px !important;
+  }
+}
+
 .swiper-slide {
   transition: transform 0.7s ease, opacity 0.7s ease;
 }
@@ -211,6 +226,16 @@
 
 .recently-viewed-swiper .swiper-pagination-bullet-active {
   width: 24px !important;
+}
+
+/* Reset opacity and transform for Recently Viewed items */
+.recently-viewed-swiper .swiper-slide,
+.recently-viewed-swiper .swiper-slide-active,
+.recently-viewed-swiper .swiper-slide-next,
+.recently-viewed-swiper .swiper-slide-prev {
+  opacity: 1 !important;
+  transform: none !important;
+  z-index: 1 !important;
 }
 
 /* Ocultar badge do Lovable */

@@ -51,16 +51,7 @@ const Catalogo = () => {
           {filtered.map((p) => (
             <article key={p.id} className="group">
               <div className="aspect-square bg-soft overflow-hidden p-6 flex items-center justify-center relative">
-                <img 
-                  src={p.img} 
-                  alt="Armação" 
-                  className="object-contain transition-transform duration-500 group-hover:scale-110" 
-                  style={{ 
-                    width: '85%', 
-                    height: 'auto',
-                    transform: `scale(${p.visualScale || 1})`
-                  }}
-                />
+                <img src={p.img} alt="Armação" className="max-h-full max-w-full object-contain" />
                 <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
                   <Button 
                     onClick={() => {
@@ -69,7 +60,6 @@ const Catalogo = () => {
                         name: p.name,
                         price: 0,
                         image: p.img,
-                        visualScale: p.visualScale
                       });
                       navigate(`/produto/${p.id}`);
                     }}

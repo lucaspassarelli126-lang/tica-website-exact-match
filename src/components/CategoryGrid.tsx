@@ -40,12 +40,12 @@ export function CategoryGrid() {
             Encontre seu Óculos Completo ideal
           </h2>
         </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-2 sm:gap-4 md:gap-6 px-2 md:px-0">
           {categoryBanners.map((category) => (
             <Link 
               key={category.title}
               to={`/catalogo?style=${category.slug}`}
-              className="block aspect-[4/5] overflow-hidden rounded-2xl shadow-lg"
+              className="block aspect-[4/5] overflow-hidden rounded-xl md:rounded-2xl shadow-md md:shadow-lg"
             >
               <img 
                 src={category.image} 

@@ -36,7 +36,7 @@ export function ScheduleExamSection() {
   };
 
   return (
-    <section className="bg-white font-sans py-16 md:py-32 lg:py-48" id="agendamento">
+    <section className="bg-white font-sans py-0" id="agendamento">
       <ContainerScroll
         titleComponent={
           <div className="flex flex-col items-center mb-10 px-4">
@@ -53,7 +53,7 @@ export function ScheduleExamSection() {
               transition={{ delay: 0.1 }}
               className="text-[36px] md:text-[56px] font-bold mb-6 leading-[1.1] text-zinc-900 font-sans tracking-tight max-w-4xl"
             >
-              Experiência visual de alto nível.
+              <span className="text-accent">Experiência</span> visual de alto nível.
             </motion.h2>
             <motion.p 
               initial={{ opacity: 0, y: 20 }}

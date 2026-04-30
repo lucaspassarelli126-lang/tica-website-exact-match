@@ -268,7 +268,7 @@ const Home = () => {
 
       <div className="relative z-30 bg-background pt-2 md:pt-4">
         <ProductCarousel 
-          products={[...newArrivals, ...newArrivals.map(p => ({...p, id: p.id + '_copy'}))]} 
+          products={newArrivals} 
           subtitle="Recém Chegados"
           title="Estilo & Personalidade"
           badgeText="NOVIDADE"
@@ -302,7 +302,7 @@ const Home = () => {
         <RecentlyViewedSection onProductClick={handleProductClick} />
       </div>
 
-      <VideoScrollHero className="-mt-10 md:-mt-16 relative z-10" />
+      <VideoScrollHero className="md:-mt-16 relative z-10" />
 
       <div className="relative z-20 bg-white">
         <ScheduleExamSection />

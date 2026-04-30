@@ -1,83 +1,156 @@
+"use client";
+import React from "react";
 import { Link } from "react-router-dom";
-import { Facebook, Instagram, Mail, MapPin, Phone, MessageCircle } from "lucide-react";
+import {
+  Mail,
+  Phone,
+  MapPin,
+  Instagram,
+  Facebook,
+  MessageCircle,
+} from "lucide-react";
+import { FooterBackgroundGradient, TextHoverEffect } from "@/components/ui/hover-footer";
 
-const Footer = () => {
+function Footer() {
+  // Footer link data adapted from original
+  const institutionalLinks = [
+    { label: "Sobre nós", href: "/sobre" },
+    { label: "Serviços", href: "/servicos" },
+    { label: "Catálogo", href: "/catalogo" },
+    { label: "Agendar Consulta", href: "/contato#agendamento", pulse: true },
+  ];
+
+  // Contact info data adapted from original
+  const contactInfo = [
+    {
+      icon: <Phone size={18} className="text-[#B38B59]" />,
+      text: "(19) 97152-8684",
+      href: "https://wa.me/5519971528684",
+    },
+    {
+      icon: <MapPin size={18} className="text-[#B38B59]" />,
+      text: "Sumaré: Av. Emílio Bosco, 551 - Matão",
+    },
+    {
+      icon: <MapPin size={18} className="text-[#B38B59]" />,
+      text: "Paulínia: Av. Brasília, 1035 - Vila Bressani",
+    },
+  ];
+
+  // Social media icons
+  const socialLinks = [
+    { icon: <Instagram size={20} />, label: "Instagram", href: "https://www.instagram.com/oticastheotavares/" },
+    { icon: <Facebook size={20} />, label: "Facebook", href: "#" },
+  ];
+
   return (
-    <footer className="bg-accent text-white">
-      <div className="container-luxe py-14 grid gap-10 md:grid-cols-4">
-        <div>
-          <div className="flex flex-col mb-4">
+    <footer className="bg-zinc-950/90 relative h-fit rounded-t-[3rem] overflow-hidden mt-12">
+      <div className="max-w-7xl mx-auto p-14 z-40 relative">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 md:gap-8 lg:gap-16 pb-12 text-zinc-300">
+          {/* Brand section */}
+          <div className="flex flex-col space-y-4">
             <div className="flex flex-col leading-none">
-              <span className="text-xl font-black tracking-widest text-white uppercase">ÓTICAS</span>
-              <span className="text-xl font-black tracking-widest text-white/80 uppercase">THEO TAVARES</span>
+              <span className="text-[#B38B59] text-2xl font-black tracking-widest uppercase">
+                ÓTICAS
+              </span>
+              <span className="text-white text-2xl font-black tracking-widest uppercase">
+                THEO TAVARES
+              </span>
+              <span className="text-[0.6rem] uppercase tracking-[0.3em] text-zinc-500 font-medium mt-1">
+                Excelência Visual há 7 anos
+              </span>
             </div>
-            <span className="text-[0.62rem] uppercase tracking-[0.3em] text-white/50 font-medium mt-1">Excelência Visual há 7 anos</span>
+            <p className="text-sm leading-relaxed text-zinc-400">
+              Sua parceira de confiança na saúde visual. Qualidade, profissionalismo e atendimento excepcional em Sumaré e Paulínia.
+            </p>
           </div>
-          <p className="text-sm text-primary-foreground/70 leading-relaxed">
-            Sua parceira de confiança na saúde visual. Qualidade, profissionalismo e atendimento excepcional em Sumaré e Paulínia.
+
+          {/* Footer link sections */}
+          <div>
+            <h4 className="text-white text-lg font-semibold mb-6 uppercase tracking-widest text-sm">
+              Institucional
+            </h4>
+            <ul className="space-y-3">
+              {institutionalLinks.map((link) => (
+                <li key={link.label} className="relative w-fit">
+                  <Link
+                    to={link.href}
+                    className="hover:text-[#B38B59] transition-colors text-sm"
+                  >
+                    {link.label}
+                  </Link>
+                  {link.pulse && (
+                    <span className="absolute top-0 -right-4 w-1.5 h-1.5 rounded-full bg-[#B38B59] animate-pulse"></span>
+                  )}
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Contact section */}
+          <div className="lg:col-span-2">
+            <h4 className="text-white text-lg font-semibold mb-6 uppercase tracking-widest text-sm">
+              Onde Estamos & Contato
+            </h4>
+            <ul className="space-y-4">
+              {contactInfo.map((item, i) => (
+                <li key={i} className="flex items-start space-x-3">
+                  <div className="mt-1 shrink-0">{item.icon}</div>
+                  {item.href ? (
+                    <a
+                      href={item.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="hover:text-[#B38B59] transition-colors text-sm"
+                    >
+                      {item.text}
+                    </a>
+                  ) : (
+                    <span className="hover:text-zinc-400 transition-colors text-sm leading-relaxed">
+                      {item.text}
+                    </span>
+                  )}
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+
+        <hr className="border-t border-zinc-800 my-8" />
+
+        {/* Footer bottom */}
+        <div className="flex flex-col md:flex-row justify-between items-center text-xs space-y-4 md:space-y-0 text-zinc-500 uppercase tracking-widest font-medium">
+          {/* Social icons */}
+          <div className="flex space-x-6">
+            {socialLinks.map(({ icon, label, href }) => (
+              <a
+                key={label}
+                href={href}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={label}
+                className="hover:text-[#B38B59] transition-colors text-zinc-400"
+              >
+                {icon}
+              </a>
+            ))}
+          </div>
+
+          {/* Copyright */}
+          <p className="text-center md:text-left">
+            &copy; {new Date().getFullYear()} ÓTICAS THEO TAVARES. Todos os direitos reservados.
           </p>
-          <div className="flex gap-3 mt-5">
-            <a href="https://www.instagram.com/oticastheotavares/" target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="p-2 border border-white/20 hover:bg-white/10 transition-colors">
-              <Instagram className="h-4 w-4" />
-            </a>
-          </div>
-        </div>
-
-        <div>
-          <h4 className="text-sm uppercase tracking-widest mb-6 font-bold border-b border-white/10 pb-2">Institucional</h4>
-          <ul className="space-y-3 text-sm text-white/70">
-            <li><Link to="/sobre" className="hover:text-white transition-colors">Sobre nós</Link></li>
-            <li><Link to="/servicos" className="hover:text-white transition-colors">Serviços</Link></li>
-            <li><Link to="/catalogo" className="hover:text-white transition-colors">Catálogo</Link></li>
-          </ul>
-        </div>
-
-        <div>
-          <h4 className="text-sm uppercase tracking-widest mb-6 font-bold border-b border-white/10 pb-2">Atendimento</h4>
-          <div className="space-y-4 text-sm text-white/70">
-            <div>
-              <p className="font-bold text-white mb-1">Horários</p>
-              <p>Seg a Sex: 09:00 - 18:00</p>
-              <p>Sáb: 09:00 - 13:00</p>
-            </div>
-            <div className="pt-2">
-              <Link to="/contato#agendamento" className="inline-block bg-white/10 hover:bg-white/20 px-4 py-2 rounded-full transition-colors text-xs font-bold uppercase tracking-widest">
-                Agendar Consulta
-              </Link>
-            </div>
-          </div>
-        </div>
-
-        <div>
-          <h4 className="text-sm uppercase tracking-widest mb-6 font-bold border-b border-white/10 pb-2">Onde Estamos</h4>
-          <ul className="space-y-4 text-sm text-white/70">
-            <li className="flex items-start gap-3">
-              <MapPin className="h-4 w-4 mt-1 shrink-0 text-white" /> 
-              <span>
-                <strong>Sumaré:</strong> Av. Emílio Bosco, 551 - Matão
-              </span>
-            </li>
-            <li className="flex items-start gap-3">
-              <MapPin className="h-4 w-4 mt-1 shrink-0 text-white" /> 
-              <span>
-                <strong>Paulínia:</strong> Av. Brasília, 1035 - Vila Bressani
-              </span>
-            </li>
-            <li className="flex items-center gap-3 pt-2">
-              <svg viewBox="0 0 24 24" fill="#25D366" className="h-4 w-4 shrink-0" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.067 2.877 1.215 3.076.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg> 
-              <span className="font-bold text-white">(19) 97152-8684</span>
-            </li>
-          </ul>
         </div>
       </div>
 
-      <div className="border-t border-white/10">
-        <div className="container-luxe py-6 text-center text-[10px] text-white/40 uppercase tracking-[0.2em]">
-          © {new Date().getFullYear()} ÓTICAS THEO TAVARES. Todos os direitos reservados.
-        </div>
+      {/* Text hover effect */}
+      <div className="lg:flex hidden h-[30rem] -mt-52 -mb-36">
+        <TextHoverEffect text="THEO" className="z-50" />
       </div>
+
+      <FooterBackgroundGradient />
     </footer>
   );
-};
+}
 
 export default Footer;

@@ -58,18 +58,18 @@ export function RecentlyViewedSection({ onProductClick }: RecentlyViewedProps) {
             visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
           }`}
         >
-          {/* Left Arrow */}
+          {/* Left Arrow (Hidden on mobile to prevent overflow) */}
           <button
             onClick={() => swiperRef.current?.slidePrev()}
-            className="absolute left-0 top-[40%] -translate-y-1/2 -translate-x-4 z-10 w-9 h-9 rounded-full bg-white border border-zinc-200 shadow-md flex items-center justify-center hover:border-accent hover:bg-accent hover:text-white text-zinc-400 transition-all duration-300"
+            className="hidden md:flex absolute left-0 top-[40%] -translate-y-1/2 -translate-x-4 z-10 w-9 h-9 rounded-full bg-white border border-zinc-200 shadow-md items-center justify-center hover:border-accent hover:bg-accent hover:text-white text-zinc-400 transition-all duration-300"
             aria-label="Anterior"
           >
             <ChevronLeft className="w-4 h-4" />
           </button>
-          {/* Right Arrow */}
+          {/* Right Arrow (Hidden on mobile to prevent overflow) */}
           <button
             onClick={() => swiperRef.current?.slideNext()}
-            className="absolute right-0 top-[40%] -translate-y-1/2 translate-x-4 z-10 w-9 h-9 rounded-full bg-white border border-zinc-200 shadow-md flex items-center justify-center hover:border-accent hover:bg-accent hover:text-white text-zinc-400 transition-all duration-300"
+            className="hidden md:flex absolute right-0 top-[40%] -translate-y-1/2 translate-x-4 z-10 w-9 h-9 rounded-full bg-white border border-zinc-200 shadow-md items-center justify-center hover:border-accent hover:bg-accent hover:text-white text-zinc-400 transition-all duration-300"
             aria-label="Próximo"
           >
             <ChevronRight className="w-4 h-4" />
@@ -97,12 +97,12 @@ export function RecentlyViewedSection({ onProductClick }: RecentlyViewedProps) {
                     style={{ transitionDelay: `${i * 80}ms` }}
                   >
                     {/* Image */}
-                    <div className="w-full aspect-square bg-[#FDFDFD] rounded-xl overflow-hidden mb-4 relative border border-zinc-100 group-hover:border-accent/30 transition-all duration-500 group-hover:shadow-xl">
+                    <div className="w-full aspect-square bg-white rounded-xl overflow-hidden mb-4 relative border border-zinc-100 group-hover:border-accent/30 transition-all duration-500 group-hover:shadow-xl">
                       <div className="w-full h-full flex items-center justify-center">
                       <img
                         src={product.img}
                         alt={product.name}
-                        className="w-full h-full object-contain p-6 transition-transform duration-700 group-hover:scale-105"
+                        className="w-full h-full object-contain p-6 transition-transform duration-700 group-hover:scale-105 mix-blend-multiply"
                       />
                       </div>
                       {/* Category Badge */}
