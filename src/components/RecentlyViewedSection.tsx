@@ -102,6 +102,7 @@ export function RecentlyViewedSection({ onProductClick }: RecentlyViewedProps) {
                       <img
                         src={product.img}
                         alt={product.name}
+                        loading="lazy"
                         className="w-full h-full object-contain p-6 transition-transform duration-700 group-hover:scale-105 mix-blend-multiply"
                       />
                       </div>
