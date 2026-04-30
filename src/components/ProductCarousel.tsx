@@ -71,15 +71,15 @@ export const ProductCarousel = ({
         {/* Navigation Arrows — outside the slide area so they don't overlap */}
         <button 
           ref={setPrevEl} 
-          className="absolute left-2 md:left-6 top-[40%] -translate-y-1/2 z-30 w-10 h-10 rounded-full bg-zinc-400/80 flex items-center justify-center hover:bg-zinc-500 transition-colors shadow-sm disabled:opacity-30 disabled:pointer-events-none"
+          className="flex absolute left-1 md:left-6 top-[40%] -translate-y-1/2 z-30 w-8 h-8 md:w-10 md:h-10 rounded-full bg-zinc-400/80 items-center justify-center hover:bg-zinc-500 transition-colors shadow-sm disabled:opacity-30 disabled:pointer-events-none"
         >
-          <ChevronLeft className="w-6 h-6 text-white" />
+          <ChevronLeft className="w-5 h-5 md:w-6 md:h-6 text-white" />
         </button>
         <button 
           ref={setNextEl} 
-          className="absolute right-2 md:right-6 top-[40%] -translate-y-1/2 z-30 w-10 h-10 rounded-full bg-zinc-400/80 flex items-center justify-center hover:bg-zinc-500 transition-colors shadow-sm disabled:opacity-30 disabled:pointer-events-none"
+          className="flex absolute right-1 md:right-6 top-[40%] -translate-y-1/2 z-30 w-8 h-8 md:w-10 md:h-10 rounded-full bg-zinc-400/80 items-center justify-center hover:bg-zinc-500 transition-colors shadow-sm disabled:opacity-30 disabled:pointer-events-none"
         >
-          <ChevronRight className="w-6 h-6 text-white" />
+          <ChevronRight className="w-5 h-5 md:w-6 md:h-6 text-white" />
         </button>
 
         <div className="max-w-[1300px] mx-auto px-16 md:px-20 relative">
@@ -110,10 +110,10 @@ export const ProductCarousel = ({
               <SwiperSlide key={`${p.id}-${idx}`}>
                 {({ isActive }) => (
                   <div className="relative aspect-[2.5/1] w-full flex items-center justify-center">
-                    <div className={`flex items-center justify-center w-full h-full transition-all duration-300 ease-out will-change-transform ${isActive ? 'scale-[1.45] z-20' : 'scale-75 opacity-40 grayscale'}`}>
+                    <div className={`flex items-center justify-center w-full h-full transition-all duration-300 ease-out will-change-transform transform-gpu ${isActive ? 'scale-[1.45] z-20' : 'scale-75 opacity-40 grayscale'}`}>
                       <img 
                         src={p.img} 
-                        className={`max-h-full max-w-full object-contain drop-shadow-2xl transition-all duration-300 ease-in-out will-change-transform ${isActive ? 'scale-[1.35]' : 'scale-90'}`} 
+                        className={`max-h-full max-w-full object-contain drop-shadow-xl transition-all duration-300 ease-in-out will-change-transform transform-gpu ${isActive ? 'scale-[1.35]' : 'scale-90'}`} 
                         alt={p.name}
                         loading="lazy"
                         decoding="async"
