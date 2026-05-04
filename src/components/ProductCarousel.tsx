@@ -109,14 +109,13 @@ export const ProductCarousel = ({
             {products.map((p, idx) => (
               <SwiperSlide key={`${p.id}-${idx}`}>
                 {({ isActive }) => (
-                  <div className="relative aspect-[2.5/1] w-full flex items-center justify-center">
-                    <div className={`flex items-center justify-center w-full h-full transition-all duration-300 ease-out will-change-transform transform-gpu ${isActive ? 'scale-[1.45] z-20' : 'scale-75 opacity-40 grayscale'}`}>
+                  <div className="relative aspect-[4/3] md:aspect-[2.5/1] w-full flex items-center justify-center">
+                    <div className={`flex items-center justify-center w-full h-full transition-all duration-300 ease-out will-change-transform transform-gpu ${isActive ? 'scale-100 z-20' : 'scale-50 opacity-40 grayscale'}`}>
                       <img 
                         src={p.img} 
-                        className={`max-h-full max-w-full object-contain drop-shadow-xl transition-all duration-300 ease-in-out will-change-transform transform-gpu ${isActive ? 'scale-[1.35]' : 'scale-90'}`} 
+                        className={`max-h-full max-w-full object-contain drop-shadow-xl transition-all duration-300 ease-in-out will-change-transform transform-gpu ${isActive ? 'scale-105' : 'scale-90'}`} 
                         alt={p.name}
-                        loading="lazy"
-                        decoding="async"
+                        // Removendo loading lazy para carrossel principal para evitar problemas de renderizacao em mobile/safari
                       />
                     </div>
                   </div>
