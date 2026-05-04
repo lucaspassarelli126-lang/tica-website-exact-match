@@ -1,7 +1,8 @@
 "use client";
 
-import React from "react";
+import React, { useRef, useEffect, useState } from "react";
 import { motion, useReducedMotion } from "framer-motion";
+import fallbackPoster from "@/assets/banners/hero-banner3.jpg";
 
 interface VideoScrollHeroProps {
   videoSrc?: string;
@@ -17,21 +18,45 @@ export function VideoScrollHero({
   subtitle = "A arte da visão",
 }: VideoScrollHeroProps) {
   const shouldReduceMotion = useReducedMotion();
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const [isVideoLoaded, setIsVideoLoaded] = useState(false);
+
+  useEffect(() => {
+    // Forçar play programático no mount para contornar restrições de iOS Safari
+    if (videoRef.current) {
+      videoRef.current.play().catch((error) => {
+        console.warn("Autoplay bloqueado pelo navegador:", error);
+      });
+    }
+  }, []);
 
   return (
     <section className={`relative h-screen w-full overflow-hidden bg-black ${className}`}>
       {/* Top Accent Line */}
       <div className="absolute top-0 left-0 w-full h-[3px] bg-accent z-30 shadow-[0_2px_10px_rgba(171,86,33,0.3)]" />
+      
+      {/* Fallback Image: Exibida enquanto o vídeo carrega ou se falhar */}
+      <img 
+        src={fallbackPoster} 
+        alt="Fallback background" 
+        className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 brightness-[0.85] md:brightness-100 ${isVideoLoaded ? 'opacity-0' : 'opacity-100'}`}
+      />
+
       {/* Main Full-Screen Video */}
       <video
+        ref={videoRef}
         autoPlay
         loop
         muted
+        defaultMuted
         playsInline
-        className="absolute inset-0 w-full h-full object-cover brightness-[0.85] md:brightness-100"
+        preload="auto"
+        poster={fallbackPoster}
+        onCanPlay={() => setIsVideoLoaded(true)}
+        className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 brightness-[0.85] md:brightness-100 ${isVideoLoaded ? 'opacity-100' : 'opacity-0'}`}
       >
         <source src={videoSrc} type="video/mp4" />
-        Seu navegador não suporta vídeos.
+        <p className="text-white z-50 relative">Seu navegador não suporta vídeos HTML5. <a href={videoSrc}>Baixar vídeo</a></p>
       </video>
 
       {/* Luxury Overlay Content */}
